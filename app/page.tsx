@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Calendar,
   Users,
@@ -16,10 +16,10 @@ import {
   Camera,
   Star,
   Music,
-} from "lucide-react"
-import { HeroSection } from "@/app/components/home/hero-section"
-import { SemesterThemeSection } from "@/app/components/home/semester-theme-section"
-import ScrollToTop from "@/app/components/scroll-to-top"
+} from "lucide-react";
+import { HeroSection } from "@/app/components/home/hero-section";
+import { SemesterThemeSection } from "@/app/components/home/semester-theme-section";
+import ScrollToTop from "@/app/components/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "Home | St. Anne's Catholic Chaplaincy - Maseno University",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description:
       "A vibrant Catholic community of 500+ members fostering faith, fellowship, and service. Join us for Mass, prayer houses, and community events.",
     type: "website",
-    url: "https://stanneschaplaincy.org",
+    url: "https://stanneschaplaincy.com",
     images: [
       {
         url: "/images/church.jpeg",
@@ -52,12 +52,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "St. Anne's Catholic Chaplaincy - Maseno University",
-    description: "Join our vibrant Catholic community of 500+ members united in faith and service",
+    description:
+      "Join our vibrant Catholic community of 500+ members united in faith and service",
     images: ["/images/church.jpeg"],
   },
-}
+};
 
-export const revalidate = 3600 //make this 12 hrs
+export const revalidate = 3600; //make this 12 hrs
 
 export default async function Home() {
   const quickLinks = [
@@ -97,7 +98,7 @@ export default async function Home() {
       bgColor: "bg-amber-50",
       iconBg: "from-amber-500 to-orange-500",
     },
-  ]
+  ];
 
   const upcomingEvents = [
     {
@@ -124,7 +125,7 @@ export default async function Home() {
       icon: Heart,
       gradient: "from-green-600 to-emerald-700",
     },
-  ]
+  ];
 
   const quickStats = [
     {
@@ -151,13 +152,12 @@ export default async function Home() {
       value: "25+",
       gradient: "from-amber-500 to-orange-600",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero Section */}
       <HeroSection />
-      
 
       {/* Quick Links - Floating Cards */}
       <section className="relative py-20 bg-white overflow-hidden">
@@ -175,13 +175,14 @@ export default async function Home() {
               Quick Access Hub
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Everything you need at your fingertips - from Mass schedules to community events
+              Everything you need at your fingertips - from Mass schedules to
+              community events
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {quickLinks.map((link, index) => {
-              const IconComponent = link.icon
+              const IconComponent = link.icon;
               return (
                 <Link
                   key={index}
@@ -204,7 +205,9 @@ export default async function Home() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-600 group-hover:to-orange-600 group-hover:bg-clip-text transition-all duration-300">
                       {link.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{link.description}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed">
+                      {link.description}
+                    </p>
 
                     <div className="flex items-center text-green-600 font-semibold group-hover:text-orange-600 transition-colors">
                       <span className="mr-2">Explore</span>
@@ -212,15 +215,25 @@ export default async function Home() {
                     </div>
                   </div>
                 </Link>
-              )
+              );
             })}
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="greenGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#E5FAEC" />
                 <stop offset="20%" stopColor="#DFF9E9" />
                 <stop offset="50%" stopColor="#E5FAED" />
@@ -229,7 +242,10 @@ export default async function Home() {
                 <stop offset="100%" stopColor="#EDFDF5" />
               </linearGradient>
             </defs>
-            <path fill="url(#greenGradient)" d="M0,0 C400,80 800,40 1200,0 L1200,120 L0,120 Z" />
+            <path
+              fill="url(#greenGradient)"
+              d="M0,0 C400,80 800,40 1200,0 L1200,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -247,7 +263,7 @@ export default async function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {quickStats.map((stat, index) => {
-              const IconComponent = stat.icon
+              const IconComponent = stat.icon;
               return (
                 <div
                   key={index}
@@ -263,18 +279,30 @@ export default async function Home() {
                     <h3 className="text-3xl sm:text-4xl font-bold text-white mb-1 sm:mb-2 group-hover:text-orange-200 transition-colors duration-300">
                       {stat.value}
                     </h3>
-                    <p className="text-green-100 font-medium text-sm sm:text-base">{stat.label}</p>
+                    <p className="text-green-100 font-medium text-sm sm:text-base">
+                      {stat.label}
+                    </p>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-24"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="orangeGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#fff7ed" />
                 <stop offset="50%" stopColor="#fffbeb" />
                 <stop offset="100%" stopColor="#fff7ed" />
@@ -304,7 +332,8 @@ export default async function Home() {
               Our Community Stories
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover the heart of St. Anne&apos;s through the moments that define our faith community
+              Discover the heart of St. Anne&apos;s through the moments that
+              define our faith community
             </p>
           </div>
 
@@ -325,10 +354,14 @@ export default async function Home() {
 
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                   <div className="max-w-3xl">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4">Sunday Mass Celebration</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                      Sunday Mass Celebration
+                    </h3>
                     <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                      Our vibrant community gathering for Sunday worship, where faith comes alive through prayer, song,
-                      and fellowship. Every Sunday, over 500 members unite in celebration of the Eucharist.
+                      Our vibrant community gathering for Sunday worship, where
+                      faith comes alive through prayer, song, and fellowship.
+                      Every Sunday, over 500 members unite in celebration of the
+                      Eucharist.
                     </p>
                     <div className="flex flex-wrap items-center gap-6 text-sm">
                       <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
@@ -355,7 +388,8 @@ export default async function Home() {
                 {
                   src: "/images/If you claim you can't meet anyone, take action in new directions_ You never know where your new journey will take you and who you will meet along the way.jpeg",
                   title: "Charity Outreach",
-                  description: "Visiting local children's homes and spreading God's love through action",
+                  description:
+                    "Visiting local children's homes and spreading God's love through action",
                   icon: Heart,
                   iconBg: "from-pink-500 to-rose-500",
                   badge: "Monthly Events",
@@ -364,7 +398,8 @@ export default async function Home() {
                 {
                   src: "/images/img1.jpeg",
                   title: "Prayer Houses",
-                  description: "Small faith communities meeting weekly for prayer and fellowship",
+                  description:
+                    "Small faith communities meeting weekly for prayer and fellowship",
                   icon: BookOpen,
                   iconBg: "from-blue-500 to-indigo-500",
                   badge: "6 Houses",
@@ -373,15 +408,16 @@ export default async function Home() {
                 {
                   src: "/images/_ (25).jpeg",
                   title: "Cultural Week",
-                  description: "Celebrating our diverse Catholic heritage and traditions",
+                  description:
+                    "Celebrating our diverse Catholic heritage and traditions",
                   icon: Sparkles,
                   iconBg: "from-purple-500 to-pink-500",
                   badge: "Annual Event",
                   badgeIcon: Star,
                 },
               ].map((item, idx) => {
-                const IconComponent = item.icon
-                const BadgeIconComponent = item.badgeIcon
+                const IconComponent = item.icon;
+                const BadgeIconComponent = item.badgeIcon;
                 return (
                   <div
                     key={idx}
@@ -403,7 +439,9 @@ export default async function Home() {
 
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-white/90 text-sm mb-3">{item.description}</p>
+                        <p className="text-white/90 text-sm mb-3">
+                          {item.description}
+                        </p>
                         <div className="flex items-center text-xs bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 w-fit">
                           <BadgeIconComponent className="w-3 h-3 mr-1" />
                           <span>{item.badge}</span>
@@ -411,7 +449,7 @@ export default async function Home() {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
 
@@ -452,7 +490,7 @@ export default async function Home() {
 
                     <div className="absolute top-4 right-4 flex space-x-2">
                       {item.icons.map((iconData, iconIdx) => {
-                        const IconComponent = iconData.Icon
+                        const IconComponent = iconData.Icon;
                         return (
                           <div
                             key={iconIdx}
@@ -460,16 +498,21 @@ export default async function Home() {
                           >
                             <IconComponent className="w-5 h-5 text-white" />
                           </div>
-                        )
+                        );
                       })}
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                       <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                      <p className="text-white/90 mb-4 leading-relaxed">{item.description}</p>
+                      <p className="text-white/90 mb-4 leading-relaxed">
+                        {item.description}
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         {item.tags.map((tag, tagIdx) => (
-                          <span key={tagIdx} className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs">
+                          <span
+                            key={tagIdx}
+                            className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs"
+                          >
                             {tag}
                           </span>
                         ))}
@@ -486,7 +529,8 @@ export default async function Home() {
                 {
                   src: "/images/Dance.jpeg",
                   title: "Liturgical Dance",
-                  description: "Expressing worship through sacred dance and movement (Ogopa Mungu)",
+                  description:
+                    "Expressing worship through sacred dance and movement (Ogopa Mungu)",
                   icon: Sparkles,
                   iconBg: "from-pink-500 to-purple-500",
                   badge: "Worship Ministry",
@@ -495,15 +539,16 @@ export default async function Home() {
                 {
                   src: "/images/Join the Movement_ Clean Up Your Community Today! 🌼🌍.jpeg",
                   title: "Community Service",
-                  description: "Serving the wider community through various outreach programs",
+                  description:
+                    "Serving the wider community through various outreach programs",
                   icon: Heart,
                   iconBg: "from-green-500 to-teal-500",
                   badge: "Service Projects",
                   badgeIcon: Users,
                 },
               ].map((item, idx) => {
-                const IconComponent = item.icon
-                const BadgeIconComponent = item.badgeIcon
+                const IconComponent = item.icon;
+                const BadgeIconComponent = item.badgeIcon;
                 return (
                   <div
                     key={idx}
@@ -525,7 +570,9 @@ export default async function Home() {
 
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-white/90 text-sm mb-3">{item.description}</p>
+                        <p className="text-white/90 text-sm mb-3">
+                          {item.description}
+                        </p>
                         <div className="flex items-center text-xs bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 w-fit">
                           <BadgeIconComponent className="w-3 h-3 mr-1" />
                           <span>{item.badge}</span>
@@ -533,7 +580,7 @@ export default async function Home() {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
@@ -542,12 +589,32 @@ export default async function Home() {
           <div className="mt-16 bg-white rounded-3xl p-8 shadow-xl border border-orange-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Camera, value: "150+", label: "Photos Captured", gradient: "from-green-500 to-emerald-500" },
-                { icon: Heart, value: "25+", label: "Charity Events", gradient: "from-orange-500 to-amber-500" },
-                { icon: Users, value: "500+", label: "Active Members", gradient: "from-green-600 to-emerald-600" },
-                { icon: Sparkles, value: "12+", label: "Annual Events", gradient: "from-amber-500 to-orange-500" },
+                {
+                  icon: Camera,
+                  value: "150+",
+                  label: "Photos Captured",
+                  gradient: "from-green-500 to-emerald-500",
+                },
+                {
+                  icon: Heart,
+                  value: "25+",
+                  label: "Charity Events",
+                  gradient: "from-orange-500 to-amber-500",
+                },
+                {
+                  icon: Users,
+                  value: "500+",
+                  label: "Active Members",
+                  gradient: "from-green-600 to-emerald-600",
+                },
+                {
+                  icon: Sparkles,
+                  value: "12+",
+                  label: "Annual Events",
+                  gradient: "from-amber-500 to-orange-500",
+                },
               ].map((stat, idx) => {
-                const IconComponent = stat.icon
+                const IconComponent = stat.icon;
                 return (
                   <div key={idx} className="text-center group cursor-pointer">
                     <div
@@ -555,10 +622,12 @@ export default async function Home() {
                     >
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                    <div className="text-2xl font-bold text-gray-900">
+                      {stat.value}
+                    </div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
@@ -585,7 +654,11 @@ export default async function Home() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20 fill-white"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <path d="M0,60 C150,120 350,0 500,60 C650,120 850,0 1000,60 C1100,90 1150,90 1200,60 L1200,120 L0,120 Z" />
           </svg>
         </div>
@@ -614,9 +687,21 @@ export default async function Home() {
 
                 <div className="space-y-4">
                   {[
-                    { day: "Sunday Mass", time: "7:00 AM & 9:00 AM", gradient: "from-green-500 to-emerald-500" },
-                    { day: "Weekday Mass", time: "5:00 PM", gradient: "from-emerald-500 to-green-600" },
-                    { day: "Confessions", time: "4:00 PM on Fridays", gradient: "from-green-600 to-emerald-700" },
+                    {
+                      day: "Sunday Mass",
+                      time: "7:00 AM & 9:00 AM",
+                      gradient: "from-green-500 to-emerald-500",
+                    },
+                    {
+                      day: "Weekday Mass",
+                      time: "5:00 PM",
+                      gradient: "from-emerald-500 to-green-600",
+                    },
+                    {
+                      day: "Confessions",
+                      time: "4:00 PM on Fridays",
+                      gradient: "from-green-600 to-emerald-700",
+                    },
                   ].map((mass, index) => (
                     <div
                       key={index}
@@ -626,7 +711,9 @@ export default async function Home() {
                         <span className="font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
                           {mass.day}
                         </span>
-                        <span className={`font-bold bg-gradient-to-r ${mass.gradient} bg-clip-text text-transparent`}>
+                        <span
+                          className={`font-bold bg-gradient-to-r ${mass.gradient} bg-clip-text text-transparent`}
+                        >
                           {mass.time}
                         </span>
                       </div>
@@ -665,11 +752,11 @@ export default async function Home() {
                     {
                       icon: Mail,
                       label: "Email",
-                      value: "info@stanneschaplaincy.org",
+                      value: "info@stanneschaplaincy.com",
                       gradient: "from-green-600 to-orange-500",
                     },
                   ].map((contact, index) => {
-                    const IconComponent = contact.icon
+                    const IconComponent = contact.icon;
                     return (
                       <div
                         key={index}
@@ -681,11 +768,15 @@ export default async function Home() {
                           <IconComponent className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-900 mb-1">{contact.label}</p>
-                          <p className="text-gray-700 whitespace-pre-line">{contact.value}</p>
+                          <p className="font-semibold text-gray-900 mb-1">
+                            {contact.label}
+                          </p>
+                          <p className="text-gray-700 whitespace-pre-line">
+                            {contact.value}
+                          </p>
                         </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -694,15 +785,28 @@ export default async function Home() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-24"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="greenToEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="greenToEmerald"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#10b981" />
                 <stop offset="50%" stopColor="#059669" />
                 <stop offset="100%" stopColor="#047857" />
               </linearGradient>
             </defs>
-            <path fill="url(#greenToEmerald)" d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" />
+            <path
+              fill="url(#greenToEmerald)"
+              d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -719,15 +823,18 @@ export default async function Home() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6 shadow-lg animate-pulse">
               <Calendar className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Upcoming Events</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Upcoming Events
+            </h2>
             <p className="text-xl text-green-100 max-w-2xl mx-auto">
-              Join us for these exciting community gatherings and spiritual activities
+              Join us for these exciting community gatherings and spiritual
+              activities
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {upcomingEvents.map((event, index) => {
-              const IconComponent = event.icon
+              const IconComponent = event.icon;
               return (
                 <div
                   key={index}
@@ -760,7 +867,7 @@ export default async function Home() {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
 
@@ -776,9 +883,19 @@ export default async function Home() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="ctaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="ctaGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#FF7009" />
                 <stop offset="25%" stopColor="#FF800B" />
                 <stop offset="50%" stopColor="#FF8705" />
@@ -786,7 +903,10 @@ export default async function Home() {
                 <stop offset="100%" stopColor="#FE9D07" />
               </linearGradient>
             </defs>
-            <path fill="url(#ctaGradient)" d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z" />
+            <path
+              fill="url(#ctaGradient)"
+              d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -810,8 +930,9 @@ export default async function Home() {
               Join Our Catholic Family
             </h2>
             <p className="text-lg sm:text-xl mb-8 sm:mb-12 text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Whether you&apos;re a student or community member, everyone is welcome in our vibrant Catholic community
-              at St. Anne&apos;s Chaplaincy
+              Whether you&apos;re a student or community member, everyone is
+              welcome in our vibrant Catholic community at St. Anne&apos;s
+              Chaplaincy
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
@@ -839,5 +960,5 @@ export default async function Home() {
 
       <ScrollToTop />
     </div>
-  )
+  );
 }

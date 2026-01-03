@@ -1,7 +1,14 @@
-import { Cross, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from "lucide-react"
-import Link from "next/link"
-import type { Metadata } from "next"
-
+import {
+  Cross,
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Twitter,
+} from "lucide-react";
+import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Home | St. Anne's Catholic Chaplaincy - Maseno University",
@@ -21,7 +28,7 @@ export const metadata: Metadata = {
     description:
       "A vibrant Catholic community of 500+ members fostering faith, fellowship, and service. Join us for Mass, prayer houses, and community events.",
     type: "website",
-    url: "https://stanneschaplaincy.org",
+    url: "https://stanneschaplaincy.com",
     images: [
       {
         url: "/images/church.jpeg",
@@ -34,11 +41,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "St. Anne's Catholic Chaplaincy - Maseno University",
-    description: "Join our vibrant Catholic community of 500+ members united in faith and service",
+    description:
+      "Join our vibrant Catholic community of 500+ members united in faith and service",
     images: ["/images/church.jpeg"],
   },
-}
-
+};
 
 export default function Footer() {
   const quickLinks = [
@@ -48,7 +55,7 @@ export default function Footer() {
     { name: "Prayer & Spirituality", href: "/prayer" },
     { name: "Leadership", href: "/leadership" },
     { name: "Contact", href: "/contact" },
-  ]
+  ];
 
   const services = [
     "Mass Times",
@@ -57,13 +64,13 @@ export default function Footer() {
     "Marriage Preparation",
     "Spiritual Counseling",
     "Youth Ministry",
-  ]
+  ];
 
   const socialLinks = [
     { name: "Facebook", icon: Facebook, href: "#" },
     { name: "Instagram", icon: Instagram, href: "#" },
     { name: "Twitter", icon: Twitter, href: "#" },
-  ]
+  ];
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -80,8 +87,8 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              A vibrant Catholic community fostering faith, fellowship, and service among students and community members
-              at Maseno University.
+              A vibrant Catholic community fostering faith, fellowship, and
+              service among students and community members at Maseno University.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -101,7 +108,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
                     {link.name}
                   </Link>
                 </li>
@@ -137,7 +147,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">info@stanneschaplaincy.org</span>
+                <span className="text-gray-400 text-sm">
+                  info@stanneschaplaincy.com
+                </span>
               </div>
             </div>
           </div>
@@ -165,10 +177,13 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 text-gray-400 text-sm mb-4 md:mb-0">
-            <span>© 2025 St. Anne&apos;s Chaplaincy, Maseno University. All rights reserved.</span>
+            <span>
+              © 2025 St. Anne&apos;s Chaplaincy, Maseno University. All rights
+              reserved.
+            </span>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

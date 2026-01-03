@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   Calendar,
   Users,
@@ -17,39 +17,42 @@ import {
   Star,
   Music,
   Download,
-} from "lucide-react"
-import Link from "next/link"
-import TypeWriter from "@/app/components/type-writer"
-import ScrollToTop from "@/app/components/scroll-to-top"
-import ConfettiBurst from "@/app/components/confetti-burst"
-import { useScrollTrigger } from "@/app/hooks/use-scroll-trigger"
+} from "lucide-react";
+import Link from "next/link";
+import TypeWriter from "@/app/components/type-writer";
+import ScrollToTop from "@/app/components/scroll-to-top";
+import ConfettiBurst from "@/app/components/confetti-burst";
+import { useScrollTrigger } from "@/app/hooks/use-scroll-trigger";
 
 export default function HomeClient() {
-  const [firstDone, setFirstDone] = useState(false)
-  const [heroConfettiTriggered, setHeroConfettiTriggered] = useState(false)
+  const [firstDone, setFirstDone] = useState(false);
+  const [heroConfettiTriggered, setHeroConfettiTriggered] = useState(false);
 
-  const { elementRef: semesterThemeRef, isTriggered: semesterConfettiTriggered } = useScrollTrigger(0.3, false)
+  const {
+    elementRef: semesterThemeRef,
+    isTriggered: semesterConfettiTriggered,
+  } = useScrollTrigger(0.3, false);
 
   const downloadThemeBanner = () => {
-    const link = document.createElement("a")
-    link.href = "/images/Frame 3 (1)_page-0001.jpg"
-    link.download = "St-Annes-Semester-Theme-Banner.svg"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+    const link = document.createElement("a");
+    link.href = "/images/Frame 3 (1)_page-0001.jpg";
+    link.download = "St-Annes-Semester-Theme-Banner.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     const heroTimer = setTimeout(() => {
-      setHeroConfettiTriggered(true)
+      setHeroConfettiTriggered(true);
 
       setTimeout(() => {
-        setHeroConfettiTriggered(false)
-      }, 100)
-    }, 2000)
+        setHeroConfettiTriggered(false);
+      }, 100);
+    }, 2000);
 
-    return () => clearTimeout(heroTimer)
-  }, [])
+    return () => clearTimeout(heroTimer);
+  }, []);
 
   const quickLinks = [
     {
@@ -88,7 +91,7 @@ export default function HomeClient() {
       bgColor: "bg-amber-50",
       iconBg: "from-amber-500 to-orange-500",
     },
-  ]
+  ];
 
   const quickStats = [
     {
@@ -115,7 +118,7 @@ export default function HomeClient() {
       icon: Heart,
       gradient: "from-amber-400 to-orange-500",
     },
-  ]
+  ];
 
   const upcomingEvents = [
     {
@@ -142,7 +145,7 @@ export default function HomeClient() {
       icon: Music,
       gradient: "from-green-600 to-emerald-700",
     },
-  ]
+  ];
 
   const contactInfo = [
     {
@@ -160,10 +163,10 @@ export default function HomeClient() {
     {
       icon: Mail,
       label: "Email",
-      value: "info@stanneschaplaincy.org",
+      value: "info@stanneschaplaincy.com",
       gradient: "from-green-500 to-emerald-500",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50">
@@ -173,7 +176,11 @@ export default function HomeClient() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/church.jpeg" alt="St. Anne's Chaplaincy" className="w-full h-full object-cover" />
+          <img
+            src="/images/church.jpeg"
+            alt="St. Anne's Chaplaincy"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-emerald-800/70 to-orange-900/60"></div>
         </div>
 
@@ -250,8 +257,9 @@ export default function HomeClient() {
             </p>
 
             <p className="text-base sm:text-lg mb-8 sm:mb-12 text-green-200/90 max-w-3xl mx-auto leading-relaxed">
-              Where Faith Meets Fellowship - Join our vibrant Catholic community of students and community members
-              united in faith, service, and spiritual growth.
+              Where Faith Meets Fellowship - Join our vibrant Catholic community
+              of students and community members united in faith, service, and
+              spiritual growth.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
@@ -277,7 +285,11 @@ export default function HomeClient() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-24 fill-white"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <path d="M0,0 C300,100 600,20 900,80 C1050,120 1150,60 1200,80 L1200,120 L0,120 Z" />
           </svg>
         </div>
@@ -299,7 +311,8 @@ export default function HomeClient() {
               Quick Access Hub
             </h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Everything you need at your fingertips - from Mass schedules to community events
+              Everything you need at your fingertips - from Mass schedules to
+              community events
             </p>
           </div>
 
@@ -326,7 +339,9 @@ export default function HomeClient() {
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-600 group-hover:to-orange-600 group-hover:bg-clip-text transition-all duration-300">
                     {link.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{link.description}</p>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {link.description}
+                  </p>
 
                   <div className="flex items-center text-green-600 font-semibold group-hover:text-orange-600 transition-colors">
                     <span className="mr-2">Explore</span>
@@ -339,15 +354,28 @@ export default function HomeClient() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="greenGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#E5FAEC" />
                 <stop offset="50%" stopColor="#E5FAED" />
                 <stop offset="100%" stopColor="#EDFDF5" />
               </linearGradient>
             </defs>
-            <path fill="url(#greenGradient)" d="M0,0 C400,80 800,40 1200,0 L1200,120 L0,120 Z" />
+            <path
+              fill="url(#greenGradient)"
+              d="M0,0 C400,80 800,40 1200,0 L1200,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -371,14 +399,17 @@ export default function HomeClient() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-green-800 via-emerald-700 to-orange-700 bg-clip-text text-transparent">
               Semester Theme
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">Academic Year 2024/2025 - Semester 2</p>
+            <p className="text-base sm:text-lg text-gray-600">
+              Academic Year 2024/2025 - Semester 2
+            </p>
           </div>
 
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-green-100 shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
             <div className="text-center mb-6 sm:mb-8">
               <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 leading-relaxed px-2">
-                &quot;GUIDE US, OH HOLY SPIRIT, TO TRUST IN GOD&apos;S LOVE AND PROMISES, EMBRACING OUR ROLE AS PILGRIMS
-                OF HOPE THROUGH SIMPLE ACTS OF LOVE&quot;
+                &quot;GUIDE US, OH HOLY SPIRIT, TO TRUST IN GOD&apos;S LOVE AND
+                PROMISES, EMBRACING OUR ROLE AS PILGRIMS OF HOPE THROUGH SIMPLE
+                ACTS OF LOVE&quot;
               </h3>
             </div>
 
@@ -421,7 +452,11 @@ export default function HomeClient() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20 fill-green-600" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20 fill-green-600"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" />
           </svg>
         </div>
@@ -446,7 +481,9 @@ export default function HomeClient() {
                   <h3 className="text-3xl sm:text-4xl font-bold text-white mb-1 sm:mb-2 group-hover:text-orange-200 transition-colors duration-300">
                     {stat.value}
                   </h3>
-                  <p className="text-green-100 font-medium text-sm sm:text-base">{stat.label}</p>
+                  <p className="text-green-100 font-medium text-sm sm:text-base">
+                    {stat.label}
+                  </p>
                 </div>
               </div>
             ))}
@@ -454,9 +491,19 @@ export default function HomeClient() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-24"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="orangeGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#fff7ed" />
                 <stop offset="50%" stopColor="#fffbeb" />
                 <stop offset="100%" stopColor="#fff7ed" />
@@ -477,9 +524,12 @@ export default function HomeClient() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6 shadow-lg animate-pulse">
               <Calendar className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Upcoming Events</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Upcoming Events
+            </h2>
             <p className="text-xl text-green-100 max-w-2xl mx-auto">
-              Join us for these exciting community gatherings and spiritual activities
+              Join us for these exciting community gatherings and spiritual
+              activities
             </p>
           </div>
 
@@ -531,15 +581,28 @@ export default function HomeClient() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg
+            className="w-full h-20"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <linearGradient id="ctaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="ctaGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="#FF7009" />
                 <stop offset="50%" stopColor="#FF8705" />
                 <stop offset="100%" stopColor="#FE9D07" />
               </linearGradient>
             </defs>
-            <path fill="url(#ctaGradient)" d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z" />
+            <path
+              fill="url(#ctaGradient)"
+              d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z"
+            />
           </svg>
         </div>
       </section>
@@ -556,8 +619,9 @@ export default function HomeClient() {
               Join Our Catholic Family
             </h2>
             <p className="text-lg sm:text-xl mb-8 sm:mb-12 text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Whether you&apos;re a student or community member, everyone is welcome in our vibrant Catholic community
-              at St. Anne&apos;s Chaplaincy
+              Whether you&apos;re a student or community member, everyone is
+              welcome in our vibrant Catholic community at St. Anne&apos;s
+              Chaplaincy
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
@@ -585,5 +649,5 @@ export default function HomeClient() {
 
       <ScrollToTop />
     </div>
-  )
+  );
 }

@@ -1,16 +1,16 @@
-import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { AuthProvider } from "@/app/lib/auth-provider"
-import { getSession } from "@/app/lib/auth"
-import "./globals.css"
+import type React from "react";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { AuthProvider } from "@/app/lib/auth-provider";
+import { getSession } from "@/app/lib/auth";
+import "./globals.css";
 
-const geistSans = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
+const geistSans = Geist({ subsets: ["latin"] });
+const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stanneschaplaincy.org"),
+  metadataBase: new URL("https://stanneschaplaincy.com"),
   title: {
     default: "St. Anne's Catholic Chaplaincy | Maseno University",
     template: "%s | St. Anne's Chaplaincy",
@@ -39,10 +39,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://stanneschaplaincy.org",
+    url: "https://stanneschaplaincy.com",
     siteName: "St. Anne's Catholic Chaplaincy",
     title: "St. Anne's Catholic Chaplaincy - Maseno University",
-    description: "A vibrant Catholic community fostering faith, fellowship, and service at Maseno University.",
+    description:
+      "A vibrant Catholic community fostering faith, fellowship, and service at Maseno University.",
     images: [
       {
         url: "/images/chaplaincylogo-removebg-preview.png",
@@ -55,7 +56,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "St. Anne's Catholic Chaplaincy - Maseno University",
-    description: "A vibrant Catholic community fostering faith, fellowship, and service.",
+    description:
+      "A vibrant Catholic community fostering faith, fellowship, and service.",
     images: ["/images/chaplaincylogo-removebg-preview.png"],
   },
   robots: {
@@ -72,7 +74,7 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
-}
+};
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -83,25 +85,28 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#16a34a" },
     { media: "(prefers-color-scheme: dark)", color: "#15803d" },
   ],
-}
+};
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
-  const user = await getSession()
+  const user = await getSession();
 
   return (
     <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
       <head>
         <link rel="icon" href="/images/chaplaincylogo-removebg-preview.png" />
-        <link rel="apple-touch-icon" href="/images/chaplaincylogo-removebg-preview.png" />
+        <link
+          rel="apple-touch-icon"
+          href="/images/chaplaincylogo-removebg-preview.png"
+        />
       </head>
       <body className="antialiased">
         <AuthProvider initialUser={user}>{children}</AuthProvider>
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
