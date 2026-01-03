@@ -20,6 +20,7 @@ import {
 import { HeroSection } from "@/app/components/home/hero-section";
 import { SemesterThemeSection } from "@/app/components/home/semester-theme-section";
 import ScrollToTop from "@/app/components/scroll-to-top";
+import Footer from "./components/footer";
 
 export const metadata: Metadata = {
   title: "Home | St. Anne's Catholic Chaplaincy - Maseno University",
@@ -155,6 +156,7 @@ export default async function Home() {
   ];
 
   return (
+    <>
     <div className="min-h-screen overflow-hidden">
       {/* Hero Section */}
       <HeroSection />
@@ -960,5 +962,7 @@ export default async function Home() {
 
       <ScrollToTop />
     </div>
+    <Footer/>
+    </>
   );
 }
