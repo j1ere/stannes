@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://stanneschaplaincy.com'
-  const currentDate = new Date("2025-01-01")
+  const currentDate = new Date()
 
   return [
     {
