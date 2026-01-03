@@ -11,12 +11,11 @@ export function proxy(request: NextRequest) {
     "/login",
     "/signup",
     "/about",
-    "/groups",
-    "/leadership",
     "/events",
     "/prayer",
     "/captured-moments",
-    "/services",
+    "/contact",
+    "services",
   ]
   const isPublicPath = publicPaths.some((path) => pathname === path || pathname.startsWith(path))
 
@@ -25,7 +24,7 @@ export function proxy(request: NextRequest) {
   const isAuthenticated = !!userCookie
 
   // Protected paths (only contact requires auth based on original app)
-  const protectedPaths = ["/contact", "/admin"]
+  const protectedPaths = ["/admin", "/leadership", "/groups"]
   const isProtectedPath = protectedPaths.some((path) => pathname.startsWith(path))
 
   // If trying to access protected route without auth, redirect to login
