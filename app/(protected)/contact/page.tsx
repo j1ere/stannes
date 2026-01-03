@@ -14,7 +14,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us | St. Anne's Chaplaincy",
+  title: "Contact Us | St. Anne's Chaplaincy - Archdiocese of Kisumu",
   description:
     "Get in touch with St. Anne's Catholic Chaplaincy at Maseno University. Find our location, contact information, and send us a message.",
   keywords: [
@@ -23,10 +23,11 @@ export const metadata: Metadata = {
     "Maseno University",
     "Catholic chaplaincy",
     "get in touch",
+    "Archdiocese of Kisumu",
   ],
   openGraph: {
     title: "Contact St. Anne's Chaplaincy",
-    description: "Reach out to our Catholic community at Maseno University.",
+    description: "Reach out to our Catholic community at Maseno University - Archdiocese of Kisumu.",
     type: "website",
   },
 };

@@ -11,9 +11,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Home | St. Anne's Catholic Chaplaincy - Maseno University",
+  title: "Home | St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
   description:
-    "Welcome to St. Anne's Catholic Chaplaincy at Maseno University. A vibrant Catholic community of over 500 members fostering faith, fellowship, and service through prayer houses, events, and spiritual activities.",
+    "Welcome to St. Anne's Catholic Chaplaincy Maseno University Archdiocese of Kisumu. A vibrant Catholic community of over 500 members fostering faith, fellowship, and service through prayer houses, events, and spiritual activities.",
   keywords: [
     "St Anne's Chaplaincy",
     "Maseno University",
@@ -22,9 +22,14 @@ export const metadata: Metadata = {
     "Prayer Houses",
     "Sunday Mass Kenya",
     "Catholic Student Fellowship",
+    "Archdiocese of Kisumu",
+    "Catholic Students Association CSA",
+    "csa maseno",
+    "best chaplaincy",
+    "best chaplaincy kenya",
   ],
   openGraph: {
-    title: "St. Anne's Catholic Chaplaincy - Maseno University",
+    title: "St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
     description:
       "A vibrant Catholic community of 500+ members fostering faith, fellowship, and service. Join us for Mass, prayer houses, and community events.",
     type: "website",
@@ -40,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "St. Anne's Catholic Chaplaincy - Maseno University",
+    title: "St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
     description:
       "Join our vibrant Catholic community of 500+ members united in faith and service",
     images: ["/images/church.jpeg"],
@@ -83,7 +88,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold">St. Anne&apos;s</h3>
-                <p className="text-sm text-gray-400">Maseno University</p>
+                <p className="text-sm text-gray-400">Maseno University - Archdiocese of Kisumu</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
@@ -138,6 +143,7 @@ export default function Footer() {
                 <div className="text-gray-400 text-sm">
                   <p>St. Anne&apos;s Chaplaincy</p>
                   <p>Maseno University Campus</p>
+                  <p>Archdiocese of Kisumu</p>
                   <p>Kisumu, Kenya</p>
                 </div>
               </div>
@@ -178,7 +184,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 text-gray-400 text-sm mb-4 md:mb-0">
             <span>
-              © 2025 St. Anne&apos;s Chaplaincy, Maseno University. All rights
+              © 2025 St. Anne&apos;s Chaplaincy, Maseno University - Archdiocese of Kisumu. All rights
               reserved.
             </span>
           </div>

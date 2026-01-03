@@ -163,12 +163,12 @@
   import type { UpcomingEvent } from '@/app/events/types'
 
   export const metadata: Metadata = {
-    title: "Events & Activities | St. Anne's Chaplaincy",
+    title: "Events & Activities | St. Anne's Chaplaincy - Archdiocese of Kisumu",
     description:
       "Discover upcoming events, retreats, charity activities, and celebrations at St. Anne's Catholic Chaplaincy.",
     keywords: ["Catholic events", "retreats", "charity work", "cultural week", "Mass times", "Maseno University"],
     openGraph: {
-      title: "Events & Activities - St. Anne's Chaplaincy",
+      title: "Events & Activities - St. Anne's Chaplaincy - Archdiocese of Kisumu",
       description: "Join us for exciting community gatherings and spiritual activities.",
       type: "website",
     },

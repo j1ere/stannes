@@ -8,9 +8,9 @@ import Footer from "../components/footer"
 import Navbar from "../components/navbar"
 
 export const metadata: Metadata = {
-  title: "Chaplaincy Services | St. Anne's Chaplaincy",
+  title: "Chaplaincy Services | St. Anne's Chaplaincy - Archdiocese of Kisumu",
   description:
-    "Explore our printing services, semester theme t-shirts, and Catholic merchandise at St. Anne's Chaplaincy.",
+    "Explore our printing services, semester theme t-shirts, and Catholic merchandise at St. Anne's Chaplaincy - Archdiocese of Kisumu.",
   keywords: ["chaplaincy services", "printing", "t-shirts", "Catholic merchandise", "Maseno University"],
   openGraph: {
     title: "Chaplaincy Services - St. Anne's Chaplaincy",
