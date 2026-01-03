@@ -2,4 +2,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /login
+Disallow: /admin
+
+
 Sitemap: https://stanneschaplaincy.com/sitemap.xml
