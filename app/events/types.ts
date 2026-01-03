@@ -52,7 +52,7 @@ export interface AnnualEvent {
 export interface CatholicEvent {
   date: number
   event: string
-  type: "solemnity" | "feast" | "memorial" | "commemoration"
+  type: "solemnity" | "feast" | "memorial" | "commemoration" | "All Souls" | "optional memorial"
   verse: string
   reading: string
 }

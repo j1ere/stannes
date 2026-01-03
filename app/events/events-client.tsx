@@ -17,11 +17,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import ScrollToTop from "@/app/components/scroll-to-top"
-import type { LucideIcon } from "lucide-react"
 import type { UpcomingEvent, RegularActivity, AnnualEvent, CatholicEvent } from '@/app/events/types'
-
-
-
 
 interface Props {
   upcomingEvents: UpcomingEvent[]
@@ -32,6 +28,18 @@ const EventsClient = ({ upcomingEvents }: Props) => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
   const [selectedEvent, setSelectedEvent] = useState<UpcomingEvent | null>(null)
   const [showEventModal, setShowEventModal] = useState(false)
+
+  const getIconComponent = (iconName: string) => {
+    const icons = {
+      Calendar,
+      Users,
+      Heart,
+      Mountain,
+      Crown,
+      Gift,
+    }
+    return icons[iconName as keyof typeof icons] || Calendar
+  }
 
   // SSG: Static hardcoded data for regular activities
   const regularActivities: RegularActivity[] = [
@@ -97,7 +105,6 @@ const EventsClient = ({ upcomingEvents }: Props) => {
 
   // SSG: Static hardcoded Catholic events (fixed dates; for movable feasts, fetch from API like http://calapi.inadiutorium.cz/api/v0/en/day/d-m-y)
   const catholicEvents: Record<number, CatholicEvent[]> = {
-    // ... (keep the same as provided, since fixed dates apply to 2026)
     0: [
       // January
       {
@@ -123,7 +130,6 @@ const EventsClient = ({ upcomingEvents }: Props) => {
         reading: "I am a Jew, born in Tarsus in Cilicia, but brought up in this city.",
       },
     ],
-    // ... (include all months as in the original code)
     1: [
       // February
       {
@@ -151,8 +157,183 @@ const EventsClient = ({ upcomingEvents }: Props) => {
           "When Jesus went into the region of Caesarea Philippi he asked his disciples, 'Who do people say that the Son of Man is?'",
       },
     ],
-    // ... (omit for brevity, include all from original)
-    // Note: Full object as in original code
+    2: [
+      // March
+      {
+        date: 19,
+        event: "St. Joseph, Husband of Mary",
+        type: "solemnity",
+        verse: "2 Samuel 7:4-5a, 12-14a, 16",
+        reading: "The LORD spoke to Nathan the prophet: 'Go and say to my servant David...",
+      },
+      {
+        date: 25,
+        event: "Annunciation of the Lord",
+        type: "solemnity",
+        verse: "Luke 1:26-38",
+        reading: "The angel Gabriel was sent from God to a town of Galilee called Nazareth...",
+      },
+    ],
+    3: [
+      // April
+      {
+        date: 11,
+        event: "St. Stanislaus",
+        type: "feast",
+        verse: "John 10:11-16",
+        reading: "I am the good shepherd. A good shepherd lays down his life for the sheep.",
+      },
+    ],
+    4: [
+      // May
+      {
+        date: 1,
+        event: "St. Joseph the Worker",
+        type: "optional memorial",
+        verse: "Colossians 3:23-24",
+        reading: "Whatever you do, do from your heart, as for the Lord and not for others...",
+      },
+      {
+        date: 31,
+        event: "Visitation of the Blessed Virgin Mary",
+        type: "feast",
+        verse: "Luke 1:39-56",
+        reading: "Mary set out and traveled to the hill country in haste to a town of Judah...",
+      },
+    ],
+    5: [
+      // June
+      {
+        date: 24,
+        event: "Nativity of St. John the Baptist",
+        type: "solemnity",
+        verse: "Luke 1:57-66, 80",
+        reading: "When the time arrived for Elizabeth to have her child she gave birth to a son.",
+      },
+      {
+        date: 29,
+        event: "Saints Peter and Paul, Apostles",
+        type: "solemnity",
+        verse: "Acts 12:1-11",
+        reading: "The church was at peace throughout all Judea, Galilee, and Samaria...",
+      },
+    ],
+    6: [
+      // July
+      {
+        date: 3,
+        event: "St. Thomas, Apostle",
+        type: "feast",
+        verse: "John 20:24-29",
+        reading: "Thomas, called Didymus, one of the Twelve, was not with them when Jesus came.",
+      },
+      {
+        date: 11,
+        event: "St. Benedict, Abbot",
+        type: "memorial",
+        verse: "Proverbs 2:1-9",
+        reading: "My son, if you receive my words and treasure my commands...",
+      },
+    ],
+    7: [
+      // August
+      {
+        date: 6,
+        event: "Transfiguration of the Lord",
+        type: "feast",
+        verse: "Luke 9:28b-36",
+        reading: "Jesus took Peter, John, and James and went up the mountain to pray.",
+      },
+      {
+        date: 15,
+        event: "Assumption of the Blessed Virgin Mary",
+        type: "solemnity",
+        verse: "Luke 1:39-47",
+        reading: "My soul proclaims the greatness of the Lord; my spirit rejoices in God my Savior.",
+      },
+    ],
+    8: [
+      // September
+      {
+        date: 8,
+        event: "Nativity of the Blessed Virgin Mary",
+        type: "feast",
+        verse: "Micah 5:1-4a or Romans 8:28-30",
+        reading: "You, Bethlehem-Ephrathah too small to be among the clans of Judah...",
+      },
+      {
+        date: 29,
+        event: "Saints Michael, Gabriel, and Raphael, Archangels",
+        type: "feast",
+        verse: "John 1:47-51",
+        reading: "Jesus saw Nathanael coming toward him and said of him, 'Here is a true Israelite.'",
+      },
+    ],
+    9: [
+      // October
+      {
+        date: 2,
+        event: "Guardian Angels",
+        type: "memorial",
+        verse: "Exodus 23:20-23",
+        reading: "See, I am sending an angel before you, to guard you on the way...",
+      },
+      {
+        date: 28,
+        event: "Saints Simon and Jude, Apostles",
+        type: "feast",
+        verse: "Luke 6:12-16",
+        reading: "Jesus departed to the mountain to pray, and he spent the night in prayer to God.",
+      },
+    ],
+    10: [
+      // November
+      {
+        date: 1,
+        event: "All Saints",
+        type: "solemnity",
+        verse: "Revelation 7:2-4, 9-14",
+        reading: "I, John, saw another angel rise from the east, holding the seal of the living God...",
+      },
+      {
+        date: 2,
+        event: "Commemoration of All the Faithful Departed",
+        type: "All Souls",
+        verse: "John 6:37-40",
+        reading: "Everything that the Father gives me will come to me, and I will not reject anyone who comes to me...",
+      },
+    ],
+    11: [
+      // December
+      {
+        date: 8,
+        event: "Immaculate Conception",
+        type: "solemnity",
+        verse: "Luke 1:26-38",
+        reading: "In the sixth month, the angel Gabriel was sent from God to a town of Galilee called Nazareth...",
+      },
+      {
+        date: 25,
+        event: "Christmas",
+        type: "solemnity",
+        verse: "John 1:1-18 or John 1:1-5, 9-14",
+        reading: "In the beginning was the Word, and the Word was with God, and the Word was God...",
+      },
+      {
+        date: 26,
+        event: "St. Stephen, First Martyr",
+        type: "feast",
+        verse: "Acts 6:8-10; 7:1-2, 51-60",
+        reading: "Stephen, filled with grace and power, was working great wonders and signs among the people.",
+      },
+      {
+        date: 28,
+        event: "Holy Innocents",
+        type: "feast",
+        verse: "Matthew 2:13-18",
+        reading: "An angel of the Lord appeared in a dream to Joseph and said, 'Rise, take the child and his mother...",
+      },
+    ],
   }
 
   const months = [
@@ -546,47 +727,50 @@ startxref
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
-              >
-                <div className={`h-2 bg-gradient-to-r ${event.color}`}></div>
-                <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div
-                      className={`w-12 h-12 bg-gradient-to-r ${event.color} rounded-full flex items-center justify-center mr-4`}
+            {upcomingEvents.map((event, index) => {
+              const IconComponent = getIconComponent(event.icon)
+              return (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                >
+                  <div className={`h-2 bg-gradient-to-r ${event.color}`}></div>
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-r ${event.color} rounded-full flex items-center justify-center mr-4`}
+                      >
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{event.type}</span>
+                        <h3 className="text-lg font-bold text-gray-900">{event.title}</h3>
+                      </div>
+                    </div>
+                    <div className="space-y-2 text-gray-600">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        <span>{event.date}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="w-4 h-4 mr-2" />
+                        <span>{event.time}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        <span>{event.location}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleLearnMore(event)}
+                      className="w-full mt-4 bg-gradient-to-r from-green-500 to-orange-500 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
                     >
-                      <event.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{event.type}</span>
-                      <h3 className="text-lg font-bold text-gray-900">{event.title}</h3>
-                    </div>
+                      Learn More
+                    </button>
                   </div>
-                  <div className="space-y-2 text-gray-600">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      <span>{event.date}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-2" />
-                      <span>{event.time}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      <span>{event.location}</span>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => handleLearnMore(event)}
-                    className="w-full mt-4 bg-gradient-to-r from-green-500 to-orange-500 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    Learn More
-                  </button>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
@@ -597,72 +781,75 @@ startxref
       </section>
 
       {/* Event Details Modal - Client-side */}
-      {showEventModal && selectedEvent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="relative">
-              <div className={`h-2 bg-gradient-to-r ${selectedEvent.color}`}></div>
-              <button
-                onClick={closeEventModal}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <X className="w-6 h-6 text-gray-600" />
-              </button>
-              <div className="p-8">
-                <div className="flex items-center mb-6">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-r ${selectedEvent.color} rounded-full flex items-center justify-center mr-4`}
-                  >
-                    <selectedEvent.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      {selectedEvent.type}
-                    </span>
-                    <h2 className="text-2xl font-bold text-gray-900">{selectedEvent.title}</h2>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-3 gap-4 mb-6">
-                  <div className="flex items-center">
-                    <Calendar className="w-5 h-5 mr-2 text-green-600" />
-                    <span className="text-gray-700">{selectedEvent.date}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-5 h-5 mr-2 text-blue-600" />
-                    <span className="text-gray-700">{selectedEvent.time}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-5 h-5 mr-2 text-orange-600" />
-                    <span className="text-gray-700">{selectedEvent.location}</span>
-                  </div>
-                </div>
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">About This Event</h3>
-                  <p className="text-gray-700 leading-relaxed">{selectedEvent.description}</p>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {Object.entries(selectedEvent.details).map(([key, value]) => (
-                    <div key={key} className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 capitalize mb-1">
-                        {key.replace(/([A-Z])/g, " $1").trim()}
-                      </h4>
-                      <p className="text-gray-700 text-sm">{value}</p>
+      {showEventModal && selectedEvent && (() => {
+        const SelectedIcon = getIconComponent(selectedEvent.icon)
+        return (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="relative">
+                <div className={`h-2 bg-gradient-to-r ${selectedEvent.color}`}></div>
+                <button
+                  onClick={closeEventModal}
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <X className="w-6 h-6 text-gray-600" />
+                </button>
+                <div className="p-8">
+                  <div className="flex items-center mb-6">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-r ${selectedEvent.color} rounded-full flex items-center justify-center mr-4`}
+                    >
+                      <SelectedIcon className="w-8 h-8 text-white" />
                     </div>
-                  ))}
-                </div>
-                <div className="mt-8 flex gap-4">
-                  <button className="flex-1 bg-gradient-to-r from-green-500 to-orange-500 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300">
-                    Register for Event
-                  </button>
-                  <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                    Share Event
-                  </button>
+                    <div>
+                      <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        {selectedEvent.type}
+                      </span>
+                      <h2 className="text-2xl font-bold text-gray-900">{selectedEvent.title}</h2>
+                    </div>
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-4 mb-6">
+                    <div className="flex items-center">
+                      <Calendar className="w-5 h-5 mr-2 text-green-600" />
+                      <span className="text-gray-700">{selectedEvent.date}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <Clock className="w-5 h-5 mr-2 text-blue-600" />
+                      <span className="text-gray-700">{selectedEvent.time}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <MapPin className="w-5 h-5 mr-2 text-orange-600" />
+                      <span className="text-gray-700">{selectedEvent.location}</span>
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">About This Event</h3>
+                    <p className="text-gray-700 leading-relaxed">{selectedEvent.description}</p>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {Object.entries(selectedEvent.details).map(([key, value]) => (
+                      <div key={key} className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 capitalize mb-1">
+                          {key.replace(/([A-Z])/g, " $1").trim()}
+                        </h4>
+                        <p className="text-gray-700 text-sm">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-8 flex gap-4">
+                    <button className="flex-1 bg-gradient-to-r from-green-500 to-orange-500 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300">
+                      Register for Event
+                    </button>
+                    <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                      Share Event
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
 
       {/* Regular Activities - SSG */}
       <section className="py-16 bg-gradient-to-r from-blue-50 to-amber-50 relative overflow-hidden">
@@ -819,4 +1006,4 @@ startxref
   )
 }
 
-export default EventsClient
+export default EventsClient 
