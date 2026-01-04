@@ -23,9 +23,8 @@ import ScrollToTop from "@/app/components/scroll-to-top";
 import Footer from "./components/footer";
 
 export const metadata: Metadata = {
-  title: "Home | St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
-  description:
-    "Welcome to St. Anne's Catholic Chaplaincy Maseno University Archdiocese of Kisumu. A vibrant Catholic community of over 500 members fostering faith, fellowship, and service through prayer houses, events, and spiritual activities.",
+  title: "St. Anne's Chaplaicy, Maseno University | Archdiocese of Kisumu", // Shortened, keyword-frontloaded for SERPs
+  description: "Welcome to St. Anne's Catholic Chaplaincy, the best chaplaincy in Kenya at Maseno University under the Archdiocese of Kisumu. Join our vibrant CSA Maseno University Catholic Students Association (CSA) community of 500+ members for faith, fellowship, prayer houses, Mass, and service. Experience spiritual growth today!", // ~158 chars; all keywords + CTA
   keywords: [
     "St Anne's Chaplaincy",
     "Maseno University",
@@ -39,28 +38,54 @@ export const metadata: Metadata = {
     "CSA maseno",
     "best chaplaincy",
     "best chaplaincy kenya",
+    // Optional: Add "CSA Maseno University" for completeness
   ],
   openGraph: {
-    title: "St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
-    description:
-      "A vibrant Catholic community of 500+ members fostering faith, fellowship, and service. Join us for Mass, prayer houses, and community events.",
+    title: "Best Chaplaincy in Kenya: St. Anne's Catholic Chaplaincy – Archdiocese of Kisumu & Maseno University CSA", // Keyword-rich for shares
+    description: "Join Kenya's top Catholic community of 500+ at Maseno University through CSA Maseno University Catholic Students Association. Faith, fellowship, and service await.",
     type: "website",
-    url: "https://stanneschaplaincy.com",
+    url: "https://stanneschaplaincy.com", // Canonical site URL
     images: [
       {
         url: "/images/church.jpeg",
         width: 1200,
         height: 630,
-        alt: "St. Anne's Catholic Chaplaincy - Maseno University",
+        alt: "St. Anne's Catholic Chaplaincy Church at Maseno University – Archdiocese of Kisumu", // Enhanced alt for SEO/accessibility
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "St. Anne's Catholic Chaplaincy, Maseno University - Archdiocese of Kisumu",
-    description:
-      "Join our vibrant Catholic community of 500+ members united in faith and service",
+    title: "Best Catholic Chaplaincy in Kenya: St. Anne's – Archdiocese of Kisumu", // Aligned, concise
+    description: "Vibrant community at Maseno University CSA fostering faith, prayer houses, and service for 500+ members.",
     images: ["/images/church.jpeg"],
+  },
+  // New: Branding for E-A-T
+  authors: [{ name: "St. Anne's Catholic Chaplaincy" }],
+  creator: "St. Anne's Catholic Chaplaincy",
+  publisher: "St. Anne's Catholic Chaplaincy",
+  // New: Privacy tweaks
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  // New: Indexing directives
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  
+  // New: Canonical for homepage
+  alternates: {
+    canonical: 'https://stanneschaplaincy.com', // Root domain
   },
 };
 

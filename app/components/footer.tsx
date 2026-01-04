@@ -167,15 +167,15 @@ export default function Footer() {
             <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               <div className="bg-gray-800 rounded-lg p-3">
                 <p className="font-medium text-blue-400">Sunday</p>
-                <p className="text-sm text-gray-400">8:00 AM & 6:00 PM</p>
+                <p className="text-sm text-gray-400">7:00 AM & 9:00 AM</p>
               </div>
               <div className="bg-gray-800 rounded-lg p-3">
                 <p className="font-medium text-amber-400">Weekdays</p>
-                <p className="text-sm text-gray-400">6:30 AM & 6:00 PM</p>
+                <p className="text-sm text-gray-400">5:00 AM </p>
               </div>
               <div className="bg-gray-800 rounded-lg p-3">
-                <p className="font-medium text-green-400">Saturday</p>
-                <p className="text-sm text-gray-400">6:00 PM</p>
+                <p className="font-medium text-green-400">Confessions</p>
+                <p className="text-sm text-gray-400">Friday 4:00 PM</p>
               </div>
             </div>
           </div>
