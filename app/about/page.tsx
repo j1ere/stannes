@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "About the Best Catholic Chaplaincy in Kenya | St. Anne's – Archdiocese of Kisumu, Maseno University CSA", // Expanded for all keywords, under 60 chars
   description: "Discover St. Anne's Catholic Chaplaincy, the best chaplaincy in Kenya under the Archdiocese of Kisumu. Explore our mission, CSA Maseno University Catholic Students Association, leadership, and vibrant community at Maseno University.", // 150-160 chars, includes all keywords
   openGraph: {
-    title: "Best Chaplaincy in Kenya: St. Anne's Catholic Chaplaincy – Archdiocese of Kisumu & Maseno University CSA",
+    title: "St. Anne's Catholic Chaplaincy – Archdiocese of Kisumu & Maseno University CSA",
     description: "Join the top-rated Catholic community fostering faith and service at Maseno University through CSA Maseno University Catholic Students Association.",
     // Add images if available: images: [{ url: '/og-image.jpg' }]
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Chaplaincy in Kenya: St. Anne's – Archdiocese of Kisumu",
+    title: "St. Anne's Chaplaicy, Maseno University | Archdiocese of Kisumu",
     description:
       "A vibrant Catholic community fostering faith, fellowship, and service.",
     images: ["/images/chaplaincylogo-removebg-preview.png"],

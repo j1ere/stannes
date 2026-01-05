@@ -95,7 +95,7 @@ export default function HomeClient() {
 
   const quickStats = [
     {
-      value: "500+",
+      value: "1000+",
       label: "Active Members",
       icon: Users,
       gradient: "from-emerald-400 to-green-500",

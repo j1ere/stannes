@@ -41,17 +41,18 @@ const About = () => {
       gradient: "from-green-500 to-emerald-600",
     },
     {
-      title: "CSA Executive",
-      description: "8-member student executive leading the Catholic Students Association (CSA) at Maseno University, fostering faith and community", // Expanded on CSA keyword
-      icon: Users,
-      gradient: "from-orange-500 to-amber-600",
-    },
-    {
       title: "Non-Students Executive",
       description: "Community leaders working alongside student leadership in the Archdiocese of Kisumu",
       icon: Heart,
       gradient: "from-emerald-500 to-green-600",
     },
+    {
+      title: "CSA Executive",
+      description: "8-member student executive leading the Catholic Students Association (CSA) at Maseno University, fostering faith and community", // Expanded on CSA keyword
+      icon: Users,
+      gradient: "from-orange-500 to-amber-600",
+    },
+    
     {
       title: "Chaplaincy Council",
       description: "Combined leadership making key decisions and managing finances for our top-rated Catholic chaplaincy",
@@ -88,7 +89,7 @@ const About = () => {
   ];
 
   const achievements: AchievementItem[] = [
-    { icon: Users, label: "Active Members", value: "500+", gradient: "from-green-500 to-emerald-600" },
+    { icon: Users, label: "Active Members", value: "1000+", gradient: "from-green-500 to-emerald-600" },
     { icon: Calendar, label: "Years of Service", value: "25+", gradient: "from-orange-500 to-amber-600" },
     { icon: Heart, label: "Prayer Houses", value: "6", gradient: "from-emerald-500 to-green-600" },
     { icon: Crown, label: "Leadership Positions", value: "120+", gradient: "from-amber-500 to-orange-600" },
@@ -135,9 +136,9 @@ const About = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">About St. Anne's Catholic Chaplaincy – Best Chaplaincy in Kenya, Archdiocese of Kisumu</h1> {/* Keyword-rich H1 */}
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">About Us</h1> {/* Keyword-rich H1 */}
           <p className="text-xl text-green-100 max-w-3xl mx-auto">
-            A vibrant Catholic community at Maseno University and Catholic Students Association (CSA) Maseno University, fostering faith, fellowship, and service under the Archdiocese of Kisumu.
+            A vibrant Catholic community at Maseno University fostering faith, fellowship, and service under the Archdiocese of Kisumu.
           </p>
         </div>
       </section>
@@ -193,9 +194,9 @@ const About = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why St. Anne's is the Best Chaplaincy in Kenya</h2> {/* Direct keyword H2 */}
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why St. Anne's is the Best Chaplaincy</h2> {/* Direct keyword H2 */}
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover what sets our Archdiocese of Kisumu-affiliated chaplaincy apart at Maseno University and CSA.
+              Discover what sets our Archdiocese of Kisumu-affiliated chaplaincy apart at Maseno University.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -227,9 +228,9 @@ const About = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            {/* <p className="text-gray-600 max-w-2xl mx-auto">
               These fundamental values guide everything we do as a Catholic community in the best chaplaincy in Kenya
-            </p>
+            </p> */}
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (

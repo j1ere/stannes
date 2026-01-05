@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://stanneschaplaincy.com"),
   title: {
-    default: "St. Anne's: Best Catholic Chaplaincy in Kenya | Archdiocese of Kisumu & Maseno CSA", // Keyword-frontloaded default for SERPs
+    default: "St. Anne's Chaplaicy, Maseno University | Archdiocese of Kisumu", // Keyword-frontloaded default for SERPs
     template: "%s | St. Anne's Chaplaincy", // Unchanged—works well for overrides
   },
   description: "St. Anne's Catholic Chaplaincy, the best chaplaincy in Kenya at Maseno University under the Archdiocese of Kisumu. Join our vibrant CSA Maseno University Catholic Students Association (CSA) community for faith, fellowship, prayer houses, Mass, and service among students and members.", // Expanded to ~155 chars; all keywords + CTA
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://stanneschaplaincy.com",
     siteName: "St. Anne's Catholic Chaplaincy",
-    title: "Best Catholic Chaplaincy in Kenya: St. Anne's – Archdiocese of Kisumu & Maseno University CSA", // Keyword-rich for site-wide shares
+    title: "St. Anne's Chaplaicy, Maseno University | Archdiocese of Kisumu", // Keyword-rich for site-wide shares
     description: "Discover Kenya's top Catholic community at Maseno University through CSA Maseno University Catholic Students Association. Faith, fellowship, and service for all.",
     images: [
       {
