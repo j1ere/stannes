@@ -35,42 +35,41 @@ interface BestReasonItem {
 const About = () => {
   const leadership: LeadershipItem[] = [
     {
-      title: "The Chaplain",
-      description: "Overall head of the chaplaincy under the Archdiocese of Kisumu, providing spiritual guidance and leadership to Maseno University students", // Added keywords
-      icon: Cross,
-      gradient: "from-green-500 to-emerald-600",
-    },
-    {
-      title: "Non-Students Executive",
-      description: "Community leaders working alongside student leadership in the Archdiocese of Kisumu",
-      icon: Heart,
-      gradient: "from-emerald-500 to-green-600",
-    },
-    {
-      title: "CSA Executive",
-      description: "8-member student executive leading the Catholic Students Association (CSA) at Maseno University, fostering faith and community", // Expanded on CSA keyword
-      icon: Users,
-      gradient: "from-orange-500 to-amber-600",
-    },
-    
-    {
-      title: "Chaplaincy Council",
-      description: "Combined leadership making key decisions and managing finances for our top-rated Catholic chaplaincy",
-      icon: Award,
-      gradient: "from-amber-500 to-orange-600",
-    },
+  title: "The Chaplain",
+  description: "The spiritual head of the chaplaincy, providing guidance, oversight, and pastoral care to students and the wider community.",
+  icon: Cross,
+  gradient: "from-green-500 to-emerald-600",
+},
+{
+  title: "Non-Students Council",
+  description: "Responsible for leading non-student jumuiyas and movements, supporting the chaplaincy’s mission and activities.",
+  icon: Heart,
+  gradient: "from-emerald-500 to-green-600",
+},
+{
+  title: "Students Council",
+  description: "Comprising 120 student leaders, this council directs the Catholic Students’ Association, coordinating programs and fostering community.",
+  icon: Users,
+  gradient: "from-orange-500 to-amber-600",
+},
+{
+  title: "Chaplaincy Executive Council",
+  description: "The top leadership body of the chaplaincy, integrating student and non-student executives to oversee all programs and governance.",
+  icon: Award,
+  gradient: "from-amber-500 to-orange-600",
+},
   ];
 
   const values: ValueItem[] = [
     {
       title: "Faith",
-      description: "Deepening our relationship with God through prayer, worship, and sacraments as part of the Archdiocese of Kisumu",
+      description: "Deepening our relationship with God through prayer, worship, and sacraments.",
       icon: Cross,
       gradient: "from-green-500 to-emerald-500",
     },
     {
       title: "Fellowship",
-      description: "Building strong bonds within our diverse Catholic community at Maseno University and CSA Maseno University",
+      description: "Building strong bonds within our diverse Catholic community at Maseno University.",
       icon: Users,
       gradient: "from-orange-500 to-amber-500",
     },
@@ -82,7 +81,7 @@ const About = () => {
     },
     {
       title: "Growth",
-      description: "Continuous spiritual, academic, and personal development for CSA members",
+      description: "Continuous spiritual, academic, and personal development for Catholic Students.",
       icon: Sparkles,
       gradient: "from-amber-500 to-orange-600",
     },
@@ -90,37 +89,38 @@ const About = () => {
 
   const achievements: AchievementItem[] = [
     { icon: Users, label: "Active Members", value: "1000+", gradient: "from-green-500 to-emerald-600" },
-    { icon: Calendar, label: "Years of Service", value: "25+", gradient: "from-orange-500 to-amber-600" },
-    { icon: Heart, label: "Prayer Houses", value: "6", gradient: "from-emerald-500 to-green-600" },
+    { icon: Calendar, label: "Years of Service", value: "10+", gradient: "from-orange-500 to-amber-600" },
+    { icon: Heart, label: "Small Christian Communities", value: "27", gradient: "from-emerald-500 to-green-600" },
     { icon: Crown, label: "Leadership Positions", value: "120+", gradient: "from-amber-500 to-orange-600" },
   ];
 
   // New array for "Why Best" section – substantiates "best chaplaincy" claims
   const bestReasons: BestReasonItem[] = [
     {
-      title: "Vibrant Community Impact",
-      description: "As the leading Catholic chaplaincy in Kenya, we've empowered over 500 students through CSA Maseno University programs, outpacing others in engagement.",
-      icon: Users,
-      gradient: "from-green-500 to-emerald-600",
-    },
-    {
-      title: "Proven Spiritual Excellence",
-      description: "Recognized for 25+ years of service under the Archdiocese of Kisumu, with 6 prayer houses fostering deeper faith than any other university chaplaincy.",
-      icon: Cross,
-      gradient: "from-orange-500 to-amber-600",
-    },
-    {
-      title: "Holistic Student Support",
-      description: "Unique integration with Maseno University CSA, offering academic, spiritual, and service programs that make us Kenya's top choice for Catholic growth.",
-      icon: Heart,
-      gradient: "from-emerald-500 to-green-600",
-    },
-    {
-      title: "Award-Winning Leadership",
-      description: "120+ alumni in key roles across Kenya, highlighting why St. Anne's is the best chaplaincy for aspiring Catholic leaders.",
-      icon: Star, // New icon
-      gradient: "from-amber-500 to-orange-600",
-    },
+  title: "Empowering Community",
+  description: "As a leading Catholic chaplaincy in Kenya, we have engaged over 5,000 students through CSA programs, fostering a strong, faith-centered community.",
+  icon: Users,
+  gradient: "from-green-500 to-emerald-600",
+},
+{
+  title: "Faith in Action",
+  description: "Serving under the Archdiocese of Kisumu for over 10 years, our vibrant groups and movements provide spaces for prayer, reflection, and spiritual growth.",
+  icon: Cross,
+  gradient: "from-orange-500 to-amber-600",
+},
+{
+  title: "Spiritual & Personal Growth",
+  description: "Through faith and service, we nurture students’ spiritual and personal growth at Maseno University.",
+  icon: Heart,
+  gradient: "from-emerald-500 to-green-600",
+},
+{
+  title: "Shaping Future Leaders",
+  description: "With many alumni in leadership roles across Kenya, St. Anne’s Chaplaincy continues to shape the next generation of quality leaders.",
+  icon: Star,
+  gradient: "from-amber-500 to-orange-600",
+},
+
   ];
 
   return (
@@ -176,7 +176,7 @@ const About = () => {
                 <h2 className="text-3xl font-bold text-gray-900">Our Vision</h2>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
-                To be a beacon of Catholic faith and values in Kenya's university community as the best chaplaincy, producing holistic graduates from Maseno University who are spiritually mature, academically excellent, and committed to serving God and humanity under the Archdiocese of Kisumu.
+                To be a beacon of Catholic faith and values in Kenya's university community as the best chaplaincy, producing holistic graduates from Maseno University who are spiritually mature, academically excellent, and committed to serving God and humanity.
               </p>
             </div>
           </div>
@@ -299,7 +299,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Rich Heritage in the Archdiocese of Kisumu</h2> {/* Keyword H2 */}
               <div className="space-y-4 text-gray-700">
                 <p className="text-lg">
-                  St. Anne's Chaplaincy has been a cornerstone of Catholic life at Maseno University for over two decades, serving as a spiritual home for thousands of students through  Catholic Students Association (CSA).
+                  St. Anne's Chaplaincy has been a cornerstone of Catholic life at Maseno University for over one decade, serving as a spiritual home for thousands of students through  Catholic Students Association (CSA).
                 </p>
                 <p>
                   Following all Catholic guidelines, rules, and calendar of events as prescribed by the Vatican and the Archdiocese of Kisumu, we maintain our connection to the universal Catholic Church while addressing the unique needs of our university community.
@@ -330,22 +330,7 @@ const About = () => {
       </section>
 
       {/* Call to Action – Keyword tweak */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-white">Be Part of Kenya's Best Catholic Chaplaincy</h2> {/* Keyword CTA */}
-          <p className="text-xl mb-8 text-green-100">
-            Join our community at Maseno University CSA and experience faith, fellowship, and service under the Archdiocese of Kisumu
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-green-700 px-8 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
-              Join Our Community
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Scroll to Top Button */}
       <ScrollToTop />

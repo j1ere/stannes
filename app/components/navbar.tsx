@@ -27,8 +27,8 @@ export default function Navbar() {
       name: "Community",
       href: "#",
       dropdown: [
-        { name: "Groups & Movements", href: "/groups" },
-        { name: "Leadership", href: "/leadership" },
+        { name: "CSA", href: "/groups" },
+        { name: "None-Students", href: "/leadership" },
       ],
     },
     { name: "Events", href: "/events" },

@@ -172,8 +172,8 @@ export default async function Home() {
     },
     {
       icon: Heart,
-      label: "Prayer Houses",
-      value: "6",
+      label: "Small Christian Communities",
+      value: "27",
       gradient: "from-orange-500 to-amber-600",
     },
     {
@@ -185,7 +185,7 @@ export default async function Home() {
     {
       icon: Calendar,
       label: "Years Serving",
-      value: "25+",
+      value: "10+",
       gradient: "from-amber-500 to-orange-600",
     },
   ];
@@ -397,7 +397,7 @@ export default async function Home() {
                       <p className="text-white/90 text-lg mb-6 leading-relaxed">
                         Our vibrant community gathering for Sunday worship,
                         where faith comes alive through prayer, song, and
-                        fellowship. Every Sunday, over 500 members unite in
+                        fellowship. Every Sunday, over 1000 members unite in
                         celebration of the Eucharist.
                       </p>
                       <div className="flex flex-wrap items-center gap-6 text-sm">
@@ -434,17 +434,17 @@ export default async function Home() {
                   },
                   {
                     src: "/images/img1.jpeg",
-                    title: "Prayer Houses",
+                    title: "St. Anne's feast day",
                     description:
                       "Small faith communities meeting weekly for prayer and fellowship",
                     icon: BookOpen,
                     iconBg: "from-blue-500 to-indigo-500",
-                    badge: "6 Houses",
+                    badge: "Annual event",
                     badgeIcon: Users,
                   },
                   {
                     src: "/images/_ (25).jpeg",
-                    title: "Cultural Week",
+                    title: "Students' Cultural week",
                     description:
                       "Celebrating our diverse Catholic heritage and traditions",
                     icon: Sparkles,
@@ -497,14 +497,14 @@ export default async function Home() {
                 {[
                   {
                     src: "/images/meet.jpeg",
-                    title: "Youth Fellowship",
+                    title: "CSA Hikes and     Fun day",
                     description:
                       "Young Catholics building lifelong friendships while serving the community and growing in faith through various activities.",
                     icons: [
                       { Icon: Users, bg: "from-green-500 to-emerald-500" },
                       { Icon: Heart, bg: "from-orange-500 to-amber-500" },
                     ],
-                    tags: ["Retreats", "Service", "Fellowship"],
+                    tags: ["Fun games", "Snacks", "Hike"],
                   },
                   {
                     src: "/images/img4.jpeg",
@@ -571,22 +571,21 @@ export default async function Home() {
                 {[
                   {
                     src: "/images/Dance.jpeg",
-                    title: "Liturgical Dance",
+                    title: "Arch-bishop's pastoral visits",
                     description:
-                      "Expressing worship through sacred dance and movement (Ogopa Mungu)",
+                      "Archbishop’s Pastoral Visits nurture faith and unity through guidance and pastoral care.",
                     icon: Sparkles,
                     iconBg: "from-pink-500 to-purple-500",
-                    badge: "Worship Ministry",
+                    badge: "Annual",
                     badgeIcon: Music,
                   },
                   {
                     src: "/images/Join the Movement_ Clean Up Your Community Today! 🌼🌍.jpeg",
-                    title: "Community Service",
-                    description:
-                      "Serving the wider community through various outreach programs",
+                    title: "(ADOK) Catholic Teachers Prayer Day",
+                    description: "(ADOK) Catholic Teachers Prayer Day unites teachers in prayer and reflection, strengthening faith and community in the Archdiocese of Kisumu.",
                     icon: Heart,
                     iconBg: "from-green-500 to-teal-500",
-                    badge: "Service Projects",
+                    badge: "Annual Event",
                     badgeIcon: Users,
                   },
                 ].map((item, idx) => {

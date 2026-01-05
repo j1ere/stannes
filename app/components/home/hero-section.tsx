@@ -106,12 +106,14 @@ export function HeroSection() {
           </h1>
 
           <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-green-100 font-medium">
-            Maseno University Catholic Community
+            Maseno University
+          </p>
+           <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-green-100 font-medium">
+            (This platform is still under development)
           </p>
 
           <p className="text-base sm:text-lg mb-8 sm:mb-12 text-green-200/90 max-w-3xl mx-auto leading-relaxed">
-            Where Faith Meets Fellowship - Join our vibrant Catholic community of students and community members united
-            in faith, service, and spiritual growth.
+            bible verse api (https://discoverybiblestudy.org/daily/api/)
           </p>
 
           {/* CTA Buttons */}
@@ -121,7 +123,7 @@ export function HeroSection() {
               className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ring-2 ring-white/20 hover:ring-white/40"
             >
               <span className="flex items-center justify-center">
-                Discover Our Community
+                Daily readings
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>

@@ -583,7 +583,7 @@ startxref
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Events & Activities</h1>
           <p className="text-xl text-green-100 max-w-3xl mx-auto">
-            Stay connected with our vibrant community through spiritual, social, and charitable activities
+            Stay connected with our vibrant community through spiritual, social, and charitable activities (no APIs available,create your own catholic liturgical calendar ask fr George)
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
@@ -603,7 +603,7 @@ startxref
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Download Calendars</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Get our official CSA and Program calendars to stay updated with all events and activities
+              Get the official  chaplaincy calendar and Program to stay updated with all events and activities
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -612,16 +612,16 @@ startxref
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">CSA Calendar 2026</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Chaplaincy Calendar 2025/26</h3>
                 <p className="text-gray-600 mb-6">
-                  Complete calendar of CSA events, meetings, and activities for the academic year
+                  Complete calendar of CSA events, meetings, and activities for the semester year
                 </p>
                 <button
                   onClick={downloadCSACalendar}
                   className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <Download className="w-5 h-5" />
-                  <span>Download CSA Calendar</span>
+                  <span>Download Calendar</span>
                 </button>
               </div>
             </div>
@@ -630,16 +630,16 @@ startxref
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Gift className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Program Calendar 2026</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Program Guide 2025/26</h3>
                 <p className="text-gray-600 mb-6">
-                  Detailed program schedule including masses, retreats, and spiritual activities
+                  Major semester events guide
                 </p>
                 <button
                   onClick={downloadProgramCalendar}
                   className="w-full bg-gradient-to-r from-orange-500 to-amber-600 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <Download className="w-5 h-5" />
-                  <span>Download Program Calendar</span>
+                  <span>Download Program </span>
                 </button>
               </div>
             </div>
@@ -655,7 +655,7 @@ startxref
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Catholic Liturgical Calendar</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Catholic Liturgical Calendar(hapa kuna kazi)</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Follow the Catholic liturgical year with important feast days, celebrations, and their biblical readings
             </p>

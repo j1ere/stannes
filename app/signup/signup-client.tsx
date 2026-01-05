@@ -12,6 +12,7 @@ export default function SignupClient() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const [passwordMatch, setPasswordMatch] = useState(true)
+  const [userType, setUserType] = useState("")
 
   const prayerHouses = [
     "St. Joseph Prayer House",
@@ -57,6 +58,30 @@ export default function SignupClient() {
       setError("Password must be at least 6 characters long!")
       setIsLoading(false)
       return
+    }
+
+    // Additional validation for user type and conditional fields
+    if (!userType) {
+      setError("Please select if you are a student or not.")
+      setIsLoading(false)
+      return
+    }
+
+    if (userType === "student") {
+      const prayerHouse = formData.get("prayerHouse") as string
+      const yearGroup = formData.get("yearGroup") as string
+      if (!prayerHouse || !yearGroup) {
+        setError("Please fill in all student fields.")
+        setIsLoading(false)
+        return
+      }
+    } else if (userType === "non-student") {
+      const smallChristianCommunity = formData.get("smallChristianCommunity") as string
+      if (!smallChristianCommunity) {
+        setError("Please enter your small Christian community.")
+        setIsLoading(false)
+        return
+      }
     }
 
     try {
@@ -152,26 +177,25 @@ export default function SignupClient() {
             </div>
 
             <div>
-              <label htmlFor="prayerHouse" className="block text-sm font-medium text-gray-700 mb-2">
-                Prayer House
+              <label htmlFor="userType" className="block text-sm font-medium text-gray-700 mb-2">
+                Are you a student?
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Users className="h-5 w-5 text-gray-400" />
+                  <GraduationCap className="h-5 w-5 text-gray-400" />
                 </div>
                 <select
-                  id="prayerHouse"
-                  name="prayerHouse"
+                  id="userType"
+                  name="userType"
+                  value={userType}
+                  onChange={(e) => setUserType(e.target.value)}
                   className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-white transition-all duration-300"
                   required
                   disabled={isLoading}
                 >
-                  <option value="">Select your prayer house</option>
-                  {prayerHouses.map((house) => (
-                    <option key={house} value={house}>
-                      {house}
-                    </option>
-                  ))}
+                  <option value="">Select an option</option>
+                  <option value="student">Yes, I am a student</option>
+                  <option value="non-student">No, I am not a student</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                   <ChevronDown className="h-5 w-5 text-gray-400" />
@@ -179,33 +203,87 @@ export default function SignupClient() {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="yearGroup" className="block text-sm font-medium text-gray-700 mb-2">
-                Year Group
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <GraduationCap className="h-5 w-5 text-gray-400" />
+            {userType === "student" && (
+              <>
+                <div>
+                  <label htmlFor="prayerHouse" className="block text-sm font-medium text-gray-700 mb-2">
+                    Prayer House
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Users className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <select
+                      id="prayerHouse"
+                      name="prayerHouse"
+                      className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-white transition-all duration-300"
+                      required
+                      disabled={isLoading}
+                    >
+                      <option value="">Select your prayer house</option>
+                      {prayerHouses.map((house) => (
+                        <option key={house} value={house}>
+                          {house}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <ChevronDown className="h-5 w-5 text-gray-400" />
+                    </div>
+                  </div>
                 </div>
-                <select
-                  id="yearGroup"
-                  name="yearGroup"
-                  className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-white transition-all duration-300"
-                  required
-                  disabled={isLoading}
-                >
-                  <option value="">Select your year group</option>
-                  {yearGroups.map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
+
+                <div>
+                  <label htmlFor="yearGroup" className="block text-sm font-medium text-gray-700 mb-2">
+                    Year Group
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <GraduationCap className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <select
+                      id="yearGroup"
+                      name="yearGroup"
+                      className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none bg-white transition-all duration-300"
+                      required
+                      disabled={isLoading}
+                    >
+                      <option value="">Select your year group</option>
+                      {yearGroups.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <ChevronDown className="h-5 w-5 text-gray-400" />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {userType === "non-student" && (
+              <div>
+                <label htmlFor="smallChristianCommunity" className="block text-sm font-medium text-gray-700 mb-2">
+                  Small Christian Community
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Users className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    id="smallChristianCommunity"
+                    name="smallChristianCommunity"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
+                    placeholder="Enter your small Christian community"
+                    required
+                    disabled={isLoading}
+                  />
                 </div>
               </div>
-            </div>
+            )}
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
@@ -296,7 +374,7 @@ export default function SignupClient() {
 
             <button
               type="submit"
-              disabled={isLoading || !passwordMatch}
+              disabled={isLoading || !passwordMatch || !userType}
               className="w-full bg-gradient-to-r from-green-600 to-orange-500 text-white py-3 px-4 rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isLoading ? (
