@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: "St. Anne's Chaplaicy, Maseno University | Archdiocese of Kisumu", // Keyword-frontloaded default for SERPs
     template: "%s | St. Anne's Chaplaincy", // Unchanged—works well for overrides
   },
-  description: "St. Anne's Catholic Chaplaincy, the best chaplaincy in Kenya at Maseno University under the Archdiocese of Kisumu. Join our vibrant CSA Maseno University Catholic Students Association (CSA) community for faith, fellowship, prayer houses, Mass, and service among students and members.", // Expanded to ~155 chars; all keywords + CTA
+  description: "St. Anne's Catholic Chaplaincy, the best chaplaincy in Kenya at Maseno University under the Archdiocese of Kisumu. Join our vibrant Maseno University Catholic Students Association (CSA) community for faith, fellowship, prayer houses, Mass, and service among students and members.", // Expanded to ~155 chars; all keywords + CTA
   keywords: [
     "St. Anne's Chaplaincy",
     "Maseno University",

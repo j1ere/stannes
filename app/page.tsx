@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title:
-      "Best Chaplaincy in Kenya: St. Anne's Catholic Chaplaincy – Archdiocese of Kisumu & Maseno University CSA", // Keyword-rich for shares
+      "St. Anne's Catholic Chaplaincy, Maseno University – Archdiocese of Kisumu", // Keyword-rich for shares
     description:
-      "Join Kenya's top Catholic community of 1000+ at Maseno University through CSA Maseno University Catholic Students Association. Faith, fellowship, and service await.",
+      "Vibrant Catholic community of both Maseno University Students and the local community",
     type: "website",
     url: "https://stanneschaplaincy.com", // Canonical site URL
     images: [
