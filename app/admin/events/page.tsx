@@ -232,7 +232,12 @@ export default function ManageEvents() {
             <input
               type="file"
               accept=".pdf"
-              onChange={(e) => uploadCalendar("csa", e.target.files?.[0] || new File([], ""))}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  uploadCalendar("csa", file);
+                }
+              }}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
             />
             <p className="text-sm text-gray-600 mt-2">Current: {calendars.csa || "None uploaded"}</p>
@@ -245,7 +250,12 @@ export default function ManageEvents() {
             <input
               type="file"
               accept=".pdf"
-              onChange={(e) => uploadCalendar("program", e.target.files?.[0] || new File([], ""))}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  uploadCalendar("program", file);
+                }
+              }}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
             />
             <p className="text-sm text-gray-600 mt-2">Current: {calendars.program || "None uploaded"}</p>
