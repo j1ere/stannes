@@ -379,7 +379,7 @@ export default async function Home() {
               <div className="group relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:scale-[1.02]">
                 <div className="aspect-[21/9] sm:aspect-[21/8] relative overflow-hidden">
                   <img
-                    src="/images/church.jpeg"
+                    src="images/IMG_9994.JPG.jpg.jpeg"
                     alt="Sunday Mass Celebration"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                   />
@@ -392,7 +392,7 @@ export default async function Home() {
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     <div className="max-w-3xl">
                       <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                        Sunday Mass Celebration
+                        Catholic Students' Community
                       </h3>
                       <p className="text-white/90 text-lg mb-6 leading-relaxed">
                         Our vibrant community gathering for Sunday worship,
@@ -423,8 +423,8 @@ export default async function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
-                    src: "/images/If you claim you can't meet anyone, take action in new directions_ You never know where your new journey will take you and who you will meet along the way.jpeg",
-                    title: "Charity Outreach",
+                    src: "/images/cohort.jpeg",
+                    title: "New Cohort Orientation",
                     description:
                       "Visiting local children's homes and spreading God's love through action",
                     icon: Heart,
@@ -433,7 +433,7 @@ export default async function Home() {
                     badgeIcon: Calendar,
                   },
                   {
-                    src: "/images/img1.jpeg",
+                    src: "/images/chaplain.jpg",
                     title: "St. Anne's feast day",
                     description:
                       "Small faith communities meeting weekly for prayer and fellowship",
@@ -443,7 +443,7 @@ export default async function Home() {
                     badgeIcon: Users,
                   },
                   {
-                    src: "/images/_ (25).jpeg",
+                    src: "/images/culture.jpeg",
                     title: "Students' Cultural week",
                     description:
                       "Celebrating our diverse Catholic heritage and traditions",
@@ -496,7 +496,7 @@ export default async function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {[
                   {
-                    src: "/images/meet.jpeg",
+                    src: "/images/hike.jpeg",
                     title: "CSA Hikes and     Fun day",
                     description:
                       "Young Catholics building lifelong friendships while serving the community and growing in faith through various activities.",
@@ -507,7 +507,7 @@ export default async function Home() {
                     tags: ["Fun games", "Snacks", "Hike"],
                   },
                   {
-                    src: "/images/img4.jpeg",
+                    src: "/images/vph.jpg",
                     title: "Spiritual Retreats",
                     description:
                       "Annual retreats for spiritual renewal and deeper connection with God through prayer and reflection.",
@@ -570,7 +570,7 @@ export default async function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
                   {
-                    src: "/images/Dance.jpeg",
+                    src: "/images/archbishop.jpeg",
                     title: "Arch-bishop's pastoral visits",
                     description:
                       "Archbishop’s Pastoral Visits nurture faith and unity through guidance and pastoral care.",
@@ -580,7 +580,7 @@ export default async function Home() {
                     badgeIcon: Music,
                   },
                   {
-                    src: "/images/Join the Movement_ Clean Up Your Community Today! 🌼🌍.jpeg",
+                    src: "/images/teachers.jpg",
                     title: "(ADOK) Catholic Teachers Prayer Day",
                     description: "(ADOK) Catholic Teachers Prayer Day unites teachers in prayer and reflection, strengthening faith and community in the Archdiocese of Kisumu.",
                     icon: Heart,

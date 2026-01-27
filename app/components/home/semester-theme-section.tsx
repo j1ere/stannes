@@ -70,7 +70,7 @@ export function SemesterThemeSection() {
           <div className="mb-6 sm:mb-8">
             <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 sm:ring-4 ring-green-200/50">
               <img
-                src="/images/Frame 3 (1)_page-0001.jpg"
+                src="/images/theme2.jpeg"
                 alt="Semester Theme Banner"
                 className="w-full h-48 sm:h-64 md:h-80 object-cover"
               />

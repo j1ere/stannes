@@ -29,7 +29,7 @@ export function HeroSection() {
 
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img src="/images/church.jpeg" alt="St. Anne's Chaplaincy" className="w-full h-full object-cover" />
+        <img src="images/IMG_20250328_162344_520.jpg" alt="St. Anne's Chaplaincy" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-emerald-800/70 to-orange-900/60"></div>
       </div>
 
