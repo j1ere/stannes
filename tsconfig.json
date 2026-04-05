@@ -12,6 +12,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "typeRoots": ["./types", "./node_modules/@types"],   // <-- add this line
+
     "incremental": true,
     "plugins": [
       {
