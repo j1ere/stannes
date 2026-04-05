@@ -1,5 +1,7 @@
+// signup/page.tsx
 import type { Metadata } from "next"
-import SignupClient from "./signup-client"
+import SignupForm from "./signupForm"
+import { registerAction } from "./actions"
 
 export const metadata: Metadata = {
   title: "Sign Up | St. Anne's Chaplaincy",
@@ -7,6 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default function SignupPage() {
-  return <SignupClient />
+  return < SignupForm action={registerAction}/>
 }
     

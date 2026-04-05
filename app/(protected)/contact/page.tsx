@@ -12,6 +12,7 @@ import {
   Send,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import ContactForm from "@/app/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact Us | St. Anne's Chaplaincy - Archdiocese of Kisumu",
@@ -74,7 +75,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: ["info@stanneschaplaincy.com", "csa@stanneschaplaincy.com"],
+      details: ["info@stanneschaplaincy.com", "csa.maseno@stanneschaplaincy.com"],
       color: "from-amber-500 to-amber-600",
     },
     {
@@ -105,26 +106,6 @@ const Contact = () => {
     { name: "Twitter", icon: Twitter, url: "#", color: "hover:text-blue-400" },
   ];
 
-  const keyContacts: KeyContact[] = [
-    {
-      role: "Chaplain",
-      name: "Rev. Father [Name]",
-      email: "chaplain@stanneschaplaincy.com",
-      phone: "+254 XXX XXX XXX",
-    },
-    {
-      role: "CSA Chairperson",
-      name: "[To be elected]",
-      email: "chair@stanneschaplaincy.com",
-      phone: "+254 XXX XXX XXX",
-    },
-    {
-      role: "Chaplaincy Chairperson",
-      name: "[Community Leader]",
-      email: "community@stanneschaplaincy.com",
-      phone: "+254 XXX XXX XXX",
-    },
-  ];
 
   return (
     <>
@@ -211,15 +192,7 @@ const Contact = () => {
           </div>
 
           {/* Curved Wave Divider */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              className="w-full h-20 fill-green-50"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,60 C250,20 450,100 650,40 C850,0 1050,80 1200,60 L1200,120 L0,120 Z" />
-            </svg>
-          </div>
+          
         </section>
 
         {/* Contact Form */}
@@ -243,204 +216,15 @@ const Contact = () => {
               </p>
             </div>
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      First Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Enter your first name"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Last Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Enter your last name"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      placeholder="Enter your phone number"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="category"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Category
-                  </label>
-                  <select
-                    id="category"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  >
-                    <option value="">Select a category</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="student">Student Services</option>
-                    <option value="events">Events & Activities</option>
-                    <option value="groups">Groups & Movements</option>
-                    <option value="spiritual">Spiritual Guidance</option>
-                    <option value="donations">Donations & Support</option>
-                    <option value="partnerships">Partnerships</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                    placeholder="Tell us how we can help you..."
-                  ></textarea>
-                </div>
-
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="newsletter"
-                    className="ml-2 block text-sm text-gray-700"
-                  >
-                    Subscribe to our newsletter for updates and events
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-green-600 to-orange-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
-                >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
-                </button>
-              </form>
+              <ContactForm/>
             </div>
           </div>
 
-          {/* Dynamic Wave Divider */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              className="w-full h-20 fill-white"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,80 C200,40 400,100 600,60 C800,20 1000,80 1200,40 L1200,120 L0,120 Z" />
-            </svg>
-          </div>
+          
         </section>
 
         {/* Key Contacts */}
-        <section className="py-16 bg-white relative overflow-hidden">
-          {/* Complex VGA Pattern */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-56 h-56 bg-gradient-to-bl from-green-200/25 to-emerald-200/20 rounded-full blur-3xl"></div>
-            <div className="absolute top-32 left-0 w-44 h-44 bg-orange-200/30 rotate-45 blur-2xl"></div>
-            <div className="absolute bottom-0 left-1/2 w-52 h-52 bg-amber-200/25 rounded-full blur-xl transform -translate-x-1/2"></div>
-            <div className="absolute bottom-24 right-24 w-40 h-40 bg-blue-300/20 rotate-12 blur-lg"></div>
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Key Contacts
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Reach out directly to our leadership team for specific matters
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {keyContacts.map((contact, index) => (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-blue-50 to-amber-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {contact.role}
-                  </h3>
-                  <p className="text-gray-700 font-medium mb-4">
-                    {contact.name}
-                  </p>
-                  <div className="space-y-2 text-sm text-gray-600">
-                    <div className="flex items-center justify-center">
-                      <Mail className="w-4 h-4 mr-2" />
-                      <span>{contact.email}</span>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <Phone className="w-4 h-4 mr-2" />
-                      <span>{contact.phone}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Flowing Wave Divider */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              className="w-full h-20 fill-green-50"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,40 C150,100 350,20 500,80 C650,120 850,40 1000,60 C1100,80 1150,60 1200,80 L1200,120 L0,120 Z" />
-            </svg>
-          </div>
-        </section>
+        
 
         {/* Map and Directions */}
         <section className="py-16 bg-gradient-to-r from-blue-50 to-amber-50 relative overflow-hidden">
@@ -474,8 +258,7 @@ const Contact = () => {
                   </p>
                   <p>
                     <strong>On Campus:</strong> St. Anne's Chaplaincy is located
-                    within the university campus. Look for signs directing to
-                    the Catholic Chaplaincy.
+                   next to the university campus.
                   </p>
                   <p>
                     <strong>Public Transport:</strong> Matatus and buses
@@ -491,12 +274,18 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
-              <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <MapPin className="w-16 h-16 mx-auto mb-4" />
-                  <p className="text-lg font-medium">Interactive Map</p>
-                  <p className="text-sm">Map integration coming soon</p>
-                </div>
+              
+              <div className="w-full h-96 rounded-2xl overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19263.3414049305!2d34.608201099999995!3d-0.0076783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2ske!4v1775258721838!5m2!1sen!2ske"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-2xl"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -542,15 +331,7 @@ const Contact = () => {
           </div>
 
           {/* Final Wave Divider */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              className="w-full h-20 fill-green-900"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,40 C250,100 450,20 650,80 C850,120 1050,40 1200,60 L1200,120 L0,120 Z" />
-            </svg>
-          </div>
+          
         </section>
 
         {/* Call to Action */}

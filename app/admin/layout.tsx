@@ -1,40 +1,39 @@
-// app/admin/layout.tsx
-"use client"; // Client-side for auth check
+//app/admin/layout.tsx
 
-import { useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Sidebar } from "@/app/components/admin-sidebar"; // Adjust path as needed
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const pathname = usePathname();
+export default async function AdminBaseLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const cookieStore = await cookies();
 
-  useEffect(() => {
-    // Skip auth check for login page
-    if (pathname === "/admin/login") return;
+  // Forward cookies to Django
+  const res = await fetch("https://chaplaincyb.onrender.com/auth/profile/", {
+    method: "GET",
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+    cache: "no-store",
+  });
 
-    // Client-side auth check for protected pages
-    if (!localStorage.getItem("adminToken")) {
-      router.push("/admin/login");
-    }
-  }, [router, pathname]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    router.push("/admin/login");
-  };
-
-  // Render only children for login page (no sidebar)
-  if (pathname === "/admin/login") {
-    return <>{children}</>;
+  // ❌ Not logged in
+  // if (res.status === 401 || res.status === 403) {
+  //   redirect("/admin/login");
+  // }
+  if (!res.ok) {
+    redirect("/admin/login");
   }
 
-  return (
-    <div className="min-h-screen bg-gray-100 flex">
-      <Sidebar onLogout={handleLogout} />
-      <main className="md:ml-64 ml-0 flex-1 p-8 overflow-auto transition-all duration-300">
-        {children}
-      </main>
-    </div>
-  );
+  const user = await res.json();
+
+  // ❌ Not admin
+  if (!user.is_staff && !user.is_superuser) {
+    redirect("/"); // or show 403 page
+  }
+
+  // ✅ Allowed
+  return <>{children}</>;
 }

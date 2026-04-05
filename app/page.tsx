@@ -828,7 +828,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0">
+          {/* <div className="absolute bottom-0 left-0 right-0">
             <svg
               className="w-full h-24"
               viewBox="0 0 1200 120"
@@ -852,7 +852,7 @@ export default async function Home() {
                 d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
               />
             </svg>
-          </div>
+          </div> */}
         </section>
 
         {/* Upcoming Events */}

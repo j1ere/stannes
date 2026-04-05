@@ -24,11 +24,13 @@ export interface EventDetails {
 }
 
 export interface UpcomingEvent {
+  id: number           // added — used as key={event.id}
   title: string
   date: string
   time: string
   location: string
   type: string
+  category?: string    // added — used as event.category || "Event"
   icon: string
   color: string
   description: string
@@ -36,7 +38,8 @@ export interface UpcomingEvent {
 }
 
 export interface RegularActivity {
-  activity: string
+  id?: number          // added — used as key={activity.id ?? index}
+  title: string        // renamed from "activity"
   schedule: string
   location: string
   description: string

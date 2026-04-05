@@ -1,15 +1,14 @@
-// ============================================
-// FILE 1: app/services/types.ts
-// ============================================
+// app/services/types.ts
 
 export interface BlogPost {
-  id: number
+  id: string           // API uses URLs as IDs
   title: string
   excerpt: string
   date: string
   category: string
   image: string
   readTime: string
+  link: string         // external article URL
 }
 
 export interface Testimonial {

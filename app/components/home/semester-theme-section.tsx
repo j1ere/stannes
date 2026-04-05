@@ -1,18 +1,77 @@
-"use client"
-import { BookOpen, Download, Sparkles } from "lucide-react"
-import ConfettiBurst from "@/app/components/confetti-burst"
-import { useScrollTrigger } from "@/app/hooks/use-scroll-trigger"
+// api/components/home/semester-theme-section.tsx
+"use client";
+
+import { useState, useEffect } from "react";
+import { BookOpen, Download, Sparkles } from "lucide-react";
+import ConfettiBurst from "@/app/components/confetti-burst";
+import { useScrollTrigger } from "@/app/hooks/use-scroll-trigger";
+
+interface ActiveTheme {
+  id: number;
+  text: string;
+  image_url: string;
+  year: string;
+  is_active: boolean;
+  date_created: string;
+}
 
 export function SemesterThemeSection() {
-  const { elementRef: semesterThemeRef, isTriggered: semesterConfettiTriggered } = useScrollTrigger(0.3, false)
+  const {
+    elementRef: semesterThemeRef,
+    isTriggered: semesterConfettiTriggered,
+  } = useScrollTrigger(0.3, false);
+
+  const [activeTheme, setActiveTheme] = useState<ActiveTheme | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch the active theme from public endpoint
+  const fetchActiveTheme = async () => {
+    try {
+      const res = await fetch(
+        "https://chaplaincyb.onrender.com/api/theme/public/active-theme/",
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setActiveTheme(data.theme);
+      }
+    } catch (error) {
+      console.error("Failed to fetch active theme:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchActiveTheme();
+  }, []);
 
   const downloadThemeBanner = () => {
-    const link = document.createElement("a")
-    link.href = "/images/Frame 3 (1)_page-0001.jpg"
-    link.download = "St-Annes-Semester-Theme-Banner.jpg"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    if (!activeTheme?.image_url) return;
+
+    const link = document.createElement("a");
+    link.href = activeTheme.image_url;
+    link.download = `St-Annes-Semester-Theme-${activeTheme.year.replace(/\//g, "-")}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  if (isLoading) {
+    return (
+      <section className="relative py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-orange-50">
+        <div className="text-center">Loading semester theme...</div>
+      </section>
+    );
+  }
+
+  if (!activeTheme) {
+    return (
+      <section className="relative py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-orange-50 text-center">
+        <p className="text-gray-500">
+          No active semester theme is set at the moment.
+        </p>
+      </section>
+    );
   }
 
   return (
@@ -23,7 +82,7 @@ export function SemesterThemeSection() {
     >
       <ConfettiBurst trigger={semesterConfettiTriggered} duration={4000} />
 
-      {/* Background Elements */}
+      {/* Background Elements - Unchanged */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(34,197,94,0.1),transparent_50%)]"></div>
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(249,115,22,0.08),transparent_50%)]"></div>
@@ -56,21 +115,22 @@ export function SemesterThemeSection() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-green-800 via-emerald-700 to-orange-700 bg-clip-text text-transparent">
             🎉 Semester Theme 🎉
           </h2>
-          <p className="text-base sm:text-lg text-gray-600">Academic Year 2024/2025 - Semester 2</p>
+          <p className="text-base sm:text-lg text-gray-600">
+            {activeTheme.year}
+          </p>
         </div>
 
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 border border-green-100 shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
           <div className="text-center mb-6 sm:mb-8">
             <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 leading-relaxed px-2">
-              &quot;GUIDE US, OH HOLY SPIRIT, TO TRUST IN GOD&apos;S LOVE AND PROMISES, EMBRACING OUR ROLE AS PILGRIMS
-              OF HOPE THROUGH SIMPLE ACTS OF LOVE&quot;
+              &quot;{activeTheme.text}&quot;
             </h3>
           </div>
 
           <div className="mb-6 sm:mb-8">
             <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 sm:ring-4 ring-green-200/50">
               <img
-                src="/images/theme2.jpeg"
+                src={activeTheme.image_url}
                 alt="Semester Theme Banner"
                 className="w-full h-48 sm:h-64 md:h-80 object-cover"
               />
@@ -86,7 +146,7 @@ export function SemesterThemeSection() {
               </div>
 
               <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium shadow-lg animate-pulse">
-                ✨ New Theme!
+                ✨ Active Theme!
               </div>
             </div>
           </div>
@@ -106,9 +166,19 @@ export function SemesterThemeSection() {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0">
-        <svg className="w-full h-20 fill-green-600" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <svg
+          className="w-full h-20 fill-green-600"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
           <defs>
-            <linearGradient id="greenGradiented" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient
+              id="greenGradiented"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
               <stop offset="0%" stopColor="#05A843" />
               <stop offset="20%" stopColor="#16AA5A" />
               <stop offset="50%" stopColor="#10A65D" />
@@ -117,9 +187,12 @@ export function SemesterThemeSection() {
               <stop offset="100%" stopColor="#059669" />
             </linearGradient>
           </defs>
-          <path fill="url(#greenGradiented)" d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" />
+          <path
+            fill="url(#greenGradiented)"
+            d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
+          />
         </svg>
       </div>
     </section>
-  )
+  );
 }
