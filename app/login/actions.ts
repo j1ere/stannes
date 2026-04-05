@@ -4,6 +4,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import setCookieParser from "set-cookie-parser";
+import { ParsedCookie } from "@/types/cookies"; // adjust path if needed
 
 type State = {
   error?: string;
@@ -39,14 +40,14 @@ export async function loginAction(
   if (setCookieHeaders) {
     const parsedCookies = setCookieParser.parse(setCookieHeaders);
 
-    parsedCookies.forEach((cookie) => {
+    parsedCookies.forEach((cookie: ParsedCookie) => {
       cookieStore.set(cookie.name, cookie.value, {
         httpOnly: cookie.httpOnly ?? true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: cookie.sameSite ?? "lax",
+        sameSite: (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ?? "lax",
         path: cookie.path || "/",
       });
-    });
+});
   }
 
   redirect("/");

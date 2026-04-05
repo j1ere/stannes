@@ -4,6 +4,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import setCookieParser from "set-cookie-parser";
+import { ParsedCookie } from "@/types/cookies"; // adjust path if needed
 
 type State = { error?: string } | null;
 
@@ -40,17 +41,17 @@ export async function adminLoginAction(
       : res.headers.get("set-cookie");
 
   if (setCookieHeaders) {
-    const parsedCookies = setCookieParser.parse(setCookieHeaders);
+  const parsedCookies = setCookieParser.parse(setCookieHeaders);
 
-    parsedCookies.forEach((cookie) => {
-      cookieStore.set(cookie.name, cookie.value, {
-        httpOnly: cookie.httpOnly ?? true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: cookie.sameSite ?? "lax",
-        path: cookie.path || "/",
-      });
+  parsedCookies.forEach((cookie: ParsedCookie) => {
+    cookieStore.set(cookie.name, cookie.value, {
+      httpOnly: cookie.httpOnly ?? true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ?? "lax",
+      path: cookie.path || "/",
     });
-  }
+  });
+}
 
   redirect(redirectPath as string);
 }
