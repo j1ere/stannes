@@ -109,7 +109,7 @@ const Contact = () => {
 
   return (
     <>
-      <Navbar />
+      
       <div className="min-h-screen pt-16">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
