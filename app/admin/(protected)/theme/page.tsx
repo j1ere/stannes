@@ -26,7 +26,7 @@ interface Theme {
   dateCreated: string;
 }
 
-const API_BASE = "https://chaplaincyb.onrender.com/api/theme/themes/";
+const API_BASE = "https://api.stanneschaplaincy.com/api/theme/themes/";
 
 export default function ManageTheme() {
   const { elementRef: themeRef, isTriggered: themeConfettiTriggered } =
@@ -52,7 +52,7 @@ export default function ManageTheme() {
 
   // CSRF Token
   const getCSRFToken = async (): Promise<string> => {
-    const res = await fetch("https://chaplaincyb.onrender.com/auth/csrf/", {
+    const res = await fetch("https://api.stanneschaplaincy.com/auth/csrf/", {
       credentials: "include",
     });
     const data = await res.json();

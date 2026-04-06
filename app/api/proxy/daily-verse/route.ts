@@ -5,7 +5,7 @@
 import { NextResponse } from "next/server";
 
 const DJANGO_BASE =
-  process.env.DJANGO_API_URL ?? "https://chaplaincyb.onrender.com";
+  process.env.DJANGO_API_URL ?? "https://api.stanneschaplaincy.com";
 
 export const revalidate = 60; // ISR-style: re-fetch at most once per minute
 
@@ -30,7 +30,7 @@ export async function GET() {
 // app/api/proxy/active-theme/route.ts  (create this as a separate file)
 // ─────────────────────────────────────────────────────────────────────────────
 // import { NextResponse } from "next/server"
-// const DJANGO_BASE = process.env.DJANGO_API_URL ?? "https://chaplaincyb.onrender.com"
+// const DJANGO_BASE = process.env.DJANGO_API_URL ?? "https://api.stanneschaplaincy.com"
 // export const revalidate = 300
 // export async function GET() {
 //   try {

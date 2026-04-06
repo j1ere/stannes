@@ -11,7 +11,7 @@ export default async function AdminBaseLayout({
   const cookieStore = await cookies();
 
   // Forward cookies to Django
-  const res = await fetch("https://chaplaincyb.onrender.com/auth/profile/", {
+  const res = await fetch("https://api.stanneschaplaincy.com/auth/profile/", {
     method: "GET",
     headers: {
       Cookie: cookieStore.toString(),

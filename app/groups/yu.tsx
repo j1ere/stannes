@@ -45,7 +45,7 @@ export default function Groups() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const API_BASE = "https://chaplaincyb.onrender.com/api/groups/groups";
+  const API_BASE = "https://api.stanneschaplaincy.com/api/groups/groups";
 
   useEffect(() => {
     const fetchAll = async () => {

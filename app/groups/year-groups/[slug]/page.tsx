@@ -31,7 +31,7 @@ export default function YearGroupDetail() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`https://chaplaincyb.onrender.com/api/groups/groups/slug/${slug}/`)
+    fetch(`https://api.stanneschaplaincy.com/api/groups/groups/slug/${slug}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

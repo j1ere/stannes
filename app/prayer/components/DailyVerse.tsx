@@ -19,7 +19,7 @@ export default function DailyVerse() {
       try {
         setLoading(true);
         const res = await fetch(
-          "https://chaplaincyb.onrender.com/api/calendar/daily-verse/",
+          "https://api.stanneschaplaincy.com/api/calendar/daily-verse/",
         );
         const data = await res.json();
         setVerse(data);

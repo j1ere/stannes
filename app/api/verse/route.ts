@@ -1,7 +1,7 @@
 export async function GET() {
   try {
     const res = await fetch(
-      "https://chaplaincyb.onrender.com/api/daily-verse/",
+      "https://api.stanneschaplaincy.com/api/daily-verse/",
       {
         cache: "no-store",
       },

@@ -28,7 +28,7 @@ export function SemesterThemeSection() {
   const fetchActiveTheme = async () => {
     try {
       const res = await fetch(
-        "https://chaplaincyb.onrender.com/api/theme/public/active-theme/",
+        "https://api.stanneschaplaincy.com/api/theme/public/active-theme/",
       );
       if (res.ok) {
         const data = await res.json();

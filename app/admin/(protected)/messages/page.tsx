@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "https://chaplaincyb.onrender.com";
+  process.env.NEXT_PUBLIC_API_URL ?? "https://api.stanneschaplaincy.com";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Message {

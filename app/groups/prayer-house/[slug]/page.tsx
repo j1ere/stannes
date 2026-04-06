@@ -28,7 +28,7 @@ export default function PrayerHouseDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://chaplaincyb.onrender.com/api/groups/groups/slug/${slug}/`)
+    fetch(`https://api.stanneschaplaincy.com/api/groups/groups/slug/${slug}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Group not found");
         return res.json();

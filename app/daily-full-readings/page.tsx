@@ -21,7 +21,7 @@ interface ReadingsData {
 
 async function getReadings(): Promise<ReadingsData> {
   const res = await fetch(
-    "https://chaplaincyb.onrender.com/api/calendar/daily/",
+    "https://api.stanneschaplaincy.com/api/calendar/daily/",
     {
       next: { revalidate: 3600 }, // cache for 1 hour
     },

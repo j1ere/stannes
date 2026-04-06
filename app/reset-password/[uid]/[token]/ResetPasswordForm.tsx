@@ -30,7 +30,7 @@ async function resetPasswordAction(
   }
 
   const res = await fetch(
-    `https://chaplaincyb.onrender.com/auth/reset-password/${uid}/${token}/`,
+    `https://api.stanneschaplaincy.com/auth/reset-password/${uid}/${token}/`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

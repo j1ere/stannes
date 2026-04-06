@@ -42,7 +42,7 @@ export default function NavbarClient({ initialUser }: Props) {
     { name: "Events", href: "/events" },
     { name: "Prayer & Spirituality", href: "/prayer" },
     { name: "Captured Moments", href: "/captured-moments" },
-    { name: "Services", href: "/services" },
+    { name: "Services and News", href: "/services" },
     { name: "Contact", href: "/contact" },
   ];
 

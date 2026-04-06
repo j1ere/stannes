@@ -20,7 +20,7 @@ export default function TraditionalPrayersSection() {
     const fetchPrayers = async () => {
       try {
         const res = await fetch(
-          "https://chaplaincyb.onrender.com/api/calendar/prayers/",
+          "https://api.stanneschaplaincy.com/api/calendar/prayers/",
         );
         if (!res.ok) throw new Error("Failed to fetch prayers");
         const data = await res.json();
@@ -57,7 +57,7 @@ export default function TraditionalPrayersSection() {
 
     try {
       const res = await fetch(
-        `https://chaplaincyb.onrender.com/api/calendar/prayers/${encodeURIComponent(prayerName)}?download=${downloadParam}`,
+        `https://api.stanneschaplaincy.com/api/calendar/prayers/${encodeURIComponent(prayerName)}?download=${downloadParam}`,
       );
 
       if (!res.ok) {

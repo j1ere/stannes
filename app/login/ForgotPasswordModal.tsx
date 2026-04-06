@@ -150,7 +150,7 @@ async function forgotPasswordAction(
   const email = formData.get("email");
 
   const res = await fetch(
-    "https://chaplaincyb.onrender.com/auth/forgot-password/",
+    "https://api.stanneschaplaincy.com/auth/forgot-password/",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

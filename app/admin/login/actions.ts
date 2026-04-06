@@ -18,13 +18,16 @@ export async function adminLoginAction(
   const password = formData.get("password");
   const redirectPath = formData.get("redirect") || "/admin";
 
-  const res = await fetch("https://chaplaincyb.onrender.com/auth/adminlogin/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+  const res = await fetch(
+    "https://api.stanneschaplaincy.com/auth/adminlogin/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
     },
-    body: JSON.stringify({ email, password }),
-  });
+  );
 
   if (res.status === 403) {
     return { error: "Admin privileges required." };
@@ -41,17 +44,19 @@ export async function adminLoginAction(
       : res.headers.get("set-cookie");
 
   if (setCookieHeaders) {
-  const parsedCookies = setCookieParser.parse(setCookieHeaders);
+    const parsedCookies = setCookieParser.parse(setCookieHeaders);
 
-  parsedCookies.forEach((cookie: ParsedCookie) => {
-    cookieStore.set(cookie.name, cookie.value, {
-      httpOnly: cookie.httpOnly ?? true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ?? "lax",
-      path: cookie.path || "/",
+    parsedCookies.forEach((cookie: ParsedCookie) => {
+      cookieStore.set(cookie.name, cookie.value, {
+        httpOnly: cookie.httpOnly ?? true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite:
+          (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ??
+          "lax",
+        path: cookie.path || "/",
+      });
     });
-  });
-}
+  }
 
   redirect(redirectPath as string);
 }

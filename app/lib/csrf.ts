@@ -1,6 +1,6 @@
 // lib/csrf.ts
 export const getCSRFToken = async (): Promise<string> => {
-  const res = await fetch("https://chaplaincyb.onrender.com/auth/csrf/", {
+  const res = await fetch("https://api.stanneschaplaincy.com/auth/csrf/", {
     method: "GET",
     credentials: "include",
   });

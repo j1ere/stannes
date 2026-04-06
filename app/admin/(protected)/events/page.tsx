@@ -37,7 +37,7 @@ interface RegularEvent {
   category: string;
 }
 
-const API_BASE = "https://chaplaincyb.onrender.com/api/events";
+const API_BASE = "https://api.stanneschaplaincy.com/api/events";
 
 export default function ManageEvents() {
   const [calendars, setCalendars] = useState({ csa: "", program: "" });
@@ -82,7 +82,7 @@ export default function ManageEvents() {
 
   // Helper: Get CSRF Token
   const getCSRFToken = async (): Promise<string> => {
-    const res = await fetch("https://chaplaincyb.onrender.com/auth/csrf/", {
+    const res = await fetch("https://api.stanneschaplaincy.com/auth/csrf/", {
       method: "GET",
       credentials: "include",
     });

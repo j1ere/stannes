@@ -19,7 +19,7 @@ export async function loginAction(
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const res = await fetch("https://chaplaincyb.onrender.com/auth/login/", {
+  const res = await fetch("https://api.stanneschaplaincy.com/auth/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,10 +44,12 @@ export async function loginAction(
       cookieStore.set(cookie.name, cookie.value, {
         httpOnly: cookie.httpOnly ?? true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ?? "lax",
+        sameSite:
+          (cookie.sameSite?.toLowerCase() as "strict" | "lax" | "none") ??
+          "lax",
         path: cookie.path || "/",
       });
-});
+    });
   }
 
   redirect("/");

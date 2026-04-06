@@ -62,7 +62,7 @@ const EventsClient = () => {
   const fetchUpcomingEvents = async () => {
     try {
       const res = await fetch(
-        "https://chaplaincyb.onrender.com/api/events/public/upcoming/",
+        "https://api.stanneschaplaincy.com/api/events/public/upcoming/",
       );
       if (res.ok) {
         const data = await res.json();
@@ -79,7 +79,7 @@ const EventsClient = () => {
   const fetchPublicCalendar = async () => {
     try {
       const res = await fetch(
-        "https://chaplaincyb.onrender.com/api/calendar/public/",
+        "https://api.stanneschaplaincy.com/api/calendar/public/",
       );
       if (res.ok) {
         const data = await res.json();
@@ -126,7 +126,7 @@ const EventsClient = () => {
   const fetchRegularEvents = async () => {
     try {
       const res = await fetch(
-        "https://chaplaincyb.onrender.com/api/events/public/regular/",
+        "https://api.stanneschaplaincy.com/api/events/public/regular/",
       );
       if (res.ok) {
         const data = await res.json();
@@ -202,7 +202,7 @@ const EventsClient = () => {
   const fetchCalendarFiles = async () => {
     try {
       const res = await fetch(
-        "https://chaplaincyb.onrender.com/api/events/public/calendars/",
+        "https://api.stanneschaplaincy.com/api/events/public/calendars/",
       );
       if (res.ok) {
         const data = await res.json();

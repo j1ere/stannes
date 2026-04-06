@@ -27,7 +27,7 @@ export const revalidate = 3600;
 
 async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    const res = await fetch("https://chaplaincyb.onrender.com/api/blogs/", {
+    const res = await fetch("https://api.stanneschaplaincy.com/api/blogs/", {
       next: { revalidate: 3600 },
     });
     if (!res.ok) throw new Error(`API error: ${res.status}`);

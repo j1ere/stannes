@@ -10,7 +10,7 @@ export default async function VerifyEmailPage({
   const { uid, token } = await params;
 
   const res = await fetch(
-    `https://chaplaincyb.onrender.com/auth/verify-email/${uid}/${token}/`,
+    `https://api.stanneschaplaincy.com/auth/verify-email/${uid}/${token}/`,
     {
       method: "GET",
       cache: "no-store",

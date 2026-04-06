@@ -21,7 +21,7 @@ interface CalendarEntry {
   notes?: string;
 }
 
-const API_BASE = "https://chaplaincyb.onrender.com/api/calendar/entries/";
+const API_BASE = "https://api.stanneschaplaincy.com/api/calendar/entries/";
 
 export default function ManageCalendar() {
   const [entries, setEntries] = useState<CalendarEntry[]>([]);
@@ -51,7 +51,7 @@ export default function ManageCalendar() {
 
   // CSRF Token Helper
   const getCSRFToken = async (): Promise<string> => {
-    const res = await fetch("https://chaplaincyb.onrender.com/auth/csrf/", {
+    const res = await fetch("https://api.stanneschaplaincy.com/auth/csrf/", {
       method: "GET",
       credentials: "include",
     });

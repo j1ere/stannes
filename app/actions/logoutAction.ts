@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 export async function logoutAction() {
   const cookieStore = await cookies();
 
-  await fetch("https://chaplaincyb.onrender.com/auth/logout/", {
+  await fetch("https://api.stanneschaplaincy.com/auth/logout/", {
     method: "POST",
     headers: {
       Cookie: cookieStore.toString(),

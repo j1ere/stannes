@@ -29,7 +29,7 @@ interface Group {
   images: string[];
 }
 
-const API_BASE = "https://chaplaincyb.onrender.com/api/groups/groups/";
+const API_BASE = "https://api.stanneschaplaincy.com/api/groups/groups/";
 
 const TYPE_CHOICES = ["Prayer House", "Movement", "Year Group", "Other"];
 
@@ -75,7 +75,7 @@ export default function ManageGroups() {
       }
       const data = await res.json();
 
-      const IMAGE_URL = "https://chaplaincyb.onrender.com";
+      const IMAGE_URL = "https://api.stanneschaplaincy.com";
 
       const normalized = data.map((group: any) => ({
         ...group,

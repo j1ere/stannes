@@ -26,7 +26,7 @@ export async function registerAction(
     return { error: "Passwords do not match." };
   }
 
-  const res = await fetch("https://chaplaincyb.onrender.com/auth/register/", {
+  const res = await fetch("https://api.stanneschaplaincy.com/auth/register/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     cache: "no-store",
