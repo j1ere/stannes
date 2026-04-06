@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         pathname: "/media/**", // match Django MEDIA_URL
       },
       {
+        protocol: "https",
+        hostname: "api.stanneschaplaincy.com",
+        pathname: "/media/**", // match Django MEDIA_URL
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "8000",
