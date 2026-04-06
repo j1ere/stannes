@@ -202,7 +202,7 @@ export function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
           <Link
-            href="/about"
+            href="/prayer"
             className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ring-2 ring-white/20 hover:ring-white/40"
           >
             <span className="flex items-center justify-center">
