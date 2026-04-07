@@ -110,7 +110,7 @@ export default function TraditionalPrayersSection() {
           <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
             🙏 Spiritual Resources
           </div>
-          <h3 className="text-5xl font-bold text-gray-900 tracking-tight">
+          <h3 className="text-3xl font-bold text-gray-900 tracking-tight">
             Traditional Catholic Prayers
           </h3>
           {/* <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">

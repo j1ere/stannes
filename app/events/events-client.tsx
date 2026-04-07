@@ -23,7 +23,7 @@ import type {
   AnnualEvent,
   CatholicEvent,
 } from "@/app/events/types";
-
+import Link from "next/link";
 // interface Props {
 //   upcomingEvents: UpcomingEvent[]
 // }
@@ -799,12 +799,15 @@ const EventsClient = () => {
             together
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-green-900 px-8 py-4 rounded-full font-semibold hover:bg-green-50 transition-all duration-300 transform hover:scale-105">
+            {/* <button className="bg-white text-green-900 px-8 py-4 rounded-full font-semibold hover:bg-green-50 transition-all duration-300 transform hover:scale-105">
               Get Event Updates
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-green-900 transition-all duration-300 transform hover:scale-105">
-              Contact Us
-            </button>
+            </button> */}
+            <Link href="/contact">
+              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-green-900 transition-all duration-300 transform hover:scale-105">
+                Contact Us
+              </button>
+            </Link>
+            
           </div>
         </div>
       </section>
