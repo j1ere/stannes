@@ -16,6 +16,7 @@ import {
   Camera,
   Star,
   Music,
+  GraduationCap,
 } from "lucide-react";
 import { HeroSection } from "@/app/components/home/hero-section";
 import { SemesterThemeSection } from "@/app/components/home/semester-theme-section";
@@ -615,10 +616,10 @@ export default async function Home() {
                     gradient: "from-green-500 to-emerald-500",
                   },
                   {
-                    icon: Heart,
-                    value: "25+",
-                    label: "Charity Events",
-                    gradient: "from-orange-500 to-amber-500",
+                    icon: GraduationCap, // Replaces Heart
+                    value: "500+",
+                    label: "Students Reached",
+                    gradient: "from-blue-500 to-indigo-500",
                   },
                   {
                     icon: Users,
@@ -628,7 +629,7 @@ export default async function Home() {
                   },
                   {
                     icon: Sparkles,
-                    value: "12+",
+                    value: "10+",
                     label: "Annual Events",
                     gradient: "from-amber-500 to-orange-500",
                   },
