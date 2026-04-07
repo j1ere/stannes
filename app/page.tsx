@@ -126,42 +126,17 @@ export default async function Home() {
       iconBg: "from-green-600 to-emerald-600",
     },
     {
-      title: "Donate",
+      title: "CSA",
       description: "Support our mission and community",
       icon: Heart,
-      href: "/contact",
+      href: "/groups",
       gradient: "from-amber-500 to-orange-600",
       bgColor: "bg-amber-50",
       iconBg: "from-amber-500 to-orange-500",
     },
   ];
 
-  const upcomingEvents = [
-    {
-      title: "Sunday Mass",
-      time: "8:00 AM & 6:00 PM",
-      date: "Every Sunday",
-      location: "Main Chapel",
-      icon: Cross,
-      gradient: "from-emerald-500 to-green-600",
-    },
-    {
-      title: "CSA Council Meeting",
-      time: "2:00 PM",
-      date: "This Saturday",
-      location: "Conference Hall",
-      icon: Users,
-      gradient: "from-orange-500 to-amber-600",
-    },
-    {
-      title: "Charity Visit",
-      time: "9:00 AM",
-      date: "Next Sunday",
-      location: "Children's Home",
-      icon: Heart,
-      gradient: "from-green-600 to-emerald-700",
-    },
-  ];
+  
 
   const quickStats = [
     {
@@ -856,104 +831,7 @@ export default async function Home() {
         </section>
 
         {/* Upcoming Events */}
-        {/* <section className="relative py-20 bg-gradient-to-br from-emerald-600 via-green-600 to-orange-600 overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_50%)]"></div>
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6 shadow-lg animate-pulse">
-                <Calendar className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-                Upcoming Events
-              </h2>
-              <p className="text-xl text-green-100 max-w-2xl mx-auto">
-                Join us for these exciting community gatherings and spiritual
-                activities
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {upcomingEvents.map((event, index) => {
-                const IconComponent = event.icon;
-                return (
-                  <div
-                    key={index}
-                    className="group relative overflow-hidden rounded-2xl backdrop-blur-sm bg-white/10 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
-                  >
-                    <div className="p-8">
-                      <div
-                        className={`w-16 h-16 bg-gradient-to-r ${event.gradient} rounded-xl flex items-center justify-center mb-6 shadow-lg group-hover:rotate-6 group-hover:scale-110 transition-transform duration-500`}
-                      >
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-orange-200 transition-colors duration-300">
-                        {event.title}
-                      </h3>
-
-                      <div className="space-y-3 text-green-100">
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-3" />
-                          <span>{event.date}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-3" />
-                          <span>{event.time}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-3" />
-                          <span>{event.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="text-center mt-12">
-              <Link
-                href="/events"
-                className="group inline-flex items-center bg-white text-green-700 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                View All Events
-                <Calendar className="w-5 h-5 ml-2 group-hover:rotate-12 transition-transform" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              className="w-full h-20"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient
-                  id="ctaGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stopColor="#FF7009" />
-                  <stop offset="25%" stopColor="#FF800B" />
-                  <stop offset="50%" stopColor="#FF8705" />
-                  <stop offset="75%" stopColor="#FF920A" />
-                  <stop offset="100%" stopColor="#FE9D07" />
-                </linearGradient>
-              </defs>
-              <path
-                fill="url(#ctaGradient)"
-                d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z"
-              />
-            </svg>
-          </div>
-        </section> */}
+        
 
         {/* CTA Section */}
         
