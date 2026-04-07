@@ -29,7 +29,7 @@ interface Group {
   images: string[];
 }
 
-const API_BASE = "https://api.stanneschaplaincy.com/api/groups/groups/";
+const API_BASE = "https://api.stanneschaplaincy.com/api/groups/admin/groups/";
 
 const TYPE_CHOICES = ["Prayer House", "Movement", "Year Group", "Other"];
 
