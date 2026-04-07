@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Navbar from "@/app/components/navbar"
 import Footer from "@/app/components/footer"
-import GroupClient from "./group-client"
+import GroupClient from "./(protected)/group-client"
 
 export const metadata: Metadata = {
   title: "About the Best Catholic Chaplaincy in Kenya | St. Anne's – Archdiocese of Kisumu, Maseno University CSA", // Expanded for all keywords, under 60 chars

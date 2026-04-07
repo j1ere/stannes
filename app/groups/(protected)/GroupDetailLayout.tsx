@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowLeft, Users, Calendar, MapPin, Heart } from "lucide-react";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
-import type { Group } from "../lib/api";
+import type { Group } from "@/app/groups/(protected)/lib/api";
 
 interface Props {
   group: Group;
