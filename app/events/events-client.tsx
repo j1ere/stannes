@@ -317,7 +317,7 @@ const EventsClient = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section - SSG */}
-      <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
+      {/* <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-300/20 rounded-full blur-xl animate-bounce"></div>
@@ -336,12 +336,12 @@ const EventsClient = () => {
             and charitable activities
           </p>
         </div>
-        {/* <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0">
           <svg className="w-full h-24 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z" />
           </svg>
-        </div> */}
-      </section>
+        </div>
+      </section> */}
 
       {/* PDF Downloads Section - SSG */}
       <section className="py-16 bg-white relative overflow-hidden">

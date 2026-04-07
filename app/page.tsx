@@ -856,7 +856,7 @@ export default async function Home() {
         </section>
 
         {/* Upcoming Events */}
-        <section className="relative py-20 bg-gradient-to-br from-emerald-600 via-green-600 to-orange-600 overflow-hidden">
+        {/* <section className="relative py-20 bg-gradient-to-br from-emerald-600 via-green-600 to-orange-600 overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
             <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_50%)]"></div>
@@ -953,54 +953,10 @@ export default async function Home() {
               />
             </svg>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA Section */}
-        <section className="relative py-20 bg-gradient-to-br from-orange-500 via-amber-500 to-green-500 overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_50%)]"></div>
-            <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-40 h-40 bg-white/5 rounded-full blur-3xl animate-bounce"></div>
-          </div>
-
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="backdrop-blur-sm bg-white/10 rounded-2xl p-6 sm:p-12 border border-white/20 shadow-2xl">
-              <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/20 rounded-full mb-6 sm:mb-8 shadow-lg animate-pulse">
-                <Heart className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white">
-                Join Our Catholic Family
-              </h2>
-              <p className="text-lg sm:text-xl mb-8 sm:mb-12 text-white/90 max-w-2xl mx-auto leading-relaxed">
-                Whether you&apos;re a student or community member, everyone is
-                welcome in our vibrant Catholic community at St. Anne&apos;s
-                Chaplaincy
-              </p>
-
-              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center">
-                <Link
-                  href="/contact"
-                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-orange-700 rounded-full font-semibold shadow-2xl hover:shadow-white/25 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
-                >
-                  <span className="flex items-center justify-center">
-                    Get Involved Today
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-
-                <Link
-                  href="/prayer"
-                  className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/40 text-white rounded-full font-semibold backdrop-blur-sm hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
-                >
-                  Daily Prayers
-                  <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:rotate-12 transition-transform" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         <ScrollToTop />
       </div>
