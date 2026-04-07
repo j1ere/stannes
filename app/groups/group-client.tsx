@@ -408,25 +408,7 @@ export default function Groups() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-orange-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-white">
-            Find Your Place
-          </h2>
-          <p className="text-xl mb-8 text-green-100">
-            Join one of our many groups and movements to deepen your faith and
-            build lasting friendships
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-white text-green-700 px-8 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors">
-              Join a Group
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors">
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </section>
+      
 
       <ScrollToTop />
     </div>

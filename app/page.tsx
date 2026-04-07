@@ -127,7 +127,7 @@ export default async function Home() {
     },
     {
       title: "CSA",
-      description: "Support our mission and community",
+      description: "Catholic Students Association",
       icon: Heart,
       href: "/groups",
       gradient: "from-amber-500 to-orange-600",
