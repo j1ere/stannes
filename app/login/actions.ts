@@ -4,7 +4,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import setCookieParser from "set-cookie-parser";
-import { ParsedCookie } from "@/types/cookies"; // adjust path if needed
+import { ParsedCookie } from "@/types/cookies";
 
 type State = {
   error?: string;
@@ -19,16 +19,30 @@ export async function loginAction(
   const email = formData.get("email");
   const password = formData.get("password");
 
-  const res = await fetch("https://api.stanneschaplaincy.com/auth/login/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
+  let res: Response;
+
+  try {
+    res = await fetch("https://api.stanneschaplaincy.com/auth/login/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+  } catch {
+    // Network error (API unreachable, timeout, etc.)
+    return { error: "Unable to reach the server. Please try again later." };
+  }
 
   if (!res.ok) {
-    throw new Error("Invalid credentials");
+    // ✅ Return error state instead of throwing — lets the form display it
+    if (res.status === 401) {
+      return { error: "Invalid email or password. Please try again." };
+    }
+    if (res.status === 403) {
+      return { error: "Your account has been deactivated. Please contact support." };
+    }
+    return { error: "Something went wrong. Please try again." };
   }
 
   // ✅ Get all Set-Cookie headers safely
