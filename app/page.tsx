@@ -187,10 +187,10 @@ export default async function Home() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-green-800 via-emerald-700 to-orange-700 bg-clip-text text-transparent">
                 Quick Access Hub
               </h2>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+              {/* <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
                 Everything you need at your fingertips - from Mass schedules to
                 community events
-              </p>
+              </p> */}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -368,27 +368,25 @@ export default async function Home() {
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     <div className="max-w-3xl">
                       <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                        Catholic Students' Community
+                        Catholic Students' Association
                       </h3>
                       <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                        Our vibrant community gathering for Sunday worship,
-                        where faith comes alive through prayer, song, and
-                        fellowship. Every Sunday, over 1000 members unite in
-                        celebration of the Eucharist.
+                        Our vibrant students' community gathering for Sunday worship,
+                        and other spiritual activities.
                       </p>
                       <div className="flex flex-wrap items-center gap-6 text-sm">
                         <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
                           <Users className="w-4 h-4 mr-2" />
                           <span>1000+ Members</span>
                         </div>
-                        <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                        {/* <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
                           <Clock className="w-4 h-4 mr-2" />
                           <span>Every Sunday</span>
-                        </div>
-                        <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                        </div> */}
+                        {/* <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
                           <MapPin className="w-4 h-4 mr-2" />
                           <span>Main Chapel</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -412,7 +410,7 @@ export default async function Home() {
                     src: "/images/chaplain.jpg",
                     title: "St. Anne's feast day",
                     description:
-                      "Small faith communities meeting weekly for prayer and fellowship",
+                      "Honoring St. Anne with prayer, and community celebrations marking her annual feast day.",
                     icon: BookOpen,
                     iconBg: "from-blue-500 to-indigo-500",
                     badge: "Annual event",
@@ -422,7 +420,7 @@ export default async function Home() {
                     src: "/images/culture.jpeg",
                     title: "Students' Cultural week",
                     description:
-                      "Celebrating our diverse Catholic heritage and traditions",
+                      "Celebrating our diverse heritage and traditions",
                     icon: Sparkles,
                     iconBg: "from-purple-500 to-pink-500",
                     badge: "Annual Event",
@@ -475,7 +473,7 @@ export default async function Home() {
                     src: "/images/hike.jpeg",
                     title: "CSA Hikes and     Fun day",
                     description:
-                      "Young Catholics building lifelong friendships while serving the community and growing in faith through various activities.",
+                      "Young Catholics building lifelong friendships through various fun activities.",
                     icons: [
                       { Icon: Users, bg: "from-green-500 to-emerald-500" },
                       { Icon: Heart, bg: "from-orange-500 to-amber-500" },
@@ -486,7 +484,7 @@ export default async function Home() {
                     src: "/images/vph.jpg",
                     title: "Spiritual Retreats",
                     description:
-                      "Annual retreats for spiritual renewal and deeper connection with God through prayer and reflection.",
+                      "Annual retreats for spiritual renewal and deeper connection with God.",
                     icons: [
                       { Icon: Cross, bg: "from-indigo-500 to-purple-500" },
                     ],
@@ -549,7 +547,7 @@ export default async function Home() {
                     src: "/images/archbishop.jpeg",
                     title: "Arch-bishop's pastoral visits",
                     description:
-                      "Archbishop’s Pastoral Visits nurture faith and unity through guidance and pastoral care.",
+                      "Archbishop’s Pastoral Visits nurture faith and unity.",
                     icon: Sparkles,
                     iconBg: "from-pink-500 to-purple-500",
                     badge: "Annual",
@@ -558,7 +556,7 @@ export default async function Home() {
                   {
                     src: "/images/teachers.jpg",
                     title: "(ADOK) Catholic Teachers Prayer Day",
-                    description: "(ADOK) Catholic Teachers Prayer Day unites teachers in prayer and reflection, strengthening faith and community in the Archdiocese of Kisumu.",
+                    description: "(ADOK) Catholic Teachers Prayer Day unites teachers in prayer and reflection in the Archdiocese of Kisumu.",
                     icon: Heart,
                     iconBg: "from-green-500 to-teal-500",
                     badge: "Annual Event",
@@ -606,7 +604,7 @@ export default async function Home() {
             </div>
 
             {/* Stats Grid */}
-            <div className="mt-16 bg-white rounded-3xl p-8 shadow-xl border border-orange-100">
+            {/* <div className="mt-16 bg-white rounded-3xl p-8 shadow-xl border border-orange-100">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
                   {
@@ -617,7 +615,7 @@ export default async function Home() {
                   },
                   {
                     icon: GraduationCap, // Replaces Heart
-                    value: "500+",
+                    value: "1500+",
                     label: "Students Reached",
                     gradient: "from-blue-500 to-indigo-500",
                   },
@@ -650,7 +648,7 @@ export default async function Home() {
                   );
                 })}
               </div>
-            </div>
+            </div> */}
 
             {/* CTA */}
             <div className="text-center mt-16">
