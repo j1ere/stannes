@@ -55,8 +55,8 @@ export default function Prayer() {
       <div className="min-h-screen pt-16">
 
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
-          {/* <div className="absolute inset-0 overflow-hidden">
+        {/* <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse" />
             <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-300/20 rounded-full blur-xl animate-bounce" />
           </div>
@@ -67,13 +67,13 @@ export default function Prayer() {
             <p className="text-xl text-green-100 max-w-3xl mx-auto">
               Deepen your faith journey with daily prayers, readings, and spiritual resources
             </p>
-          </div> */}
-          {/* <div className="absolute bottom-0 left-0 right-0">
+          </div>
+          <div className="absolute bottom-0 left-0 right-0">
             <svg className="w-full h-24 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
               <path d="M0,40 C150,100 350,20 500,80 C650,120 850,40 1000,60 C1100,80 1150,60 1200,80 L1200,120 L0,120 Z" />
             </svg>
-          </div> */}
-        </section>
+          </div>
+        </section> */}
 
         {/* Daily Verse */}
         <DailyVerse />

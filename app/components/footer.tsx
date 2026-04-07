@@ -189,7 +189,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-2 text-gray-400 text-sm mb-4 md:mb-0">
             <span>
-              © 2025 St. Anne&apos;s Chaplaincy, Maseno University - Archdiocese
+              © 2026 St. Anne&apos;s Chaplaincy, Maseno University - Archdiocese
               of Kisumu. All rights reserved.
             </span>
           </div>
