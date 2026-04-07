@@ -163,7 +163,7 @@ const About = () => {
                 <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
               </div>
               <p className="text-gray-700 text-lg leading-relaxed">
-                To create a welcoming Catholic community that nurtures spiritual growth, academic excellence, and social responsibility among Maseno University students, guided by the teachings of Christ, the Catholic Church, and the Archdiocese of Kisumu.
+                To create a welcoming Catholic community that nurtures spiritual growth, academic excellence, and social responsibility among Maseno University students, guided by the teachings of Christ.
               </p>
             </div>
 
@@ -196,7 +196,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why St. Anne's is the Best Chaplaincy</h2> {/* Direct keyword H2 */}
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Discover what sets our Archdiocese of Kisumu-affiliated chaplaincy apart at Maseno University.
+              Discover what sets our chaplaincy apart at Maseno University.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

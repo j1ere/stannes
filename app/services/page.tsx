@@ -96,34 +96,12 @@ function getStaticServices(): Service[] {
   ];
 }
 
-async function getTestimonials(): Promise<Testimonial[]> {
-  return [
-    {
-      name: "Mary Wanjiku",
-      year: "4th Year",
-      text: "The semester theme t-shirts are amazing! Great quality and beautiful designs.",
-      rating: 5,
-    },
-    {
-      name: "John Ochieng",
-      year: "2nd Year",
-      text: "Fast and reliable printing services. Always there when I need them for assignments.",
-      rating: 5,
-    },
-    {
-      name: "Grace Akinyi",
-      year: "3rd Year",
-      text: "Love the Catholic merchandise selection. Found the perfect rosary here.",
-      rating: 4,
-    },
-  ];
-}
 
 export default async function ChaplaincyServicesPage() {
-  const [blogPosts, services, testimonials] = await Promise.all([
+  const [blogPosts, services, ] = await Promise.all([
     getBlogPosts(),
     getServices(),
-    getTestimonials(),
+    
   ]);
 
   return (
@@ -132,7 +110,7 @@ export default async function ChaplaincyServicesPage() {
       <ChaplaincyServicesClient
         initialBlogPosts={blogPosts}
         initialServices={services}
-        initialTestimonials={testimonials}
+        
       />
       <Footer />
     </>

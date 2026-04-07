@@ -91,7 +91,7 @@ export default function Groups() {
   if (loading) {
     return (
       <div className="min-h-screen pt-16 flex items-center justify-center">
-        <p className="text-xl text-gray-600">Loading vibrant CSA groups...</p>
+        <p className="text-xl text-gray-600">Loading ...</p>
       </div>
     );
   }
@@ -118,10 +118,10 @@ export default function Groups() {
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Catholic Students' Association
           </h1>
-          <p className="text-xl text-green-100 max-w-3xl mx-auto mb-8">
+          {/* <p className="text-xl text-green-100 max-w-3xl mx-auto mb-8">
             Discover the diverse community groups that make up our vibrant CSA
             family
-          </p>
+          </p> */}
           <div className="grid grid-cols-3 gap-8 max-w-md mx-auto">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">

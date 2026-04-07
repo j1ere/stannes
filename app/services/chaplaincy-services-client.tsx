@@ -16,18 +16,17 @@ import {
 } from "lucide-react"
 import ScrollToTop from "@/app/components/scroll-to-top"
 import Image from "next/image"
-import type { Service, BlogPost, Testimonial } from "@/app/services/types"
+import type { Service, BlogPost} from "@/app/services/types"
 
 interface Props {
   initialBlogPosts: BlogPost[]
   initialServices: Service[]
-  initialTestimonials: Testimonial[]
+  
 }
 
 const ChaplaincyServicesClient = ({
   initialBlogPosts,
   initialServices,
-  initialTestimonials,
 }: Props) => {
   const [selectedService, setSelectedService] = useState("tshirts")
 
@@ -178,25 +177,7 @@ const ChaplaincyServicesClient = ({
             </div>
 
             {/* Testimonials */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">What Students Say</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {initialTestimonials.map((testimonial, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 shadow-lg">
-                    <div className="flex items-center mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-gray-600 mb-4">&ldquo;{testimonial.text}&rdquo;</p>
-                    <div>
-                      <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                      <p className="text-sm text-gray-500">{testimonial.year}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            
           </div>
 
           {/* ── Catholic Blog News Sidebar ── */}
