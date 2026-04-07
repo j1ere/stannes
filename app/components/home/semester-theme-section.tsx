@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { BookOpen, Download, Sparkles } from "lucide-react";
 import ConfettiBurst from "@/app/components/confetti-burst";
 import { useScrollTrigger } from "@/app/hooks/use-scroll-trigger";
+import Image from "next/image";
 
 interface ActiveTheme {
   id: number;
@@ -129,9 +130,11 @@ export function SemesterThemeSection() {
 
           <div className="mb-6 sm:mb-8">
             <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 sm:ring-4 ring-green-200/50">
-              <img
+              <Image
                 src={activeTheme.image_url}
                 alt="Semester Theme Banner"
+                width={1200}
+                height={600}
                 className="w-full h-48 sm:h-64 md:h-80 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
