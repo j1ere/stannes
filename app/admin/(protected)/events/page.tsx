@@ -111,9 +111,14 @@ export default function ManageEvents() {
       );
 
       setCalendars({
-        csa: csaFile?.file?.split("/").pop() || "",
-        program: programFile?.file?.split("/").pop() || "",
+        csa: csaFile?.file_url?.split("/").pop() || "",       // ✅ was f.file
+        program: programFile?.file_url?.split("/").pop() || "", // ✅ was f.file
       });
+
+      // setCalendars({
+      //   csa: csaFile?.file?.split("/").pop() || "",
+      //   program: programFile?.file?.split("/").pop() || "",
+      // });
 
       setUpcomingEvents(upcomingData);
       setRegularEvents(regularData);
@@ -150,11 +155,18 @@ export default function ManageEvents() {
         const newFile = await res.json();
         setCalendars((prev) => ({
           ...prev,
-          [type]: file.name,
+          // Use file_url from the response, not the local file.name
+        [type]: newFile.file_url?.split("/").pop() || file.name, // ✅ fixed
+
+          //[type]: file.name,
         }));
         alert(`${type.toUpperCase()} calendar uploaded successfully!`);
       } else {
-        alert("Failed to upload calendar");
+        // ✅ Surface the actual error from backend
+        const errData = await res.json().catch(() => ({}));
+        console.error("Upload failed:", errData);
+        alert(`Failed to upload: ${errData?.error || res.statusText}`);
+        //alert("Failed to upload calendar");
       }
     } catch (error) {
       console.error("Upload error:", error);

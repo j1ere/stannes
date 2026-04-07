@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
         hostname: "api.stanneschaplaincy.com",
         pathname: "/media/**", // match Django MEDIA_URL
       },
