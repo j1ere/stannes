@@ -128,8 +128,7 @@ const Contact = () => {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl text-green-100 max-w-3xl mx-auto">
-              Get in touch with St. Anne's Chaplaincy - we're here to welcome
-              you into our Catholic community
+              Get in touch with St. Anne's Chaplaincy 
             </p>
           </div>
 
@@ -335,23 +334,7 @@ const Contact = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-16 bg-gradient-to-br from-green-900 to-orange-700 text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Join Our Community</h2>
-            <p className="text-xl mb-8 text-green-100">
-              We welcome everyone to be part of our Catholic family at St.
-              Anne's Chaplaincy
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-green-900 px-8 py-4 rounded-full font-semibold hover:bg-green-50 transition-all duration-300 transform hover:scale-105">
-                Visit Us This Sunday
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-green-900 transition-all duration-300 transform hover:scale-105">
-                Schedule a Meeting
-              </button>
-            </div>
-          </div>
-        </section>
+       
       </div>
       <Footer />
     </>
