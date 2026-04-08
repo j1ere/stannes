@@ -26,6 +26,18 @@ export default function PrayerHouseDetail() {
 
   const [group, setGroup] = useState<GroupDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const openModal = (imageUrl: string) => {
+      setSelectedImage(imageUrl);
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    };
+
+    const closeModal = () => {
+      setSelectedImage(null);
+      document.body.style.overflow = 'unset';
+    };
+
 
   useEffect(() => {
     fetch(`https://api.stanneschaplaincy.com/api/groups/groups/slug/${slug}/`)
@@ -78,7 +90,7 @@ export default function PrayerHouseDetail() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Gallery */}
-          <section className="mb-16">
+          {/* <section className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {group.images.map((img, i) => (
@@ -90,6 +102,45 @@ export default function PrayerHouseDetail() {
                 />
               ))}
             </div>
+          </section> */}
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
+            
+            {group.images.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 ">
+                {group.images.map((img, index) => {
+                  // Reduced spanning for a tighter, more uniform square look
+                  const isLarge = index % 8 === 0; // Fewer large tiles
+                  const isWide = index % 7 === 2;  // Occasional wider tile
+
+                  return (
+                    <div
+                      key={index}
+                      className={`relative overflow-hidden shadow-md group cursor-pointer aspect-square
+                        ${isLarge ? 'lg:row-span-2 lg:col-span-2' : ''} 
+                        ${isWide ? 'lg:col-span-2' : ''}`}
+                      onClick={() => openModal(img.image)}
+                    >
+                      <img
+                        src={img.image}
+                        alt={`${group.name} ${index + 1}`}
+                        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                        // style={{
+                        //   minHeight: isLarge ? '320px' : '210px'   // Smaller & squarer
+                        // }}
+                      />
+                      
+                      {/* Subtle hover overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-gray-500 text-center py-12 bg-gray-50 rounded-xl">
+                No images available yet.
+              </p>
+            )}
           </section>
 
           {/* Details */}
@@ -159,6 +210,30 @@ export default function PrayerHouseDetail() {
           </section>
         </div>
       </div>
+      {/* Full Screen Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div className="relative max-w-5xl max-h-[95vh] w-full">
+            <button
+              onClick={closeModal}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl leading-none z-10"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            
+            <img
+              src={selectedImage}
+              alt="Full screen view"
+              className="max-h-[95vh] max-w-full object-contain rounded-2xl shadow-2xl mx-auto"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
