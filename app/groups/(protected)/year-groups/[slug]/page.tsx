@@ -98,22 +98,23 @@ export default function YearGroupDetail() {
         </section>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Gallery */}
+          
           {/* Gallery - Improved Dynamic Grid */}
+          {/* Gallery - Compact Square Grid */}
           <section className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
             
             {group.images.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 auto-rows-fr">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 auto-rows-fr">
                 {group.images.map((img, index) => {
-                  // Create a more interesting masonry-like feel with varied heights
-                  const isLarge = index % 5 === 0 || index % 7 === 3; // Makes some images span taller
-                  const isWide = index % 6 === 2 || index % 9 === 1;
+                  // Reduced spanning for a tighter, more uniform square look
+                  const isLarge = index % 8 === 0; // Fewer large tiles
+                  const isWide = index % 7 === 2;  // Occasional wider tile
 
                   return (
                     <div
                       key={index}
-                      className={`relative overflow-hidden rounded-2xl shadow-md group cursor-pointer
+                      className={`relative overflow-hidden shadow-md group cursor-pointer
                         ${isLarge ? 'lg:row-span-2' : ''} 
                         ${isWide ? 'lg:col-span-2' : ''}`}
                       onClick={() => openModal(img.image)}
@@ -123,12 +124,12 @@ export default function YearGroupDetail() {
                         alt={`${group.name} community event ${index + 1}`}
                         className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                         style={{
-                          minHeight: isLarge ? '380px' : '260px'
+                          minHeight: isLarge ? '320px' : '210px'   // Smaller & squarer
                         }}
                       />
                       
-                      {/* Optional subtle overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Subtle hover overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   );
                 })}
@@ -139,7 +140,6 @@ export default function YearGroupDetail() {
               </p>
             )}
           </section>
-
           {/* Details */}
           <section className="bg-gray-50 rounded-xl p-8">
             <div className="h-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-t-xl mb-6"></div>
