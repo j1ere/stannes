@@ -105,7 +105,7 @@ export default function YearGroupDetail() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
             
             {group.images.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 auto-rows-fr">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 ">
                 {group.images.map((img, index) => {
                   // Reduced spanning for a tighter, more uniform square look
                   const isLarge = index % 8 === 0; // Fewer large tiles
@@ -114,8 +114,8 @@ export default function YearGroupDetail() {
                   return (
                     <div
                       key={index}
-                      className={`relative overflow-hidden shadow-md group cursor-pointer
-                        ${isLarge ? 'lg:row-span-2' : ''} 
+                      className={`relative overflow-hidden shadow-md group cursor-pointer aspect-square
+                        ${isLarge ? 'lg:row-span-2 lg:col-span-2' : ''} 
                         ${isWide ? 'lg:col-span-2' : ''}`}
                       onClick={() => openModal(img.image)}
                     >
@@ -123,9 +123,9 @@ export default function YearGroupDetail() {
                         src={img.image}
                         alt={`${group.name} community event ${index + 1}`}
                         className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                        style={{
-                          minHeight: isLarge ? '320px' : '210px'   // Smaller & squarer
-                        }}
+                        // style={{
+                        //   minHeight: isLarge ? '320px' : '210px'   // Smaller & squarer
+                        // }}
                       />
                       
                       {/* Subtle hover overlay */}
