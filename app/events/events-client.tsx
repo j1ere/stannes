@@ -330,32 +330,7 @@ const EventsClient = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section - SSG */}
-      {/* <section className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-orange-700 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-300/20 rounded-full blur-xl animate-bounce"></div>
-          <div className="absolute top-12 left-16 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-24 right-20 w-24 h-24 bg-white/5 rotate-45 blur-sm"></div>
-          <div className="absolute bottom-16 left-1/4 w-28 h-28 bg-amber-300/20 rounded-full blur-lg"></div>
-          <div className="absolute bottom-12 right-1/3 w-36 h-36 bg-orange-300/15 rotate-12 blur-xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-white/8 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Events & Activities
-          </h1>
-          <p className="text-xl text-green-100 max-w-3xl mx-auto">
-            Stay connected with our vibrant community through spiritual, social,
-            and charitable activities
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 C200,20 400,100 600,40 C800,0 1000,80 1200,40 L1200,120 L0,120 Z" />
-          </svg>
-        </div>
-      </section> */}
-
+      
       {/* PDF Downloads Section - SSG */}
       <section className="py-16 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -498,79 +473,94 @@ const EventsClient = () => {
   </div>
 
   {/* ==================== LITURGICAL EVENT MODAL ==================== */}
-  {selectedLiturgicalEvent && (
-    <div 
-      className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
-      onClick={() => setSelectedLiturgicalEvent(null)}
-    >
+    {selectedLiturgicalEvent && (
       <div 
-        className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
+        onClick={() => setSelectedLiturgicalEvent(null)}
       >
-        <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-sm opacity-90">
-                {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
-              </p>
-              <h3 className="text-2xl font-bold mt-1">
-                {selectedLiturgicalEvent.event}
-              </h3>
-            </div>
-            <button
-              onClick={() => setSelectedLiturgicalEvent(null)}
-              className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-
-        <div className="p-8 space-y-6">
-          <div>
-            <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
-              selectedLiturgicalEvent.type === "solemnity" 
-                ? "bg-red-100 text-red-700" 
-                : selectedLiturgicalEvent.type === "feast" 
-                  ? "bg-amber-100 text-amber-700" 
-                  : "bg-emerald-100 text-emerald-700"
-            }`}>
-              {selectedLiturgicalEvent.type.toUpperCase()}
-            </span>
-          </div>
-
-          {selectedLiturgicalEvent.verse && (
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                <span className="text-green-600">✝️</span> Scripture Verse
-              </h4>
-              <p className="text-gray-700 italic leading-relaxed">
-                {selectedLiturgicalEvent.verse}
-              </p>
-            </div>
-          )}
-
-          {selectedLiturgicalEvent.reading && (
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-2">Readings</h4>
-              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed">
-                {selectedLiturgicalEvent.reading}
+        <div 
+          className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header */}
+          <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-sm opacity-90">
+                  {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
+                </p>
+                <h3 className="text-2xl font-bold mt-1">
+                  {selectedLiturgicalEvent.event}
+                </h3>
               </div>
+              <button
+                onClick={() => setSelectedLiturgicalEvent(null)}
+                className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
-          )}
+          </div>
 
-          <div className="pt-4 border-t border-gray-100 text-center">
-            <button
-              onClick={() => setSelectedLiturgicalEvent(null)}
-              className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
-            >
-              Close
-            </button>
+          {/* Content */}
+          <div className="p-8 space-y-6">
+            <div>
+              <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
+                selectedLiturgicalEvent.type === "solemnity" 
+                  ? "bg-red-100 text-red-700" 
+                  : selectedLiturgicalEvent.type === "feast" 
+                    ? "bg-amber-100 text-amber-700" 
+                    : "bg-emerald-100 text-emerald-700"
+              }`}>
+                {selectedLiturgicalEvent.type.toUpperCase()}
+              </span>
+            </div>
+
+            {selectedLiturgicalEvent.verse && (
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="text-green-600">✝️</span> Scripture Verse
+                </h4>
+                <p className="text-gray-700 italic leading-relaxed">
+                  {selectedLiturgicalEvent.verse}
+                </p>
+              </div>
+            )}
+
+            {selectedLiturgicalEvent.reading && (
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Readings</h4>
+                <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed mb-6">
+                  {selectedLiturgicalEvent.reading}
+                </div>
+
+                {/* NEW: "View Full Readings" Button */}
+                <button
+                  onClick={() => {
+                    setSelectedLiturgicalEvent(null); // Close modal first
+                    window.location.href = "/prayer"; // Navigate to /prayer
+                    // Alternative (better for Next.js): router.push('/prayer')
+                  }}
+                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                >
+                  View Full Daily Readings
+                  <span className="text-lg">→</span>
+                </button>
+              </div>
+            )}
+
+            <div className="pt-4 border-t border-gray-100 text-center">
+              <button
+                onClick={() => setSelectedLiturgicalEvent(null)}
+                className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )}
+    )}
 </section>
 
       {/* Upcoming Events - ISR via fetch in parent */}
