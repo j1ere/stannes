@@ -58,6 +58,8 @@ const EventsClient = () => {
     program: null,
   });
 
+  const [selectedLiturgicalEvent, setSelectedLiturgicalEvent] = useState<CatholicEvent | null>(null);
+
   // Fetch real Upcoming Events from public endpoint
   const fetchUpcomingEvents = async () => {
     try {
@@ -252,12 +254,14 @@ const EventsClient = () => {
     const days: React.ReactNode[] = [];
     const monthEvents = catholicEvents[currentMonth] || [];
 
+    // Empty slots before the 1st
     for (let i = 0; i < firstDay; i++) {
       days.push(
-        <div key={`empty-${i}`} className="h-24 border border-gray-200" />,
+        <div key={`empty-${i}`} className="h-24 border border-gray-200 bg-gray-50 rounded-xl" />
       );
     }
 
+    // Actual days
     for (let day = 1; day <= daysInMonth; day++) {
       const dayEvents = monthEvents.filter((event) => event.date === day);
       const isToday =
@@ -268,36 +272,45 @@ const EventsClient = () => {
       days.push(
         <div
           key={day}
-          className={`h-24 border border-gray-200 p-1 ${isToday ? "bg-blue-50 border-blue-300" : "bg-white"}`}
+          className={`h-24 border border-gray-200 p-2 rounded-xl transition-all hover:shadow-sm cursor-pointer
+            ${isToday ? "bg-blue-50 border-blue-300" : "bg-white hover:bg-gray-50"}`}
+          onClick={() => {
+            if (dayEvents.length > 0) {
+              setSelectedLiturgicalEvent(dayEvents[0]); // Show first event (you can extend to show all if needed)
+            }
+          }}
         >
-          <div
-            className={`text-sm font-medium ${isToday ? "text-blue-600" : "text-gray-900"}`}
-          >
+          <div className={`text-sm font-medium ${isToday ? "text-blue-600" : "text-gray-900"}`}>
             {day}
           </div>
-          {dayEvents.map((event, index) => (
-            <div
-              key={index}
-              className={`text-xs mt-1 p-1 rounded truncate cursor-pointer hover:opacity-80 transition-opacity ${
-                event.type === "solemnity"
-                  ? "bg-red-100 text-red-800"
-                  : event.type === "feast"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-green-100 text-green-800"
-              }`}
-              title={`${event.event} - ${event.verse}`}
-            >
-              <div className="font-medium">{event.event}</div>
-              {event.verse && (
-                <div className="text-xs opacity-75">{event.verse}</div>
+
+          {dayEvents.length > 0 && (
+            <div className="mt-2 space-y-1">
+              {dayEvents.slice(0, 2).map((event, idx) => (  // Show max 2 events per day
+                <div
+                  key={idx}
+                  className={`text-xs px-2 py-1 rounded font-medium truncate ${
+                    event.type === "solemnity"
+                      ? "bg-red-100 text-red-700"
+                      : event.type === "feast"
+                        ? "bg-amber-100 text-amber-700"
+                        : "bg-emerald-100 text-emerald-700"
+                  }`}
+                >
+                  {event.event}
+                </div>
+              ))}
+              {dayEvents.length > 2 && (
+                <div className="text-[10px] text-gray-500 pl-1">+{dayEvents.length - 2} more</div>
               )}
             </div>
-          ))}
-        </div>,
+          )}
+        </div>
       );
     }
-    return days;
-  };
+
+  return days;
+};
 
   useEffect(() => {
     fetchUpcomingEvents();
@@ -428,57 +441,137 @@ const EventsClient = () => {
       </section>
 
       {/* Catholic Calendar Section - SSG (hardcoded, or fetch with long revalidate if API used) */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-amber-50 relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Catholic Liturgical Calendar
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Follow the Catholic liturgical year with important feast days,
-              celebrations, and their biblical readings
-            </p>
-          </div>
+      {/* Catholic Calendar Section with Clickable Modal */}
+<section className="py-16 bg-gradient-to-br from-blue-50 to-amber-50 relative overflow-hidden">
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        Catholic Liturgical Calendar
+      </h2>
+      <p className="text-gray-600 max-w-2xl mx-auto">
+        Follow the Catholic liturgical year with important feast days,
+        celebrations, and their biblical readings
+      </p>
+    </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => navigateMonth("prev")}
-                  className="p-2 rounded-full hover:bg-white/20"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <h3 className="text-2xl font-bold">
-                  {months[currentMonth]} {currentYear}
-                </h3>
-                <button
-                  onClick={() => navigateMonth("next")}
-                  className="p-2 rounded-full hover:bg-white/20"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-            </div>
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+      {/* Calendar Header */}
+      <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => navigateMonth("prev")}
+            className="p-2 rounded-full hover:bg-white/20 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <h3 className="text-2xl font-bold">
+            {months[currentMonth]} {currentYear}
+          </h3>
+          <button
+            onClick={() => navigateMonth("next")}
+            className="p-2 rounded-full hover:bg-white/20 transition-colors"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
 
-            <div className="p-6">
-              <div className="grid grid-cols-7 gap-1 mb-2">
-                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                  (day) => (
-                    <div
-                      key={day}
-                      className="h-10 flex items-center justify-center font-medium text-gray-700 bg-gray-100 rounded"
-                    >
-                      {day}
-                    </div>
-                  ),
-                )}
-              </div>
-              <div className="grid grid-cols-7 gap-1">{renderCalendar()}</div>
+      <div className="p-6">
+        {/* Weekday Headers */}
+        <div className="grid grid-cols-7 gap-1 mb-2">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            <div
+              key={day}
+              className="h-10 flex items-center justify-center font-medium text-gray-700 bg-gray-100 rounded"
+            >
+              {day}
             </div>
+          ))}
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 gap-1">
+          {renderCalendar()}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* ==================== LITURGICAL EVENT MODAL ==================== */}
+  {selectedLiturgicalEvent && (
+    <div 
+      className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
+      onClick={() => setSelectedLiturgicalEvent(null)}
+    >
+      <div 
+        className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm opacity-90">
+                {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
+              </p>
+              <h3 className="text-2xl font-bold mt-1">
+                {selectedLiturgicalEvent.event}
+              </h3>
+            </div>
+            <button
+              onClick={() => setSelectedLiturgicalEvent(null)}
+              className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
         </div>
-      </section>
+
+        <div className="p-8 space-y-6">
+          <div>
+            <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
+              selectedLiturgicalEvent.type === "solemnity" 
+                ? "bg-red-100 text-red-700" 
+                : selectedLiturgicalEvent.type === "feast" 
+                  ? "bg-amber-100 text-amber-700" 
+                  : "bg-emerald-100 text-emerald-700"
+            }`}>
+              {selectedLiturgicalEvent.type.toUpperCase()}
+            </span>
+          </div>
+
+          {selectedLiturgicalEvent.verse && (
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <span className="text-green-600">✝️</span> Scripture Verse
+              </h4>
+              <p className="text-gray-700 italic leading-relaxed">
+                {selectedLiturgicalEvent.verse}
+              </p>
+            </div>
+          )}
+
+          {selectedLiturgicalEvent.reading && (
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">Readings</h4>
+              <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed">
+                {selectedLiturgicalEvent.reading}
+              </div>
+            </div>
+          )}
+
+          <div className="pt-4 border-t border-gray-100 text-center">
+            <button
+              onClick={() => setSelectedLiturgicalEvent(null)}
+              className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+</section>
 
       {/* Upcoming Events - ISR via fetch in parent */}
       <section className="py-16 bg-white relative overflow-hidden">
