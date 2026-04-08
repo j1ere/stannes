@@ -56,6 +56,6 @@ export interface CatholicEvent {
   date: number
   event: string
   type: "solemnity" | "feast" | "memorial" | "commemoration" | "All Souls" | "optional memorial"
-  verse: string
+  liturgical_color?: string | null;   // ← Add this
   reading: string
 }

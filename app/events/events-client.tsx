@@ -99,7 +99,7 @@ const EventsClient = () => {
             date: day,
             event: entry.event,
             type: entry.type,
-            verse: entry.verse || "",
+           liturgical_color: entry.liturgical_color || null,   // ← Changed
             reading: entry.readings?.[0] || entry.readings?.join(", ") || "",
           });
         });
@@ -473,94 +473,88 @@ const EventsClient = () => {
   </div>
 
   {/* ==================== LITURGICAL EVENT MODAL ==================== */}
-    {selectedLiturgicalEvent && (
-      <div 
-        className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
-        onClick={() => setSelectedLiturgicalEvent(null)}
-      >
-        <div 
-          className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm opacity-90">
-                  {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
-                </p>
-                <h3 className="text-2xl font-bold mt-1">
-                  {selectedLiturgicalEvent.event}
-                </h3>
-              </div>
-              <button
-                onClick={() => setSelectedLiturgicalEvent(null)}
-                className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
+{selectedLiturgicalEvent && (
+  <div 
+    className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
+    onClick={() => setSelectedLiturgicalEvent(null)}
+  >
+    <div 
+      className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header */}
+      <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+        <div className="flex justify-between items-start">
+          <div>
+            <p className="text-sm opacity-90">
+              {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
+            </p>
+            <h3 className="text-2xl font-bold mt-1">
+              {selectedLiturgicalEvent.event}
+            </h3>
           </div>
-
-          {/* Content */}
-          <div className="p-8 space-y-6">
-            <div>
-              <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
-                selectedLiturgicalEvent.type === "solemnity" 
-                  ? "bg-red-100 text-red-700" 
-                  : selectedLiturgicalEvent.type === "feast" 
-                    ? "bg-amber-100 text-amber-700" 
-                    : "bg-emerald-100 text-emerald-700"
-              }`}>
-                {selectedLiturgicalEvent.type.toUpperCase()}
-              </span>
-            </div>
-
-            {selectedLiturgicalEvent.verse && (
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <span className="text-green-600">✝️</span> Scripture Verse
-                </h4>
-                <p className="text-gray-700 italic leading-relaxed">
-                  {selectedLiturgicalEvent.verse}
-                </p>
-              </div>
-            )}
-
-            {selectedLiturgicalEvent.reading && (
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Readings</h4>
-                <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed mb-6">
-                  {selectedLiturgicalEvent.reading}
-                </div>
-
-                {/* NEW: "View Full Readings" Button */}
-                <button
-                  onClick={() => {
-                    setSelectedLiturgicalEvent(null); // Close modal first
-                    window.location.href = "/prayer"; // Navigate to /prayer
-                    // Alternative (better for Next.js): router.push('/prayer')
-                  }}
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
-                >
-                  View Full Daily Readings
-                  <span className="text-lg">→</span>
-                </button>
-              </div>
-            )}
-
-            <div className="pt-4 border-t border-gray-100 text-center">
-              <button
-                onClick={() => setSelectedLiturgicalEvent(null)}
-                className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
+          <button
+            onClick={() => setSelectedLiturgicalEvent(null)}
+            className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
       </div>
-    )}
+
+      {/* Content */}
+      <div className="p-8 space-y-6">
+        <div className="flex flex-wrap gap-3">
+          {/* Event Type */}
+          <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
+            selectedLiturgicalEvent.type === "solemnity" 
+              ? "bg-red-100 text-red-700" 
+              : selectedLiturgicalEvent.type === "feast" 
+                ? "bg-amber-100 text-amber-700" 
+                : "bg-emerald-100 text-emerald-700"
+          }`}>
+            {selectedLiturgicalEvent.type.toUpperCase()}
+          </span>
+
+          {/* Liturgical Color - New */}
+          {selectedLiturgicalEvent.liturgical_color && (
+            <span className="inline-block px-4 py-1.5 text-sm font-semibold rounded-full bg-white border border-gray-200 text-gray-700 capitalize">
+              {selectedLiturgicalEvent.liturgical_color}
+            </span>
+          )}
+        </div>
+
+        {selectedLiturgicalEvent.reading && (
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-3">Readings</h4>
+            <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed mb-6">
+              {selectedLiturgicalEvent.reading}
+            </div>
+
+            <button
+              onClick={() => {
+                setSelectedLiturgicalEvent(null);
+                window.location.href = "/prayer";
+              }}
+              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+            >
+              View Full Daily Readings →
+            </button>
+          </div>
+        )}
+
+        <div className="pt-4 border-t border-gray-100 text-center">
+          <button
+            onClick={() => setSelectedLiturgicalEvent(null)}
+            className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 </section>
 
       {/* Upcoming Events - ISR via fetch in parent */}

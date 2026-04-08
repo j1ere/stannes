@@ -17,11 +17,40 @@ interface CalendarEntry {
   event: string;
   type: "solemnity" | "feast" | "memorial" | "season" | "optional";
   readings: string;
-  verse?: string;
+  liturgical_color?: string | null;   // ← Replaced verse
   notes?: string;
 }
 
 const API_BASE = "https://api.stanneschaplaincy.com/api/calendar/entries/";
+
+const COLOR_OPTIONS = [
+  { value: "", label: "No Color / Not Specified" },
+  { value: "white", label: "White" },
+  { value: "red", label: "Red" },
+  { value: "green", label: "Green" },
+  { value: "violet", label: "Violet / Purple" },
+  { value: "rose", label: "Rose" },
+  { value: "gold", label: "Gold" },
+];  
+
+const getColorDot = (color?: string | null) => {
+  const colorMap: Record<string, string> = {
+    white: "bg-white border border-gray-300",
+    red: "bg-red-600",
+    green: "bg-green-600",
+    violet: "bg-purple-600",
+    rose: "bg-pink-500",
+    gold: "bg-amber-500",
+  };
+  const dotClass = colorMap[color || ""] || "bg-gray-300";
+
+  return (
+    <span
+      className={`inline-block w-4 h-4 rounded-full mr-2 ${dotClass} shadow-sm`}
+    />
+  );
+};
+
 
 export default function ManageCalendar() {
   const [entries, setEntries] = useState<CalendarEntry[]>([]);
@@ -35,7 +64,7 @@ export default function ManageCalendar() {
     event: "",
     type: "feast",
     readings: "",
-    verse: "",
+    liturgical_color: null,   // ← New field
     notes: "",
   });
 
@@ -205,7 +234,7 @@ export default function ManageCalendar() {
         event: "",
         type: "feast",
         readings: "",
-        verse: "",
+        liturgical_color: null,
         notes: "",
       });
       setEditingId(null);
@@ -222,7 +251,7 @@ export default function ManageCalendar() {
       event: "",
       type: "feast",
       readings: "",
-      verse: "",
+      liturgical_color: null,
       notes: "",
     });
   };
@@ -352,78 +381,68 @@ export default function ManageCalendar() {
                     <th className="p-4 text-left font-semibold text-gray-900">
                       Readings
                     </th>
-                    <th className="p-4 text-left font-semibold text-gray-900">
+                    {/* <th className="p-4 text-left font-semibold text-gray-900">
                       Verse
-                    </th>
+                    </th> */}
+                    <th className="p-4 text-left font-semibold text-gray-900">Liturgical Color</th> {/* Changed */}
                     <th className="p-4 text-left font-semibold text-gray-900">
                       Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {filteredEntries.map((entry) => (
-                    <tr
-                      key={entry.id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="p-4 font-medium text-gray-900">
-                        {new Date(entry.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </td>
-                      <td className="p-4">
-                        <div className="font-semibold text-gray-900">
-                          {entry.event}
-                        </div>
-                        {entry.notes && (
-                          <div className="text-xs text-gray-500 italic">
-                            {entry.notes}
-                          </div>
-                        )}
-                      </td>
-                      <td className="p-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(entry.type)}`}
+                {filteredEntries.map((entry) => (
+                  <tr key={entry.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="p-4 font-medium text-gray-900">
+                      {new Date(entry.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </td>
+                    <td className="p-4">
+                      <div className="font-semibold text-gray-900">{entry.event}</div>
+                      {entry.notes && (
+                        <div className="text-xs text-gray-500 italic">{entry.notes}</div>
+                      )}
+                    </td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(entry.type)}`}>
+                        {entry.type.charAt(0).toUpperCase() + entry.type.slice(1)}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      <div className="text-sm text-gray-700 max-w-xs">
+                        {entry.readings ? entry.readings.split("\n").join(", ") : "None"}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <span className="capitalize text-sm font-medium text-gray-700">
+                        {entry.liturgical_color || "—"}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => openModal(entry)}
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                          title="Edit Entry"
                         >
-                          {entry.type.charAt(0).toUpperCase() +
-                            entry.type.slice(1)}
-                        </span>
-                      </td>
-                      <td className="p-4">
-                        <div className="text-sm text-gray-700 max-w-xs">
-                          {entry.readings
-                            ? entry.readings.split("\n").join(", ")
-                            : "None"}
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <div className="text-sm text-gray-600 italic">
-                          {entry.verse || "N/A"}
-                        </div>
-                      </td>
-                      <td className="p-4">
-                        <div className="flex space-x-2">
-                          <button
-                            onClick={() => openModal(entry)}
-                            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 transform hover:scale-105"
-                            title="Edit Entry"
-                          >
-                            <Edit3 className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => deleteEntry(entry.id)}
-                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 transform hover:scale-105"
-                            title="Delete Entry"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+                          <Edit3 className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => deleteEntry(entry.id)}
+                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                          title="Delete Entry"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+
               </table>
             </div>
             {filteredEntries.length === 0 && (
@@ -445,69 +464,50 @@ export default function ManageCalendar() {
 
         {/* Add/Edit Modal - UI unchanged */}
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in">
-            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto glass-effect-strong">
-              <div className="sticky top-0 bg-white/80 backdrop-blur-sm border-b border-gray-200 p-6 flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+                <h2 className="text-2xl font-bold">
                   {editingId ? "Edit" : "Add"} Calendar Entry
                 </h2>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  <svg
-                    className="w-6 h-6 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                <button onClick={closeModal} className="p-2 hover:bg-gray-100 rounded-full">
+                  ✕
                 </button>
               </div>
+
               <div className="p-6 space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Date *
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Date *</label>
                     <input
                       type="date"
                       name="date"
                       value={formData.date}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                       required
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Event Title *
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Event Title *</label>
                     <input
                       type="text"
                       name="event"
-                      placeholder="e.g., Epiphany of the Lord"
                       value={formData.event}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                       required
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Type *
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Type *</label>
                     <select
                       name="type"
                       value={formData.type}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
                       required
                     >
                       <option value="feast">Feast</option>
@@ -517,18 +517,24 @@ export default function ManageCalendar() {
                       <option value="optional">Optional Memorial</option>
                     </select>
                   </div>
+
+                  {/* New Liturgical Color Dropdown */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Verse Reference
+                      Liturgical Color
                     </label>
-                    <input
-                      type="text"
-                      name="verse"
-                      placeholder="e.g., Matthew 2:1-12"
-                      value={formData.verse || ""}
+                    <select
+                      name="liturgical_color"
+                      value={formData.liturgical_color || ""}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                    />
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                    >
+                      {COLOR_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
 
@@ -540,8 +546,8 @@ export default function ManageCalendar() {
                     name="readings"
                     value={formData.readings}
                     onChange={handleInputChange}
-                    placeholder="Numbers 6:22-27\nGalatians 4:4-7\nLuke 2:16-21"
-                    rows={4}
+                    placeholder="First Reading\nResponsorial Psalm\nGospel"
+                    rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
                 </div>
@@ -552,35 +558,33 @@ export default function ManageCalendar() {
                   </label>
                   <textarea
                     name="notes"
-                    placeholder="Internal notes..."
                     value={formData.notes || ""}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                    rows={2}
+                    placeholder="Internal notes, special instructions..."
+                    rows={3}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                   />
                 </div>
 
-                <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                <div className="flex justify-end space-x-4 pt-6 border-t">
                   <button
                     onClick={closeModal}
-                    className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                    className="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={saveEntry}
                     disabled={!formData.date || !formData.event}
-                    className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                    className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg disabled:opacity-50"
                   >
-                    <CalIcon className="w-5 h-5" />
-                    <span>{editingId ? "Update" : "Add"} Entry</span>
+                    {editingId ? "Update Entry" : "Add Entry"}
                   </button>
                 </div>
               </div>
             </div>
           </div>
         )}
-
         {/* Delete Confirmation Modal - Unchanged */}
         {isDeleteModalOpen && entryToDelete && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in">
