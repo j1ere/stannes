@@ -82,21 +82,28 @@ export default function YearGroupDetail() {
     <>
       <div className="min-h-screen pt-16 bg-white">
         {/* Header */}
-        <section className="bg-gradient-to-r from-green-600 to-orange-600 py-8 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-            <Link
-              href="/groups"
-              className="flex items-center text-white hover:text-green-100"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Back to Groups
-            </Link>
-            <h3 className="text-1xl font-bold text-white ml-auto">
-              {group.name}
-            </h3>
+        <section className="bg-gradient-to-r from-green-600 to-orange-600 py-4 sm:py-6 lg:py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+              
+              <Link
+                href="/groups"
+                className="flex items-center text-white text-sm sm:text-base hover:text-green-100"
+              >
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                Back
+              </Link>
+
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                {group.name}
+              </h1>
+
+            </div>
+
           </div>
         </section>
-
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           
           {/* Gallery - Improved Dynamic Grid */}
