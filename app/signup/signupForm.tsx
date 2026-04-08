@@ -74,8 +74,9 @@ export default function SignupForm({ action }: Props) {
 
     const smallChristianCommunities = [
         "St. Teresa of the Child Jesus",
-        "St. Francis",
+        "St. Francis of Asisi",
         "St. Teresa of Calcuta",
+        "St. Jude Thaddeus",
     ]
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -35,7 +35,7 @@ const dailyPrayers: PrayerItem[] = [
   {
     title: "Daily Mass",
     time: "5:00 PM",
-    description: "Chaplancy",
+    description: "Chaplaincy",
     icon: (props) => <Heart {...props} />,
     color: "from-emerald-500 to-green-600",
   },
