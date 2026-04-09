@@ -313,10 +313,10 @@ export default function ManageCalendar() {
                 <CalIcon className="w-8 h-8 text-indigo-600 mr-3" />
                 Manage Catholic Calendar 2026
               </h1>
-              <p className="text-gray-600 mt-2">
+              {/* <p className="text-gray-600 mt-2">
                 Liturgical Year B - Add, edit, and manage feasts, readings, and
                 seasons. Current date: January 06, 2026
-              </p>
+              </p> */}
             </div>
             <button
               onClick={() => openModal()}
