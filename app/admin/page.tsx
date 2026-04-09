@@ -41,8 +41,9 @@ export default function AdminDashboard() {
         {/* Admin Note */}
         <div className="max-w-3xl mx-auto mb-8 p-6 rounded-xl bg-gradient-to-r from-yellow-100 to-yellow-200 border-l-4 border-yellow-500 shadow-md">
           <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-2">📌 Admin Notice</h2>
+          <p>Maintained by The Chaplaincy ICT Team</p>
           <p className="text-gray-700 mb-2">
-            Please ensure the <span className="font-semibold text-gray-900">chaplaincy website</span> is updated <span className="underline">regularly</span>, especially after events, new messages, or semester theme changes.
+            Please ensure the <span className="font-semibold text-gray-900">chaplaincy website</span> is updated <span className="underline">regularly</span>, especially after events, new messages, or semester theme changes. All PHONE NUMBERS MUST ALSO BE UPDATED ACROSS THE WEBSITE WHEN A NEW CSA EXECUTIVE ASSUMES OFFICE.
           </p>
           <p className="text-red-600 font-bold">
             ⚠️ <span className="uppercase">Warning:</span> This platform is for authorized administrative use only. Misuse may lead to <span className="underline">serious consequences</span>. Always handle content responsibly.

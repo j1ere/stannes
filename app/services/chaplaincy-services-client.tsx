@@ -179,7 +179,7 @@ const ChaplaincyServicesClient = ({
                   <Phone className="w-6 h-6 text-blue-600 mr-3" />
                   <div>
                     <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-gray-600">+254 712 345 678</p>
+                    <p className="text-gray-600">+254 796 345 825</p>
                   </div>
                 </div>
                 <div className="flex items-center">
