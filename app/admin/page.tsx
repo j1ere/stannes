@@ -48,6 +48,8 @@ export default function AdminDashboard() {
           <p className="text-red-600 font-bold">
             ⚠️ <span className="uppercase">Warning:</span> This platform is for authorized administrative use only. Misuse may lead to <span className="underline">serious consequences</span>. Always handle content responsibly.
           </p>
+          <p>for more information and clarifications about the website source code, email admin@stanneschaplaincy.com or call : +254 743 658 999</p>
+          <p>This platform was officially Launched on 12th April 2026</p>
         </div>
 
         {/* Dashboard Title */}
