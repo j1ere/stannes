@@ -25,6 +25,7 @@ interface Group {
   name: string;
   slug: string;
   type: string;
+  year?: string; 
   members: string;
   meeting_time?: string;
   meeting_day?: string;
@@ -46,6 +47,23 @@ export default function Groups() {
 
   const API_BASE = "https://api.stanneschaplaincy.com/api/groups/groups";
 
+  const YEAR_ORDER = ["1", "2", "3", "4", "5"];
+
+  const YEAR_LABELS: Record<string, string> = {
+    "1": "First Year",
+    "2": "Second Year",
+    "3": "Third Year",
+    "4": "Fourth Year",
+    "5": "Fifth Year",
+  };
+
+  const sortedYearGroups = [...yearGroups].sort((a, b) => {
+    return (
+      YEAR_ORDER.indexOf(a.year || "") -
+      YEAR_ORDER.indexOf(b.year || "")
+    );
+  });
+
   useEffect(() => {
     const fetchAll = async () => {
       try {
@@ -53,7 +71,9 @@ export default function Groups() {
           fetch(`${API_BASE}/?type=Prayer%20House`),
           fetch(`${API_BASE}/?type=Movement`),
           fetch(`${API_BASE}/?type=Year%20Group&is_alumni=false`),
-          fetch(`${API_BASE}/?is_alumni=true`),
+           // Alumni (comes from year="alumni" automatically)
+          fetch(`${API_BASE}/?type=Year%20Group&year=alumni`),
+         
         ]);
 
         if (!phRes.ok || !movRes.ok || !ygRes.ok || !alumRes.ok) {
@@ -272,7 +292,7 @@ export default function Groups() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {yearGroups.map((group, index) => (
+            {sortedYearGroups.map((group) => (
               <Link
                 key={group.id}
                 href={`/groups/year-groups/${group.slug}`}
@@ -281,14 +301,19 @@ export default function Groups() {
                 <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-200">
                   <div className="text-center">
                     <div
-                      className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-r ${getGradient(group.slug)} rounded-full flex items-center justify-center text-white font-bold text-lg`}
+                      className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-r ${getGradient(group.slug)} rounded-full flex items-center justify-center text-white font-bold text-sm`}
                     >
-                      {index + 1}
+                      {YEAR_LABELS[group.year || ""] || "—"}
                     </div>
+
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {group.name}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4">{group.about}</p>
+
+                    <p className="text-gray-600 text-sm mb-4">
+                      {group.about}
+                    </p>
+
                     <div className="text-sm text-green-600 font-medium mb-3">
                       {group.members} Members
                     </div>
@@ -320,9 +345,9 @@ export default function Groups() {
               >
                 <div className="text-center">
                   <div
-                    className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-r ${getGradient(group.slug)} rounded-full flex items-center justify-center text-white font-bold text-lg`}
+                    className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-r ${getGradient(group.slug)} rounded-full flex items-center justify-center text-white font-bold text-xs`}
                   >
-                    {index + 1}
+                    Alumni
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {group.name}

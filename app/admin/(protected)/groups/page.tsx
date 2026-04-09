@@ -17,6 +17,7 @@ interface Group {
   id: number;
   name: string;
   type: string;
+  year?: string; // ✅ ADD
   slug: string;
   members: string;
   meeting_time: string;
@@ -46,6 +47,7 @@ export default function ManageGroups() {
   const [formData, setFormData] = useState({
     name: "",
     type: "Prayer House", // Default to first choice
+    year: "", // ✅ ADD THIS
     members: "",
     meeting_time: "",
     meeting_location: "",
@@ -56,6 +58,17 @@ export default function ManageGroups() {
     about: "",
     images: [] as File[],
   });
+
+  const YEAR_CHOICES = [
+  { value: "1", label: "First Year" },
+  { value: "2", label: "Second Year" },
+  { value: "3", label: "Third Year" },
+  { value: "4", label: "Fourth Year" },
+  { value: "5", label: "Fifth Year" },
+  { value: "alumni", label: "Alumni" },
+];
+
+
 
   // Fetch groups
   const fetchGroups = async () => {
@@ -79,6 +92,7 @@ export default function ManageGroups() {
 
       const normalized = data.map((group: any) => ({
         ...group,
+         year: group.year || "", // ✅ ADD THIS
         communities: Array.isArray(group.communities)
           ? group.communities
           : typeof group.communities === "string"
@@ -109,10 +123,13 @@ export default function ManageGroups() {
       setFormData({
         name: group.name,
         type: group.type || "Prayer House",
+        year: group.year || "", // ✅ FIXED
         members: group.members,
         meeting_time: group.meeting_time,
         meeting_location: group.meeting_location,
-        communities: "",
+        communities: Array.isArray(group.communities)
+        ? group.communities.join(", ")
+        : group.communities || "", // ✅ FIXED
         chair: group.chair || "",
         treasurer: group.treasurer || "",
         secretary: group.secretary || "",
@@ -124,6 +141,7 @@ export default function ManageGroups() {
       setFormData({
         name: "",
         type: "Prayer House",
+        year: "",
         members: "",
         meeting_time: "",
         meeting_location: "",
@@ -144,16 +162,7 @@ export default function ManageGroups() {
     setEditingId(null);
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
+ 
   const handleGalleryUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     setFormData((prev) => ({
@@ -161,6 +170,27 @@ export default function ManageGroups() {
       images: [...prev.images, ...files],
     }));
   };
+
+
+const handleInputChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >,
+) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => {
+    if (name === "type") {
+      return {
+        ...prev,
+        type: value,
+        year: value === "Year Group" ? prev.year : "", // ✅ clean + safe
+      };
+    }
+
+    return { ...prev, [name]: value };
+  });
+};
 
   const removeNewImage = (index: number) => {
     setFormData((prev) => {
@@ -173,9 +203,23 @@ export default function ManageGroups() {
   const saveGroup = async () => {
     setSubmitting(true);
 
+    if (formData.type === "Year Group" && !formData.year) {
+      alert("Please select a year group");
+      setSubmitting(false);
+      return;
+    }
+
     const form = new FormData();
     form.append("name", formData.name);
     form.append("type", formData.type);
+    
+    // ✅ ADD THIS
+    if (formData.type === "Year Group") {
+      form.append("year", formData.year);
+    } else {
+      form.append("year", ""); // ✅ ensures backend clears it
+    }
+      
     form.append("members", formData.members);
     form.append("meeting_time", formData.meeting_time);
     form.append("meeting_location", formData.meeting_location);
@@ -453,6 +497,29 @@ export default function ManageGroups() {
                     ))}
                   </select>
                 </div>
+
+                {/* Year Group Selector */}
+                {formData.type === "Year Group" && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Year Group
+                    </label>
+                    <select
+                      name="year"
+                      value={formData.year}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                      required
+                    >
+                      <option value="">Select Year</option>
+                      {YEAR_CHOICES.map((y) => (
+                        <option key={y.value} value={y.value}>
+                          {y.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 <input
                   name="members"
