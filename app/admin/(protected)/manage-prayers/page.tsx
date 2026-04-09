@@ -20,7 +20,7 @@ interface Prayer {
   content: string;
 }
 
-const API_BASE = "https://api.stanneschaplaincy.com/api/prayers/prayers/";
+const API_BASE = "https://api.stanneschaplaincy.com/api/calendar/prayers/";
 const CSRF_URL = "https://api.stanneschaplaincy.com/auth/csrf/";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
