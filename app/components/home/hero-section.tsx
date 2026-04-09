@@ -171,9 +171,9 @@ export function HeroSection() {
         <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-green-100 font-medium">
           Maseno University
         </p>
-        <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-green-100 font-medium">
+        {/* <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 text-green-100 font-medium">
           (This platform is still under development)
-        </p>
+        </p> */}
 
         {/* Daily Verse */}
         <div
