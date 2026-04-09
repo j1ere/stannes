@@ -764,7 +764,7 @@ export default async function Home() {
                       {
                         icon: Phone,
                         label: "Phone",
-                        value: "+254 XXX XXX XXX",
+                        value: "+254 759 556 624",
                         gradient: "from-orange-500 to-amber-500",
                       },
                       {

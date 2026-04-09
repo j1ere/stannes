@@ -60,7 +60,7 @@ function getStaticServices(): Service[] {
         "High-quality cotton",
         "Custom designs",
         "All sizes available",
-        "Pay via M-Pesa: +254 7xx xxx xxx",
+        "Pay via M-Pesa: +254 796 345 825",
       ],
       image: "/images/tshirts.jpeg",
     },
