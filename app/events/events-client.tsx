@@ -77,7 +77,7 @@ const EventsClient = () => {
     }
   };
 
-  // NEW: Fetch Public Liturgical Calendar
+  // Fetch Public Liturgical Calendar - FIXED
   const fetchPublicCalendar = async () => {
     try {
       const res = await fetch(
@@ -95,12 +95,21 @@ const EventsClient = () => {
 
           if (!grouped[month]) grouped[month] = [];
 
+          // FIXED: Properly handle all readings (list field)
+          let readingDisplay = "";
+          if (Array.isArray(entry.readings) && entry.readings.length > 0) {
+            readingDisplay = entry.readings
+              .map((r: string) => r.trim())
+              .filter(Boolean)
+              .join("\n\n"); // Separate readings with blank line for better readability
+          }
+
           grouped[month].push({
             date: day,
             event: entry.event,
-            type: entry.type,
-           liturgical_color: entry.liturgical_color || null,   // ← Changed
-            reading: entry.readings?.[0] || entry.readings?.join(", ") || "",
+            type: entry.type || "weekday",
+            liturgical_color: entry.liturgical_color || null,
+            reading: readingDisplay || "No readings available",
           });
         });
 
@@ -254,7 +263,7 @@ const EventsClient = () => {
     const days: React.ReactNode[] = [];
     const monthEvents = catholicEvents[currentMonth] || [];
 
-    // Empty slots before the 1st
+    // Empty slots
     for (let i = 0; i < firstDay; i++) {
       days.push(
         <div key={`empty-${i}`} className="h-24 border border-gray-200 bg-gray-50 rounded-xl" />
@@ -276,7 +285,7 @@ const EventsClient = () => {
             ${isToday ? "bg-blue-50 border-blue-300" : "bg-white hover:bg-gray-50"}`}
           onClick={() => {
             if (dayEvents.length > 0) {
-              setSelectedLiturgicalEvent(dayEvents[0]); // Show first event (you can extend to show all if needed)
+              setSelectedLiturgicalEvent(dayEvents[0]);
             }
           }}
         >
@@ -286,7 +295,7 @@ const EventsClient = () => {
 
           {dayEvents.length > 0 && (
             <div className="mt-2 space-y-1">
-              {dayEvents.slice(0, 2).map((event, idx) => (  // Show max 2 events per day
+              {dayEvents.slice(0, 2).map((event, idx) => (
                 <div
                   key={idx}
                   className={`text-xs px-2 py-1 rounded font-medium truncate ${
@@ -309,8 +318,8 @@ const EventsClient = () => {
       );
     }
 
-  return days;
-};
+    return days;
+  };
 
   useEffect(() => {
     fetchUpcomingEvents();
@@ -417,145 +426,143 @@ const EventsClient = () => {
 
       {/* Catholic Calendar Section - SSG (hardcoded, or fetch with long revalidate if API used) */}
       {/* Catholic Calendar Section with Clickable Modal */}
-<section className="py-16 bg-gradient-to-br from-blue-50 to-amber-50 relative overflow-hidden">
-  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold text-gray-900 mb-4">
-        Catholic Liturgical Calendar
-      </h2>
-      <p className="text-gray-600 max-w-2xl mx-auto">
-        Follow the Catholic liturgical year with important feast days,
-        celebrations, and their biblical readings
-      </p>
-    </div>
-
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      {/* Calendar Header */}
-      <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => navigateMonth("prev")}
-            className="p-2 rounded-full hover:bg-white/20 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <h3 className="text-2xl font-bold">
-            {months[currentMonth]} {currentYear}
-          </h3>
-          <button
-            onClick={() => navigateMonth("next")}
-            className="p-2 rounded-full hover:bg-white/20 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-      </div>
-
-      <div className="p-6">
-        {/* Weekday Headers */}
-        <div className="grid grid-cols-7 gap-1 mb-2">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div
-              key={day}
-              className="h-10 flex items-center justify-center font-medium text-gray-700 bg-gray-100 rounded"
-            >
-              {day}
-            </div>
-          ))}
-        </div>
-
-        {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-1">
-          {renderCalendar()}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* ==================== LITURGICAL EVENT MODAL ==================== */}
-{selectedLiturgicalEvent && (
-  <div 
-    className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
-    onClick={() => setSelectedLiturgicalEvent(null)}
-  >
-    <div 
-      className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
-        <div className="flex justify-between items-start">
-          <div>
-            <p className="text-sm opacity-90">
-              {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
+{/* ==================== CATHOLIC LITURGICAL CALENDAR SECTION ==================== */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-amber-50 relative overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Catholic Liturgical Calendar
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Follow the Catholic liturgical year with important feast days, celebrations, and their biblical readings
             </p>
-            <h3 className="text-2xl font-bold mt-1">
-              {selectedLiturgicalEvent.event}
-            </h3>
           </div>
-          <button
-            onClick={() => setSelectedLiturgicalEvent(null)}
-            className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-      </div>
 
-      {/* Content */}
-      <div className="p-8 space-y-6">
-        <div className="flex flex-wrap gap-3">
-          {/* Event Type */}
-          <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
-            selectedLiturgicalEvent.type === "solemnity" 
-              ? "bg-red-100 text-red-700" 
-              : selectedLiturgicalEvent.type === "feast" 
-                ? "bg-amber-100 text-amber-700" 
-                : "bg-emerald-100 text-emerald-700"
-          }`}>
-            {selectedLiturgicalEvent.type.toUpperCase()}
-          </span>
-
-          {/* Liturgical Color - New */}
-          {selectedLiturgicalEvent.liturgical_color && (
-            <span className="inline-block px-4 py-1.5 text-sm font-semibold rounded-full bg-white border border-gray-200 text-gray-700 capitalize">
-              {selectedLiturgicalEvent.liturgical_color}
-            </span>
-          )}
-        </div>
-
-        {selectedLiturgicalEvent.reading && (
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-3">Readings</h4>
-            <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-gray-700 leading-relaxed mb-6">
-              {selectedLiturgicalEvent.reading}
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            {/* Calendar Header */}
+            <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+              <div className="flex items-center justify-between">
+                <button onClick={() => navigateMonth("prev")} className="p-2 rounded-full hover:bg-white/20 transition-colors">
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <h3 className="text-2xl font-bold">
+                  {months[currentMonth]} {currentYear}
+                </h3>
+                <button onClick={() => navigateMonth("next")} className="p-2 rounded-full hover:bg-white/20 transition-colors">
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
             </div>
 
-            <button
-              onClick={() => {
-                setSelectedLiturgicalEvent(null);
-                window.location.href = "/prayer";
-              }}
-              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+            <div className="p-6">
+              <div className="grid grid-cols-7 gap-1 mb-2">
+                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                  <div key={day} className="h-10 flex items-center justify-center font-medium text-gray-700 bg-gray-100 rounded">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-7 gap-1">
+                {renderCalendar()}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ==================== IMPROVED LITURGICAL EVENT MODAL ==================== */}
+        {selectedLiturgicalEvent && (
+          <div 
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4"
+            onClick={() => setSelectedLiturgicalEvent(null)}
+          >
+            <div 
+              className="bg-white rounded-3xl max-w-lg w-full max-h-[92vh] overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              View Full Daily Readings →
-            </button>
+              {/* Header */}
+              <div className="bg-gradient-to-r from-green-600 to-orange-500 text-white p-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-sm opacity-90">
+                      {months[currentMonth]} {selectedLiturgicalEvent.date}, {currentYear}
+                    </p>
+                    <h3 className="text-2xl font-bold mt-1">
+                      {selectedLiturgicalEvent.event}
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => setSelectedLiturgicalEvent(null)}
+                    className="text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-8 space-y-7">
+                <div className="flex flex-wrap gap-3">
+                  {/* Event Type */}
+                  <span className={`inline-block px-4 py-1.5 text-sm font-semibold rounded-full ${
+                    selectedLiturgicalEvent.type === "solemnity" 
+                      ? "bg-red-100 text-red-700" 
+                      : selectedLiturgicalEvent.type === "feast" 
+                        ? "bg-amber-100 text-amber-700" 
+                        : "bg-emerald-100 text-emerald-700"
+                  }`}>
+                    {selectedLiturgicalEvent.type.toUpperCase()}
+                  </span>
+
+                  {/* IMPROVED Liturgical Color with colored dot */}
+                  {selectedLiturgicalEvent.liturgical_color && (
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-semibold rounded-full bg-white border border-gray-200 text-gray-700 capitalize">
+                      <span 
+                        className="w-3 h-3 rounded-full inline-block"
+                        style={{
+                          backgroundColor: getColorHex(selectedLiturgicalEvent.liturgical_color)
+                        }}
+                      />
+                      {selectedLiturgicalEvent.liturgical_color}
+                    </span>
+                  )}
+                </div>
+
+                {/* Readings - Now shows ALL readings properly */}
+                {selectedLiturgicalEvent.reading && (
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      📖 Readings
+                    </h4>
+                    <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-gray-700 leading-relaxed whitespace-pre-line text-[15.5px]">
+                      {selectedLiturgicalEvent.reading}
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setSelectedLiturgicalEvent(null);
+                        window.location.href = "/prayer";
+                      }}
+                      className="mt-6 w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3.5 px-6 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      View Full Daily Readings →
+                    </button>
+                  </div>
+                )}
+
+                <div className="pt-4 border-t border-gray-100 text-center">
+                  <button
+                    onClick={() => setSelectedLiturgicalEvent(null)}
+                    className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
-
-        <div className="pt-4 border-t border-gray-100 text-center">
-          <button
-            onClick={() => setSelectedLiturgicalEvent(null)}
-            className="text-gray-500 hover:text-gray-700 font-medium transition-colors"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
-</section>
+      </section>
 
       {/* Upcoming Events - ISR via fetch in parent */}
       <section className="py-16 bg-white relative overflow-hidden">
@@ -892,6 +899,20 @@ const EventsClient = () => {
       <ScrollToTop />
     </div>
   );
+};
+
+// Helper to map liturgical colors to nice hex values
+const getColorHex = (color: string): string => {
+  const colorMap: Record<string, string> = {
+    white: "#f8fafc",
+    green: "#15803d",
+    purple: "#6b21a8",
+    red: "#b91c1c",
+    rose: "#e11d48",
+    gold: "#d97706",
+    "liturgical white": "#f1f5f9",
+  };
+  return colorMap[color.toLowerCase()] || "#64748b";
 };
 
 export default EventsClient;
