@@ -1,6 +1,6 @@
 // app/events/EventsClient.tsx
 "use client";
-
+import React from "react"
 import {
   Calendar,
   Clock,
@@ -565,17 +565,16 @@ const EventsClient = () => {
       </section>
 
       {/* Upcoming Events - ISR via fetch in parent */}
+      {/* ==================== UPCOMING EVENTS SECTION ==================== */}
       <section className="py-16 bg-white relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Upcoming Events
-            </h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Upcoming Events</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Join us for these upcoming events and be part of our growing
-              Catholic community
+              Join us for these upcoming events and be part of our growing Catholic community
             </p>
           </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {upcomingEvents.map((event) => {
               const IconComponent = getIconComponent(event.icon);
@@ -587,21 +586,18 @@ const EventsClient = () => {
                   <div className={`h-2 bg-gradient-to-r ${event.color}`}></div>
                   <div className="p-6">
                     <div className="flex items-center mb-4">
-                      <div
-                        className={`w-12 h-12 bg-gradient-to-r ${event.color} rounded-full flex items-center justify-center mr-4`}
-                      >
+                      <div className={`w-12 h-12 bg-gradient-to-r ${event.color} rounded-full flex items-center justify-center mr-4`}>
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
                           {event.category || "Event"}
                         </span>
-                        <h3 className="text-lg font-bold text-gray-900">
-                          {event.title}
-                        </h3>
+                        <h3 className="text-lg font-bold text-gray-900">{event.title}</h3>
                       </div>
                     </div>
-                    <div className="space-y-2 text-gray-600">
+
+                    <div className="space-y-2 text-gray-600 mb-6">
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-2" />
                         <span>{event.date}</span>
@@ -615,11 +611,10 @@ const EventsClient = () => {
                         <span>{event.location}</span>
                       </div>
                     </div>
+
                     <button
-                      onClick={() => {
-                        /* handleLearnMore(event) */
-                      }}
-                      className="w-full mt-4 bg-gradient-to-r from-green-500 to-orange-500 text-white py-2 rounded-lg font-medium hover:shadow-lg transition-all duration-300"
+                      onClick={() => handleLearnMore(event)}
+                      className="w-full bg-gradient-to-r from-green-500 to-orange-500 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
                     >
                       Learn More
                     </button>
@@ -629,102 +624,81 @@ const EventsClient = () => {
             })}
           </div>
         </div>
-
-        {/* <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-20 fill-green-50" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 C300,80 600,40 900,60 C1050,80 1150,20 1200,40 L1200,120 L0,120 Z" />
-          </svg>
-        </div> */}
       </section>
 
-      {/* Event Details Modal - Client-side */}
-      {showEventModal &&
-        selectedEvent &&
-        (() => {
-          const SelectedIcon = getIconComponent(selectedEvent.icon);
-          return (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                <div className="relative">
-                  <div
-                    className={`h-2 bg-gradient-to-r ${selectedEvent.color}`}
-                  ></div>
-                  <button
-                    onClick={closeEventModal}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  >
-                    <X className="w-6 h-6 text-gray-600" />
-                  </button>
-                  <div className="p-8">
-                    <div className="flex items-center mb-6">
-                      <div
-                        className={`w-16 h-16 bg-gradient-to-r ${selectedEvent.color} rounded-full flex items-center justify-center mr-4`}
-                      >
-                        <SelectedIcon className="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                          {selectedEvent.type}
-                        </span>
-                        <h2 className="text-2xl font-bold text-gray-900">
-                          {selectedEvent.title}
-                        </h2>
-                      </div>
+      {/* ==================== EVENT DETAIL MODAL ==================== */}
+      {showEventModal && selectedEvent && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[70] p-4">
+          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-hidden shadow-2xl">
+            <div className="relative">
+              <div className={`h-3 bg-gradient-to-r ${selectedEvent.color}`}></div>
+              
+              <button
+                onClick={closeEventModal}
+                className="absolute top-4 right-4 p-3 rounded-full hover:bg-gray-100 transition-colors z-10"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
+
+              <div className="p-8 md:p-10">
+                <div className="flex items-center gap-5 mb-8">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${selectedEvent.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                    {React.createElement(getIconComponent(selectedEvent.icon), { className: "w-8 h-8 text-white" })}
+                  </div>
+                  <div>
+                    <span className="uppercase text-xs tracking-widest text-gray-500 font-medium">
+                      {selectedEvent.category || "Upcoming Event"}
+                    </span>
+                    <h2 className="text-3xl font-bold text-gray-900 leading-tight mt-1">
+                      {selectedEvent.title}
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="w-5 h-5 text-green-600" />
+                    <div>
+                      <p className="text-xs text-gray-500">Date</p>
+                      <p className="font-medium">{selectedEvent.date}</p>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-4 mb-6">
-                      <div className="flex items-center">
-                        <Calendar className="w-5 h-5 mr-2 text-green-600" />
-                        <span className="text-gray-700">
-                          {selectedEvent.date}
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="w-5 h-5 mr-2 text-blue-600" />
-                        <span className="text-gray-700">
-                          {selectedEvent.time}
-                        </span>
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="w-5 h-5 mr-2 text-orange-600" />
-                        <span className="text-gray-700">
-                          {selectedEvent.location}
-                        </span>
-                      </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-blue-600" />
+                    <div>
+                      <p className="text-xs text-gray-500">Time</p>
+                      <p className="font-medium">{selectedEvent.time}</p>
                     </div>
-                    <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        About This Event
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        {selectedEvent.description}
-                      </p>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {Object.entries(selectedEvent.details).map(
-                        ([key, value]) => (
-                          <div key={key} className="bg-gray-50 rounded-lg p-4">
-                            <h4 className="font-semibold text-gray-900 capitalize mb-1">
-                              {key.replace(/([A-Z])/g, " $1").trim()}
-                            </h4>
-                            <p className="text-gray-700 text-sm">{value}</p>
-                          </div>
-                        ),
-                      )}
-                    </div>
-                    <div className="mt-8 flex gap-4">
-                      <button className="flex-1 bg-gradient-to-r from-green-500 to-orange-500 text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all duration-300">
-                        Register for Event
-                      </button>
-                      <button className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                        Share Event
-                      </button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-5 h-5 text-orange-600" />
+                    <div>
+                      <p className="text-xs text-gray-500">Location</p>
+                      <p className="font-medium">{selectedEvent.location}</p>
                     </div>
                   </div>
                 </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Event</h3>
+                  <p className="text-gray-700 leading-relaxed text-[15.5px] whitespace-pre-line">
+                    {selectedEvent.description || "No additional details provided."}
+                  </p>
+                </div>
+
+                <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                  <button className="flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-2xl font-semibold hover:brightness-105 transition-all">
+                    Register / RSVP
+                  </button>
+                  <button className="flex-1 border-2 border-gray-300 text-gray-700 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all">
+                    Share Event
+                  </button>
+                </div>
               </div>
             </div>
-          );
-        })()}
+          </div>
+        </div>
+      )}
 
       {/* Regular Activities - SSG */}
       <section className="py-16 bg-gradient-to-r from-blue-50 to-amber-50 relative overflow-hidden">
