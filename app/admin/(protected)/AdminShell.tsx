@@ -13,6 +13,7 @@ const navItems = [
   { href: "/admin/groups", label: "Groups", icon: Users },
   { href: "/admin/events", label: "Events", icon: Calendar },
   { href: "/admin/calendar", label: "Calendar", icon: Calendar },
+  { href: "/admin/manage-prayers", label: "Prayers", icon: Calendar },
 
   { href: "/admin/photos", label: "Photos", icon: Image },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
