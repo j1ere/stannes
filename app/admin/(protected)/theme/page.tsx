@@ -118,13 +118,18 @@ export default function ManageTheme() {
     try {
       const csrfToken = await getCSRFToken();
       const form = new FormData();
+
       form.append("text", formData.text);
       form.append("year", formData.year);
       form.append("is_active", String(formData.is_active));
-      if (formData.image) form.append("image", formData.image);
+
+      // Only append image if a new one was selected
+      if (formData.image) {
+        form.append("image", formData.image);
+      }
 
       const url = editingId ? `${API_BASE}${editingId}/` : API_BASE;
-      const method = editingId ? "PUT" : "POST";
+      const method = editingId ? "PATCH" : "POST"; // <-- PATCH instead of PUT
 
       const res = await fetch(url, {
         method,
@@ -133,16 +138,6 @@ export default function ManageTheme() {
         body: form,
       });
 
-      //   if (res.ok) {
-      //     fetchThemes();
-      //     closeModal();
-      //   } else {
-      //     alert("Failed to save theme");
-      //   }
-      // } catch (error) {
-      //   console.error("Save error:", error);
-      //   alert("Error occurred while saving theme");
-      // }
       if (res.ok) {
         fetchThemes();
         closeModal();
