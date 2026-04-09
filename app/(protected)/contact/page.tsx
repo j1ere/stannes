@@ -69,7 +69,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+254 XXX XXX XXX", "+254 XXX XXX XXX"],
+      details: ["+254 759 556 624", "+254 106562920"],
       color: "from-green-500 to-green-600",
     },
     {
