@@ -311,7 +311,7 @@ export default function ManageCalendar() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center">
                 <CalIcon className="w-8 h-8 text-indigo-600 mr-3" />
-                Manage Catholic Calendar 2026
+                Manage Catholic Calendar
               </h1>
               {/* <p className="text-gray-600 mt-2">
                 Liturgical Year B - Add, edit, and manage feasts, readings, and
@@ -455,8 +455,7 @@ export default function ManageCalendar() {
 
           <div className="mt-6 text-sm text-gray-600 text-center">
             <p>
-              Note: Populated with key feasts for 2026 (Liturgical Year B). Use
-              the form to add daily readings, seasons, or import from
+              Use the form to add daily readings, seasons, or import from
               USCCB/Vatican sources.
             </p>
           </div>

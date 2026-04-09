@@ -96,7 +96,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         {/* Sidebar Footer */}
         <div className="absolute bottom-6 left-0 right-0 px-6">
           <div className={`text-xs text-gray-400 ${isCollapsed ? "text-center" : ""}`}>
-            {!isCollapsed && "St. Admin Portal • 2026"}
+            {!isCollapsed && "St.Annes' Admin Portal • 2026"}
           </div>
         </div>
       </aside>
