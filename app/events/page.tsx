@@ -4,6 +4,7 @@
   import Footer from "@/app/components/footer"
   import EventsClient from "./events-client"
   import type { UpcomingEvent } from '@/app/events/types'
+  import { Suspense } from "react";
 
 
 export const metadata: Metadata = {
@@ -82,7 +83,14 @@ export const metadata: Metadata = {
     return (
       <>
         <Navbar />
-        <EventsClient/>
+        {/* <EventsClient/> */}
+        <Suspense fallback={
+          <div className="min-h-screen pt-16 flex items-center justify-center text-gray-600">
+            Loading events...
+          </div>
+        }>
+          <EventsClient />
+        </Suspense>
         <Footer />
       </>
     )
