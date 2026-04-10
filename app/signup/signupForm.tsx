@@ -358,7 +358,7 @@ export default function SignupForm({ action }: Props) {
                             />
                             <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
                                 I agree to the{" "}
-                                <a href="#" className="text-green-600 hover:text-green-500 underline">
+                                <a href="/terms-and-conditions" className="text-green-600 hover:text-green-500 underline">
                                     Terms and Conditions
                                 </a>
                             </label>
