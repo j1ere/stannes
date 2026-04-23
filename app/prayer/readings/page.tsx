@@ -1,10 +1,14 @@
 // app/prayer/readings/page.tsx
 // Route: /prayer/readings
-// Fetches from your API and renders a clean, readable readings page.
 
 import { BookOpen, ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+import ShareButton from "./ShareButton"; // client component — see bottom of file
 
+/* ─────────────────────────────────────────────
+   Types
+───────────────────────────────────────────── */
 interface Reading {
   section: string;
   reference: string;
@@ -19,17 +23,87 @@ interface ReadingsData {
   readings: Reading[];
 }
 
+/* ─────────────────────────────────────────────
+   Cache: revalidate at UTC midnight
+   Calculates seconds remaining until 00:00 UTC
+   so the ISR cache always refreshes with new
+   readings rather than on a rolling window.
+───────────────────────────────────────────── */
+function secondsUntilMidnightUTC(): number {
+  const now = new Date();
+  const midnight = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
+  );
+  return Math.max(60, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+}
+
 async function getReadings(): Promise<ReadingsData> {
   const res = await fetch(
     "https://api.stanneschaplaincy.com/api/calendar/daily/",
     {
-      next: { revalidate: 3600 }, // cache for 1 hour
-    },
+      next: { revalidate: secondsUntilMidnightUTC() },
+    }
   );
   if (!res.ok) throw new Error("Failed to fetch readings");
   return res.json();
 }
 
+/* ─────────────────────────────────────────────
+   SEO — generateMetadata
+   Runs on the server; has access to the fetched
+   data so OG tags reflect today's actual feast.
+───────────────────────────────────────────── */
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getReadings();
+
+  const title = `${data.feast} — Daily Readings`;
+  const description = `Catholic daily Mass readings for ${formatDate(data.date)}: ${data.feast}. ${data.lectionary}. Includes ${data.readings.map((r) => r.reference).join(", ")}.`;
+  const url = "https://stanneschaplaincy.com/prayer/readings";
+  const siteName = "St. Anne's Chaplaincy";
+
+  return {
+    title,
+    description,
+    keywords: [
+      "Catholic daily readings",
+      "Mass readings today",
+      data.feast,
+      data.lectionary,
+      "Bible readings",
+      "lectionary",
+      "USCCB readings",
+      "daily Scripture",
+    ],
+    authors: [{ name: siteName }],
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName,
+      locale: "en_US",
+      type: "article",
+      publishedTime: data.date,
+      section: "Religion & Spirituality",
+      tags: ["Catholic", "Bible", "Lectionary", data.feast],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      site: "@StAnnesChaplaincy",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
+  };
+}
+
+/* ─────────────────────────────────────────────
+   Helpers
+───────────────────────────────────────────── */
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
     weekday: "long",
@@ -40,7 +114,6 @@ function formatDate(iso: string) {
   });
 }
 
-// Section label → accent color mapping
 const SECTION_ACCENTS: Record<string, string> = {
   "Reading I": "border-amber-500  text-amber-700  dark:text-amber-400",
   "Responsorial Psalm": "border-green-600  text-green-700  dark:text-green-400",
@@ -49,14 +122,14 @@ const SECTION_ACCENTS: Record<string, string> = {
     "border-sky-500    text-sky-700    dark:text-sky-400",
   Gospel: "border-red-600    text-red-700    dark:text-red-500",
 };
-
 const DEFAULT_ACCENT = "border-stone-400 text-stone-600 dark:text-stone-400";
-
 function getAccent(section: string) {
   return SECTION_ACCENTS[section] ?? DEFAULT_ACCENT;
 }
 
-// Render the reading text with paragraph breaks preserved
+/* ─────────────────────────────────────────────
+   Sub-components (server)
+───────────────────────────────────────────── */
 function ReadingText({ text }: { text: string }) {
   const paragraphs = text
     .split(/\n{2,}/)
@@ -66,9 +139,7 @@ function ReadingText({ text }: { text: string }) {
   return (
     <div className="space-y-4">
       {paragraphs.map((para, i) => {
-        // Refrain lines in Responsorial Psalm (start with "R")
         const isRefrain = /^R[\s\xa0]/.test(para);
-
         if (isRefrain) {
           return (
             <p
@@ -79,8 +150,6 @@ function ReadingText({ text }: { text: string }) {
             </p>
           );
         }
-
-        // Rubric lines (italicised stage directions like "Here all kneel...")
         const isRubric =
           para.startsWith("Here all") || para.startsWith("The passion");
         if (isRubric) {
@@ -93,7 +162,6 @@ function ReadingText({ text }: { text: string }) {
             </p>
           );
         }
-
         return (
           <p
             key={i}
@@ -120,15 +188,11 @@ function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
         border-l-4 ${borderClass}
       `}
     >
-      {/* Card header */}
       <header className="px-6 pt-6 pb-4 border-b border-stone-100 dark:border-stone-800">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <span
-              className={`
-                text-xs font-semibold tracking-widest uppercase
-                ${accent.split(" ").slice(1).join(" ")}
-              `}
+              className={`text-xs font-semibold tracking-widest uppercase ${accent.split(" ").slice(1).join(" ")}`}
             >
               {reading.section}
             </span>
@@ -158,12 +222,10 @@ function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
         </div>
       </header>
 
-      {/* Reading body */}
       <div className="px-6 py-6">
         <ReadingText text={reading.text} />
       </div>
 
-      {/* Ordinal watermark */}
       <span
         className="
           absolute top-4 right-5
@@ -179,11 +241,55 @@ function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
   );
 }
 
+/* ─────────────────────────────────────────────
+   Structured data (JSON-LD)
+───────────────────────────────────────────── */
+function StructuredData({ data }: { data: ReadingsData }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${data.feast} — Daily Readings`,
+    description: `Catholic daily Mass readings for ${formatDate(data.date)}: ${data.feast}.`,
+    datePublished: data.date,
+    dateModified: data.date,
+    author: { "@type": "Organization", name: "St. Anne's Chaplaincy" },
+    publisher: {
+      "@type": "Organization",
+      name: "St. Anne's Chaplaincy",
+      url: "https://stanneschaplaincy.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://stanneschaplaincy.com/prayer/readings",
+    },
+    about: data.readings.map((r) => ({
+      "@type": "Thing",
+      name: r.reference,
+      description: r.section,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Page
+───────────────────────────────────────────── */
 export default async function ReadingsPage() {
   const data = await getReadings();
 
+  const shareText = `📖 Today's Catholic readings — ${data.feast}\n${formatDate(data.date)}\n\nRead here:`;
+  const shareUrl = "https://stanneschaplaincy.com/prayer/readings";
+
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
+      <StructuredData data={data} />
+
       {/* ── Top nav bar ── */}
       <nav className="sticky top-0 z-20 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-3xl mx-auto px-4 h-14 flex items-center gap-3">
@@ -222,10 +328,7 @@ export default async function ReadingsPage() {
           </p>
 
           {/* Quick-jump pill nav */}
-          <nav
-            aria-label="Jump to reading"
-            className="mt-6 flex flex-wrap gap-2"
-          >
+          <nav aria-label="Jump to reading" className="mt-6 flex flex-wrap gap-2">
             {data.readings.map((r, i) => {
               const accent = getAccent(r.section);
               const [borderClass] = accent.split(" ");
@@ -272,6 +375,9 @@ export default async function ReadingsPage() {
           </p>
         </footer>
       </main>
+
+      {/* ── Floating share button (client component) ── */}
+      <ShareButton shareText={shareText} shareUrl={shareUrl} feast={data.feast} />
     </div>
   );
 }
