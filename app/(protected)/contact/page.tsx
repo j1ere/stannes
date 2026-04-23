@@ -103,7 +103,7 @@ const Contact = () => {
       url: "#",
       color: "hover:text-pink-600",
     },
-    { name: "Twitter", icon: Twitter, url: "#", color: "hover:text-blue-400" },
+    { name: "Twitter", icon: Twitter, url: "https://x.com/StAnnesMaseno", color: "hover:text-blue-400" },
   ];
 
 
