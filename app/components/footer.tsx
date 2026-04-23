@@ -79,7 +79,7 @@ export default function Footer() {
   const socialLinks = [
     { name: "Facebook", icon: Facebook, href: "#" },
     { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
+    { name: "Twitter", icon: Twitter, href: "https://x.com/StAnnesMaseno" },
   ];
 
   return (
