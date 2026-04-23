@@ -80,6 +80,14 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url,
+      images: [
+      {
+        url: "/images/church.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "St. Anne's Catholic Chaplaincy Church at Maseno University – Archdiocese of Kisumu", // Enhanced alt for SEO/accessibility
+      },
+    ],
       siteName,
       locale: "en_US",
       type: "article",

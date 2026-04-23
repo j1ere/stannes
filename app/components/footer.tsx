@@ -61,6 +61,7 @@ export default function Footer() {
     { name: "Groups & Movements", href: "/groups" },
     { name: "Events", href: "/events" },
     { name: "Prayer & Spirituality", href: "/prayer" },
+    {name: "daily readings", href: "/prayer/readings"},
     { name: "Leadership", href: "/leadership" },
     { name: "Contact", href: "/contact" },
   ];
@@ -70,6 +71,7 @@ export default function Footer() {
     "Confession",
     "Baptism Preparation",
     "Marriage Preparation",
+    "Confirmations",
     "Spiritual Counseling",
     "Youth Ministry",
   ];
@@ -160,6 +162,12 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
                 <span className="text-gray-400 text-sm">
                   info@stanneschaplaincy.com
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                <span className="text-gray-400 text-sm">
+                  csa.maseno@stanneschaplaincy.com
                 </span>
               </div>
             </div>

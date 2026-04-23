@@ -85,7 +85,7 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <ConfettiBurst trigger={heroConfettiTriggered} duration={5000} />
+      {/* <ConfettiBurst trigger={heroConfettiTriggered} duration={5000} /> */}
 
       {/* Background */}
       <div className="absolute inset-0">
