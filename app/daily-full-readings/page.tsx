@@ -1,6 +1,5 @@
 // app/prayer/readings/page.tsx
 // Route: /prayer/readings
-// Fetches from your API and renders a clean, readable readings page.
 
 import { BookOpen, ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -23,7 +22,7 @@ async function getReadings(): Promise<ReadingsData> {
   const res = await fetch(
     "https://api.stanneschaplaincy.com/api/calendar/daily/",
     {
-      next: { revalidate: 3600 }, // cache for 1 hour
+      next: { revalidate: 3600 },
     },
   );
   if (!res.ok) throw new Error("Failed to fetch readings");
@@ -40,14 +39,12 @@ function formatDate(iso: string) {
   });
 }
 
-// Section label → accent color mapping
 const SECTION_ACCENTS: Record<string, string> = {
-  "Reading I": "border-amber-500  text-amber-700  dark:text-amber-400",
-  "Responsorial Psalm": "border-green-600  text-green-700  dark:text-green-400",
-  "Reading II": "border-orange-500 text-orange-700 dark:text-orange-400",
-  "Verse Before the Gospel":
-    "border-sky-500    text-sky-700    dark:text-sky-400",
-  Gospel: "border-red-600    text-red-700    dark:text-red-500",
+  "Reading I":             "border-amber-500  text-amber-700  dark:text-amber-400",
+  "Responsorial Psalm":   "border-green-600  text-green-700  dark:text-green-400",
+  "Reading II":            "border-orange-500 text-orange-700 dark:text-orange-400",
+  "Verse Before the Gospel": "border-sky-500 text-sky-700    dark:text-sky-400",
+  Gospel:                  "border-red-600    text-red-700    dark:text-red-500",
 };
 
 const DEFAULT_ACCENT = "border-stone-400 text-stone-600 dark:text-stone-400";
@@ -56,50 +53,47 @@ function getAccent(section: string) {
   return SECTION_ACCENTS[section] ?? DEFAULT_ACCENT;
 }
 
-// Render the reading text with paragraph breaks preserved
-function ReadingText({ text }: { text: string }) {
-  const paragraphs = text
+// ---------------------------------------------------------------------------
+// Psalm renderer — honours single-line verse breaks within each stanza
+// ---------------------------------------------------------------------------
+function PsalmText({ text }: { text: string }) {
+  // Split on double (or more) newlines → stanzas / paragraph blocks
+  const stanzas = text
     .split(/\n{2,}/)
-    .map((p) => p.trim())
+    .map((s) => s.trim())
     .filter(Boolean);
 
   return (
-    <div className="space-y-4">
-      {paragraphs.map((para, i) => {
-        // Refrain lines in Responsorial Psalm (start with "R")
-        const isRefrain = /^R[\s\xa0]/.test(para);
+    <div className="space-y-6">
+      {stanzas.map((stanza, si) => {
+        const isRefrain = /^R[\s\xa0]/.test(stanza);
+        // Split each stanza on single newlines to get individual verse lines
+        const lines = stanza.split("\n").map((l) => l.trim()).filter(Boolean);
 
         if (isRefrain) {
           return (
             <p
-              key={i}
-              className="font-semibold text-stone-700 dark:text-stone-300 italic leading-relaxed text-[1.125rem]"
+              key={si}
+              className="font-semibold italic leading-loose text-stone-700 dark:text-stone-300 text-[1.2rem]"
             >
-              {para}
-            </p>
-          );
-        }
-
-        // Rubric lines (italicised stage directions like "Here all kneel...")
-        const isRubric =
-          para.startsWith("Here all") || para.startsWith("The passion");
-        if (isRubric) {
-          return (
-            <p
-              key={i}
-              className="text-base italic text-stone-500 dark:text-stone-500 border-l-2 border-stone-300 dark:border-stone-600 pl-3"
-            >
-              {para}
+              {lines.map((line, li) => (
+                <span key={li}>
+                  {line}
+                  {li < lines.length - 1 && <br />}
+                </span>
+              ))}
             </p>
           );
         }
 
         return (
-          <p
-            key={i}
-            className="text-stone-800 dark:text-stone-200 leading-[1.9] text-[1.125rem]"
-          >
-            {para}
+          <p key={si} className="text-stone-800 dark:text-stone-200 leading-loose text-[1.2rem]">
+            {lines.map((line, li) => (
+              <span key={li}>
+                {line}
+                {li < lines.length - 1 && <br />}
+              </span>
+            ))}
           </p>
         );
       })}
@@ -107,9 +101,66 @@ function ReadingText({ text }: { text: string }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Generic reading renderer — breaks at every newline for breath / readability
+// ---------------------------------------------------------------------------
+function ReadingText({ text }: { text: string }) {
+  // Split on double (or more) newlines → paragraphs
+  const paragraphs = text
+    .split(/\n{2,}/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  return (
+    <div className="space-y-5">
+      {paragraphs.map((para, pi) => {
+        const isRubric =
+          para.startsWith("Here all") || para.startsWith("The passion");
+
+        // Split paragraph into individual lines
+        const lines = para.split("\n").map((l) => l.trim()).filter(Boolean);
+
+        if (isRubric) {
+          return (
+            <p
+              key={pi}
+              className="text-[1.1rem] italic text-stone-500 dark:text-stone-500 border-l-2 border-stone-300 dark:border-stone-600 pl-3 leading-loose"
+            >
+              {lines.map((line, li) => (
+                <span key={li}>
+                  {line}
+                  {li < lines.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          );
+        }
+
+        return (
+          <p
+            key={pi}
+            className="text-stone-800 dark:text-stone-200 leading-[2] text-[1.2rem]"
+          >
+            {lines.map((line, li) => (
+              <span key={li}>
+                {line}
+                {li < lines.length - 1 && <br />}
+              </span>
+            ))}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Reading card
+// ---------------------------------------------------------------------------
 function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
   const accent = getAccent(reading.section);
   const [borderClass] = accent.split(" ");
+  const isPsalm = reading.section === "Responsorial Psalm";
 
   return (
     <article
@@ -160,7 +211,11 @@ function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
 
       {/* Reading body */}
       <div className="px-6 py-6">
-        <ReadingText text={reading.text} />
+        {isPsalm ? (
+          <PsalmText text={reading.text} />
+        ) : (
+          <ReadingText text={reading.text} />
+        )}
       </div>
 
       {/* Ordinal watermark */}
@@ -179,12 +234,15 @@ function ReadingCard({ reading, index }: { reading: Reading; index: number }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
 export default async function ReadingsPage() {
   const data = await getReadings();
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
-      {/* ── Top nav bar ── */}
+      {/* Top nav */}
       <nav className="sticky top-0 z-20 bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur border-b border-stone-200 dark:border-stone-800">
         <div className="max-w-3xl mx-auto px-4 h-14 flex items-center gap-3">
           <Link
@@ -199,9 +257,7 @@ export default async function ReadingsPage() {
             <ChevronLeft className="w-4 h-4" />
             Back
           </Link>
-          <span className="text-stone-300 dark:text-stone-700 select-none">
-            /
-          </span>
+          <span className="text-stone-300 dark:text-stone-700 select-none">/</span>
           <span className="text-sm font-medium text-stone-700 dark:text-stone-300 truncate">
             Daily Readings
           </span>
@@ -209,7 +265,7 @@ export default async function ReadingsPage() {
       </nav>
 
       <main className="max-w-3xl mx-auto px-4 py-10">
-        {/* ── Page header ── */}
+        {/* Page header */}
         <header className="mb-10">
           <p className="text-sm tracking-widest uppercase text-stone-400 dark:text-stone-500 mb-2">
             {formatDate(data.date)}
@@ -222,10 +278,7 @@ export default async function ReadingsPage() {
           </p>
 
           {/* Quick-jump pill nav */}
-          <nav
-            aria-label="Jump to reading"
-            className="mt-6 flex flex-wrap gap-2"
-          >
+          <nav aria-label="Jump to reading" className="mt-6 flex flex-wrap gap-2">
             {data.readings.map((r, i) => {
               const accent = getAccent(r.section);
               const [borderClass] = accent.split(" ");
@@ -248,7 +301,7 @@ export default async function ReadingsPage() {
           </nav>
         </header>
 
-        {/* ── Reading cards ── */}
+        {/* Reading cards */}
         <div className="space-y-8">
           {data.readings.map((reading, i) => (
             <div key={i} id={`reading-${i}`}>
@@ -257,7 +310,7 @@ export default async function ReadingsPage() {
           ))}
         </div>
 
-        {/* ── Footer attribution ── */}
+        {/* Footer */}
         <footer className="mt-16 pt-6 border-t border-stone-200 dark:border-stone-800 text-center">
           <p className="text-xs text-stone-400 dark:text-stone-600">
             Readings from the{" "}
