@@ -368,8 +368,14 @@ function StructuredData({ data }: { data: ReadingsData }) {
 export default async function ReadingsPage() {
   const data = await getReadings();
 
-  const shareText = `📖 Today's Catholic readings — ${data.feast}\n${formatDate(data.date)}\n\nRead here:`;
-  const shareUrl = "https://stanneschaplaincy.com/prayer/readings";
+const shareText = `📖 Today's Catholic readings — ${data.feast}
+${formatDate(data.date)}
+
+${data.readings
+  .map((r, i) => `${i + 1}. ${r.section} — ${r.reference}`)
+  .join("\n")}
+
+Read here:`;  const shareUrl = "https://stanneschaplaincy.com/prayer/readings";
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-stone-950">
