@@ -164,7 +164,7 @@ function PsalmText({ text }: { text: string }) {
     .filter(Boolean);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {stanzas.map((stanza, si) => {
         const isRefrain = /^R[\s\xa0]/.test(stanza);
         const lines = stanza.split("\n").map((l) => l.trim()).filter(Boolean);
@@ -212,7 +212,7 @@ function ReadingText({ text }: { text: string }) {
     .filter(Boolean);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3.5">
       {paragraphs.map((para, pi) => {
         const isRubric =
           para.startsWith("Here all") || para.startsWith("The passion");
