@@ -173,7 +173,7 @@ function PsalmText({ text }: { text: string }) {
           return (
             <p
               key={si}
-              className="font-semibold italic leading-relaxed text-stone-700 dark:text-stone-300 text-[1.2rem]"
+              className="font-semibold italic leading-normal text-stone-700 dark:text-stone-300 text-[1.2rem]"
             >
               {lines.map((line, li) => (
                 <span key={li}>
@@ -186,7 +186,7 @@ function PsalmText({ text }: { text: string }) {
         }
 
         return (
-          <p key={si} className="text-stone-800 dark:text-stone-200 leading-relaxed text-[1.2rem]">
+          <p key={si} className="text-stone-800 dark:text-stone-200 leading-normal text-[1.2rem]">
             {lines.map((line, li) => (
               <span key={li}>
                 {line}
@@ -222,7 +222,7 @@ function ReadingText({ text }: { text: string }) {
           return (
             <p
               key={pi}
-              className="text-[1.1rem] italic text-stone-500 dark:text-stone-500 border-l-2 border-stone-300 dark:border-stone-600 pl-3 leading-relaxed"
+              className="text-[1.1rem] italic text-stone-500 dark:text-stone-500 border-l-2 border-stone-300 dark:border-stone-600 pl-3 leading-normal"
             >
               {lines.map((line, li) => (
                 <span key={li}>
@@ -237,7 +237,7 @@ function ReadingText({ text }: { text: string }) {
         return (
           <p
             key={pi}
-            className="text-stone-800 dark:text-stone-200 leading-relaxed text-[1.2rem]"
+            className="text-stone-800 dark:text-stone-200 leading-normal text-[1.2rem]"
           >
             {lines.map((line, li) => (
               <span key={li}>
