@@ -110,8 +110,8 @@ export default async function Home() {
       iconBg: "from-emerald-500 to-green-500",
     },
     {
-      title: "Daily Readings",
-      description: "something about daily readings",
+      title: "Daily Readings and Prayers",
+      description: "Get daily readings and search for Catholic prayers",
       icon: BookOpen,
       href: "/prayer",
       gradient: "from-orange-500 to-amber-600",
@@ -120,7 +120,7 @@ export default async function Home() {
     },
     {
       title: "Events & Activities",
-      description: "Charity events, hikes, and cultural week",
+      description: "Explore the semester program and calender",
       icon: Calendar,
       href: "/events",
       gradient: "from-green-600 to-emerald-700",
@@ -128,8 +128,8 @@ export default async function Home() {
       iconBg: "from-green-600 to-emerald-600",
     },
     {
-      title: "CSA",
-      description: "Catholic Students Association",
+      title: "CSA page",
+      description: "Catholic Students Association page",
       icon: Heart,
       href: "/groups",
       gradient: "from-amber-500 to-orange-600",
