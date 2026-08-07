@@ -49,7 +49,7 @@ export default function AdminDashboard() {
             ⚠️ <span className="uppercase">Warning:</span> This platform is for authorized administrative use only. Misuse may lead to <span className="underline">serious consequences</span>. Always handle content responsibly.
           </p>
           <p>for more information and clarifications about the website source code, email admin@stanneschaplaincy.com or call : +254 743 658 999</p>
-          <p>This platform was officially Launched on 12th April 2026</p>
+          <p>This platform was officially Launched on 19th April 2026</p>
         </div>
 
         {/* Dashboard Title */}
@@ -109,6 +109,15 @@ export default function AdminDashboard() {
           >
             <MessageSquare className="w-8 h-8 md:w-10 md:h-10 text-pink-600 mb-2 md:mb-3 mx-auto flex-shrink-0" />
             <h3 className="font-semibold text-gray-900 text-sm md:text-base">Contact Messages</h3>
+          </Link>
+          
+
+          <Link
+            href="/admin/contacts"
+            className="bg-white p-4 md:p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex flex-col items-center text-center"
+          >
+            <MessageSquare className="w-8 h-8 md:w-10 md:h-10 text-pink-600 mb-2 md:mb-3 mx-auto flex-shrink-0" />
+            <h3 className="font-semibold text-gray-900 text-sm md:text-base">update contacts</h3>
           </Link>
         </div>
       </main>

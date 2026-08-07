@@ -5,7 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { 
   Menu, X, Users, Calendar, Image, MessageSquare, 
-  BookOpen, LayoutDashboard, Settings, ChevronLeft 
+  BookOpen, LayoutDashboard, Settings, ChevronLeft, 
+  PhoneCallIcon
 } from "lucide-react";
 
 const navItems = [
@@ -18,6 +19,7 @@ const navItems = [
   { href: "/admin/photos", label: "Photos", icon: Image },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
   { href: "/admin/theme", label: "Theme", icon: Settings },
+  { href: "/admin/contacts", label: "Update Contacts", icon: PhoneCallIcon}
 ];
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {
