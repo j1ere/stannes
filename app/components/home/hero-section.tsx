@@ -250,7 +250,9 @@ export function HeroSection() {
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link> */}
           {/* Featured CSA Welcome Banner */}
-<Link
+
+        </div>
+        <Link
   href="https://csa.stanneschaplaincy.com"
   target="_blank"
   rel="noopener noreferrer"
@@ -280,7 +282,6 @@ export function HeroSection() {
     </div>
   </div>
 </Link>
-        </div>
       </div>
 
       {/* Wave Divider Bottom */}
