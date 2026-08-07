@@ -200,6 +200,27 @@ export function HeroSection() {
         </div>
 
         {/* CTA Buttons */}
+        {/* <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+          <Link
+            href="/prayer"
+            className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full font-semibold shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ring-2 ring-white/20 hover:ring-white/40"
+          >
+            <span className="flex items-center justify-center">
+              Daily readings and Prayers
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Link>
+
+          <Link
+            href="/events"
+            className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/40 text-white rounded-full font-semibold backdrop-blur-sm hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
+          >
+            View Events
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:rotate-12 transition-transform" />
+          </Link>
+        </div> */}
+
+        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
           <Link
             href="/prayer"
@@ -217,6 +238,16 @@ export function HeroSection() {
           >
             View Events
             <Calendar className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:rotate-12 transition-transform" />
+          </Link>
+
+          <Link
+            href="https://csa.stanneschaplaincy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-green-950 rounded-full font-semibold shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
+          >
+            New Student? Join CSA
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
