@@ -269,7 +269,8 @@ export function HeroSection() {
                   New student? Start here.
                 </h3>
                 <p className="text-green-950/80 text-base sm:text-lg">
-                  Explore the CSA welcome guide, prayer houses, Mass times, groups, and everything you need to begin your journey at St. Anne's Chaplaincy.
+                The Catholic Students Association of Maseno University through the chair, warmly welcomes you all to Maseno University and to St. Anne's Chaplaincy.
+                  
                 </p>
               </div>
 
