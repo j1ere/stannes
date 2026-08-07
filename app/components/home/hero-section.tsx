@@ -240,7 +240,7 @@ export function HeroSection() {
             <Calendar className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:rotate-12 transition-transform" />
           </Link>
 
-          <Link
+          {/* <Link
             href="https://csa.stanneschaplaincy.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -248,7 +248,38 @@ export function HeroSection() {
           >
             New Student? Join CSA
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </Link> */}
+          {/* Featured CSA Welcome Banner */}
+<Link
+  href="https://csa.stanneschaplaincy.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group block max-w-3xl mx-auto mb-10"
+>
+  <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-500 p-6 sm:p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-amber-500/30">
+    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-10 translate-x-10"></div>
+    <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="text-center sm:text-left">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-green-950/80 mb-2">
+          Class of 2026 / 2027
+        </p>
+        <h3 className="text-2xl sm:text-3xl font-bold text-green-950 mb-2">
+          New student? Start here.
+        </h3>
+        <p className="text-green-950/80 text-base sm:text-lg">
+          Explore the CSA welcome guide, prayer houses, Mass times, groups, and everything you need to begin your journey at St. Anne's Chaplaincy.
+        </p>
+      </div>
+
+      <div className="flex-shrink-0">
+        <div className="inline-flex items-center gap-2 rounded-full bg-green-950 px-5 py-3 text-white font-semibold group-hover:bg-green-900 transition-colors">
+          Open Welcome Guide
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Link>
         </div>
       </div>
 
