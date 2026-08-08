@@ -283,6 +283,68 @@ export function HeroSection() {
             </div>
           </div>
         </Link>
+
+        <Link
+  href="https://csa.stanneschaplaincy.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group block max-w-3xl mx-auto mt-10 sm:mt-12 mb-6"
+>
+  <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-500 p-6 sm:p-8 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-amber-500/30">
+
+    {/* Left student image */}
+    <div className="absolute inset-y-0 left-0 w-1/3 overflow-hidden">
+      <img
+        src="https://res.cloudinary.com/dfdegqwp6/image/upload/v1775735304/group_gallery/2026/04/09/WhatsApp_Image_2026-04-09_at_2.44.31_PM_l1ykhl.jpg"
+        alt="CSA students"
+        className="h-full w-full object-cover opacity-20 transition-all duration-700 ease-out -translate-x-8 group-hover:translate-x-0 group-hover:opacity-30"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-amber-500/60 to-transparent"></div>
+    </div>
+
+    {/* Right student image */}
+    <div className="absolute inset-y-0 right-0 w-1/3 overflow-hidden">
+      <img
+        src="/images/csa-students-right.jpg"
+        alt="CSA community"
+        className="h-full w-full object-cover opacity-20 transition-all duration-700 ease-out translate-x-8 group-hover:translate-x-0 group-hover:opacity-30"
+      />
+      <div className="absolute inset-0 bg-gradient-to-l from-orange-500/60 to-transparent"></div>
+    </div>
+
+    {/* Decorative circle */}
+    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-10 translate-x-10"></div>
+
+    {/* Content */}
+    <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="text-center sm:text-left">
+        <div className="inline-flex items-center gap-2 rounded-full bg-green-950/10 px-3 py-1 mb-3">
+          <Sparkles className="w-4 h-4 text-green-900" />
+          <span className="text-xs font-bold uppercase tracking-[0.15em] text-green-900">
+            Freshers' Welcome
+          </span>
+        </div>
+
+        <h3 className="text-2xl sm:text-3xl font-bold text-green-950 mb-2">
+          New student? Start here.
+        </h3>
+
+        <p className="text-green-950/85 text-base sm:text-lg max-w-xl">
+          Explore the CSA welcome guide, prayer houses, Mass times, groups,
+          and everything you need to begin your journey at
+          <strong> St. Anne's Chaplaincy</strong>.
+        </p>
+      </div>
+
+      <div className="flex-shrink-0">
+        <div className="inline-flex items-center gap-2 rounded-full bg-green-950 px-5 py-3 text-white font-semibold group-hover:bg-green-900 transition-all duration-300">
+          Open Welcome Guide
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Link>
       </div>
 
       {/* Wave Divider Bottom */}
