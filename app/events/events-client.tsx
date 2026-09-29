@@ -443,7 +443,7 @@ const EventsClient = () => {
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Chaplaincy Calendar 2025/26
+                  Current Chaplaincy Calendar
                 </h3>
                 <p className="text-gray-600 mb-6">
                   Complete calendar of CSA events, meetings, and activities for
@@ -474,7 +474,7 @@ const EventsClient = () => {
                   <Gift className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Program Guide 2025/26
+                  Current Program Guide
                 </h3>
                 <p className="text-gray-600 mb-6">
                   Major semester events guide
